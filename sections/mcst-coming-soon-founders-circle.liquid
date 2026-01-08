@@ -2,8 +2,8 @@
   #mcst-coming-soon-{{ section.id }} {
     position: relative;
     min-height: 100vh;
-    background-color: rgb(var(--color-background, 40, 40, 40));
-    color: rgb(var(--color-foreground, 255, 255, 255));
+    background-color: #282828;
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }}::before {
@@ -50,10 +50,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: rgba(var(--color-background, 40, 40, 40), 0.95);
+    background-color: rgba(40, 40, 40, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.5rem 0;
   }
 
@@ -63,7 +63,7 @@
   }
 
   .mcst-hook-item {
-    border-bottom: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .mcst-hook-content {
@@ -107,7 +107,7 @@
   </section>
 
   <!-- The Why -->
-  <section id="mcst-why" style="padding: 6rem 0; background-color: rgba(var(--color-background, 40, 40, 40), 0.5);">
+  <section id="mcst-why" style="padding: 6rem 0; background-color: rgba(40, 40, 40, 0.5);">
     <div class="page-width">
       <h2 class="h1" style="margin-bottom: 3rem; text-align: center;">Big brands sell Chicago, neighborhoods get scraps</h2>
       <div class="rte" style="max-width: 70rem; margin: 0 auto; font-size: 1.6rem; line-height: 1.8;">
@@ -121,24 +121,24 @@
     <div class="page-width">
       <h2 class="h1" style="margin-bottom: 4rem; text-align: center;">What is the Founder's Circle</h2>
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-        <div style="padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 8px;">
+        <div style="padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 8px;">
           <h3 class="h3" style="margin-bottom: 1rem;">Early Access</h3>
           <p>First dibs on drops, exclusive pieces, and behind-the-scenes updates.</p>
         </div>
-        <div style="padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 8px;">
+        <div style="padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 8px;">
           <h3 class="h3" style="margin-bottom: 1rem;">Direct Impact</h3>
           <p>See exactly where your support goes, which organizations we're backing, and the real numbers.</p>
         </div>
-        <div style="padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 8px;">
+        <div style="padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 8px;">
           <h3 class="h3" style="margin-bottom: 1rem;">Founder Pricing</h3>
           <p>Lock in better rates on future releases as a thank you for believing early.</p>
         </div>
-        <div style="padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 8px;">
+        <div style="padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 8px;">
           <h3 class="h3" style="margin-bottom: 1rem;">Community Input</h3>
           <p>Your voice shapes what we build next. Real feedback, real influence.</p>
         </div>
       </div>
-      <div class="rte" style="max-width: 70rem; margin: 0 auto; padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 8px; border-left: 3px solid rgb(var(--color-base-accent-1, 174, 239, 0));">
+      <div class="rte" style="max-width: 70rem; margin: 0 auto; padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 8px; border-left: 3px solid #aeef00;">
         <p><strong>Real talk on donations:</strong> We're not writing five-figure checks today. The intention is baked in, we're vetting partners now, and when we're ready, Founder's Circle members will be the first to know where the money goes. This is about building something real, not promises.</p>
       </div>
     </div>
@@ -146,7 +146,7 @@
 
   <!-- Hooks -->
   {% if section.settings.show_hooks %}
-  <section style="padding: 6rem 0; background-color: rgba(var(--color-background, 40, 40, 40), 0.5);">
+  <section style="padding: 6rem 0; background-color: rgba(40, 40, 40, 0.5);">
     <div class="page-width">
       <h2 class="h1" style="margin-bottom: 2rem; text-align: center;">Conversation Starters</h2>
       <p style="text-align: center; margin-bottom: 4rem; opacity: 0.7;">Not scripts, just starting points for real conversations.</p>
@@ -286,50 +286,50 @@
 
   <!-- FAQ -->
   {% if section.settings.show_faq %}
-  <section style="padding: 6rem 0; background-color: rgba(var(--color-background, 40, 40, 40), 0.5);">
+  <section style="padding: 6rem 0; background-color: rgba(40, 40, 40, 0.5);">
     <div class="page-width">
       <h2 class="h1" style="margin-bottom: 4rem; text-align: center;">FAQ</h2>
       <div style="max-width: 70rem; margin: 0 auto;">
         <div class="mcst-faq-item" style="margin-bottom: 1rem;">
-          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
+          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
             <span>Is this a nonprofit?</span>
             <span class="mcst-faq-icon" style="transition: transform 0.3s;">+</span>
           </button>
           <div class="mcst-faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 0 0 8px 8px;">
+            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 0 0 8px 8px;">
               <p>No. We're a social enterprise. That means we can move fast, reinvest profits directly into Chicago neighborhoods, and avoid the red tape that slows down traditional nonprofits. Same mission, different structure.</p>
             </div>
           </div>
         </div>
         <div class="mcst-faq-item" style="margin-bottom: 1rem;">
-          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
+          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
             <span>When do I get my Founder's Circle benefits?</span>
             <span class="mcst-faq-icon" style="transition: transform 0.3s;">+</span>
           </button>
           <div class="mcst-faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 0 0 8px 8px;">
+            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 0 0 8px 8px;">
               <p>As soon as we launch. Early access emails go out first to Founder's Circle members. Founder pricing kicks in on our first drop. Community input starts now, we're already listening.</p>
             </div>
           </div>
         </div>
         <div class="mcst-faq-item" style="margin-bottom: 1rem;">
-          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
+          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
             <span>What if I change my mind?</span>
             <span class="mcst-faq-icon" style="transition: transform 0.3s;">+</span>
           </button>
           <div class="mcst-faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 0 0 8px 8px;">
+            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 0 0 8px 8px;">
               <p>No problem. Unsubscribe anytime. We're building something people want to be part of, not trapping anyone. If it's not for you, it's not for you.</p>
             </div>
           </div>
         </div>
         <div class="mcst-faq-item" style="margin-bottom: 1rem;">
-          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
+          <button class="mcst-faq-trigger" style="width: 100%; text-align: left; padding: 2rem; background-color: rgba(40, 40, 40, 0.6); border: none; color: inherit; font-size: 1.6rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border-radius: 8px;">
             <span>How do you pick which organizations to support?</span>
             <span class="mcst-faq-icon" style="transition: transform 0.3s;">+</span>
           </button>
           <div class="mcst-faq-content" style="max-height: 0; overflow: hidden; transition: max-height 0.3s ease;">
-            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border-radius: 0 0 8px 8px;">
+            <div style="padding: 0 2rem 2rem 2rem; background-color: rgba(40, 40, 40, 0.6); border-radius: 0 0 8px 8px;">
               <p>We're vetting now. Looking for organizations with real impact, transparent operations, and alignment with our mission. Founder's Circle members will see the full process, the criteria, and the final decisions. No secrets.</p>
             </div>
           </div>
@@ -345,8 +345,8 @@
       <h2 class="h1" style="margin-bottom: 2rem; text-align: center;">Join the Founder's Circle</h2>
       <p style="text-align: center; margin-bottom: 4rem; font-size: 1.6rem; opacity: 0.8;">Get early access, founder pricing, and direct impact updates.</p>
       
-      {% form 'customer', class: 'mcst-signup-form' %}
-        <input type="hidden" name="form_type" value="customer">
+      {% form 'contact', class: 'mcst-signup-form' %}
+        <input type="hidden" name="form_type" value="contact">
         <input type="hidden" name="utf8" value="✓">
         <input type="hidden" name="contact[tags]" value="founders_circle">
         <input type="hidden" name="contact[context]" value="mcst_coming_soon_{{ section.id }}">
@@ -368,10 +368,10 @@
               aria-invalid="true"
               aria-describedby="mcst-email-error-{{ section.id }}"
             {% endif %}
-            style="width: 100%; padding: 1.5rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
+            style="width: 100%; padding: 1.5rem; background-color: rgba(40, 40, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
           >
           {%- if form.errors contains 'email' -%}
-            <small class="form__message" id="mcst-email-error-{{ section.id }}" style="display: block; margin-top: 0.5rem; color: rgb(var(--color-base-accent-1, 255, 0, 0));">
+            <small class="form__message" id="mcst-email-error-{{ section.id }}" style="display: block; margin-top: 0.5rem; color: #ff0000;">
               {% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
             </small>
           {%- endif -%}
@@ -381,13 +381,13 @@
           <input
             type="text"
             id="mcst-firstname-{{ section.id }}"
-            name="contact[first_name]"
+            name="contact[name]"
             class="field__input"
-            value="{% if form.first_name %}{{ form.first_name }}{% elsif customer %}{{ customer.first_name }}{% endif %}"
+            value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
             autocapitalize="words"
-            autocomplete="given-name"
-            placeholder="First name (optional)"
-            style="width: 100%; padding: 1.5rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
+            autocomplete="name"
+            placeholder="Name (optional)"
+            style="width: 100%; padding: 1.5rem; background-color: rgba(40, 40, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
           >
         </div>
 
@@ -398,7 +398,7 @@
             name="contact[organization]"
             class="field__input"
             placeholder="Organization (optional)"
-            style="width: 100%; padding: 1.5rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
+            style="width: 100%; padding: 1.5rem; background-color: rgba(40, 40, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
           >
         </div>
 
@@ -409,7 +409,7 @@
             name="contact[role]"
             class="field__input"
             placeholder="Role (optional)"
-            style="width: 100%; padding: 1.5rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
+            style="width: 100%; padding: 1.5rem; background-color: rgba(40, 40, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
           >
         </div>
 
@@ -420,7 +420,7 @@
             name="contact[neighborhood]"
             class="field__input"
             placeholder="Neighborhood (optional)"
-            style="width: 100%; padding: 1.5rem; background-color: rgba(var(--color-background, 40, 40, 40), 0.6); border: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
+            style="width: 100%; padding: 1.5rem; background-color: rgba(40, 40, 40, 0.6); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: inherit; font-size: 1.6rem;"
           >
         </div>
 
@@ -429,7 +429,7 @@
         </button>
 
         {%- if form.posted_successfully? -%}
-          <div class="form__message form__message--success" style="margin-top: 2rem; padding: 2rem; background-color: rgba(var(--color-base-accent-1, 174, 239, 0), 0.2); border: 1px solid rgb(var(--color-base-accent-1, 174, 239, 0)); border-radius: 4px; text-align: center;">
+          <div class="form__message form__message--success" style="margin-top: 2rem; padding: 2rem; background-color: rgba(174, 239, 0, 0.2); border: 1px solid #aeef00; border-radius: 4px; text-align: center;">
             {% render 'icon-success' -%}
             <span style="margin-left: 1rem;">You're in. Welcome to the Founder's Circle.</span>
           </div>
@@ -441,7 +441,7 @@
   </section>
 
   <!-- Footer -->
-  <footer style="padding: 4rem 0; border-top: 1px solid rgba(var(--color-foreground, 255, 255, 255), 0.1); text-align: center;">
+  <footer style="padding: 4rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); text-align: center;">
     <div class="page-width">
       <p style="margin-bottom: 1rem; font-size: 1.6rem; font-weight: 600;">Building something real for Chicago, one block at a time.</p>
       <p style="margin-bottom: 2rem; opacity: 0.7;">Built in Chicago, built to last</p>
@@ -543,16 +543,16 @@
       const emailInput = form.querySelector('input[type="email"]');
       if (!emailInput.value.trim()) {
         e.preventDefault();
-        emailInput.style.borderColor = 'rgb(var(--color-base-accent-1, 255, 0, 0))';
+        emailInput.style.borderColor = '#ff0000';
         const errorMsg = document.createElement('small');
         errorMsg.className = 'form__message';
         errorMsg.style.display = 'block';
         errorMsg.style.marginTop = '0.5rem';
-        errorMsg.style.color = 'rgb(var(--color-base-accent-1, 255, 0, 0))';
+        errorMsg.style.color = '#ff0000';
         errorMsg.textContent = 'Email is required';
         emailInput.parentNode.appendChild(errorMsg);
         setTimeout(() => {
-          emailInput.style.borderColor = 'rgba(var(--color-foreground, 255, 255, 255), 0.2)';
+          emailInput.style.borderColor = 'rgba(255, 255, 255, 0.2)';
           if (errorMsg.parentNode) errorMsg.parentNode.removeChild(errorMsg);
         }, 3000);
       }
@@ -586,7 +586,7 @@
 
 {% schema %}
 {
-  "name": "MCST Coming Soon - Founder's Circle",
+  "name": "MCST Coming Soon - Founders Circle",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -594,13 +594,13 @@
       "type": "text",
       "id": "hero_heading",
       "label": "Hero Heading",
-      "default": "Join the Founder's Circle"
+      "default": "Join the Founders Circle"
     },
     {
       "type": "richtext",
       "id": "hero_subhead",
       "label": "Hero Subhead",
-      "default": "<p>Slow build, real Chicago, foundation first. We're not rushing, we're building something that lasts.</p>"
+      "default": "<p>Slow build, real Chicago, foundation first. We are not rushing, we are building something that lasts.</p>"
     },
     {
       "type": "checkbox",
@@ -617,7 +617,7 @@
   ],
   "presets": [
     {
-      "name": "MCST Coming Soon - Founder's Circle"
+      "name": "MCST Coming Soon - Founders Circle"
     }
   ]
 }
