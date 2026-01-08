@@ -1,0 +1,92 @@
+.ap-lookbookshop__item-list {
+  display: grid;
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  grid-gap: var(--ap-productlist-block-spacing) var(--ap-productlist-column-gap);
+  gap: 30px;
+}
+.ap-lookbookshop__item {
+  max-width: 420px;
+  width: 100%;
+}
+.ap-lookbookshop__item:last-child {
+  max-width: 630px;
+  width: 100%;
+}
+.ap-lookbookshop__image-wrapper {
+  height: 100%;
+}
+.lookbook-carousel-arrow {
+  display: none;
+}
+.ap-lookbookshop__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.block-lookbook {
+  padding: 30px;
+  border-width: 1px 0;
+  border-style: solid;
+  overflow: hidden;
+}
+
+/* DOT-PRODUCT LOOKBOOK */
+.look-book-section .ap-lookbookshop__dot {
+  width: 42px;
+  height: 42px;
+  box-shadow: 0 0 0 14px #ffffff52 inset, 0 1px 5px #00000026;
+}
+.look-book-section .ap-lookbookshop__product-wrapper > .tap-area:before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #000;
+  left: 50%;
+  top: 50%;
+  bottom: unset;
+  transform: translate(-50%, -50%);
+}
+.look-book-section .ap-lookbookshop__dot:after {
+  left: 0;
+  top: 0;
+  width: 42px;
+  height: 42px;
+}
+/* end  */
+
+[dir="ltr"] .look-book-section .ap-lookbookshop__product--reverse {
+  left: 50%;
+}
+[dir="ltr"] .look-book-section .ap-lookbookshop__product--reverse {
+  right: auto;
+}
+.look-book-section .ap-lookbookshop__product[open] {
+  transform: scale(1) translateX(-50%);
+}
+.look-book-section .ap-lookbookshop__product {
+  top: 100%;
+}
+.look-book-section .ap-lookbookshop__item {
+  overflow: unset;
+}
+.look-book-section .ap-lookbookshop__product:before {
+  display: none;
+}
+.ap-lookbookshop__product {
+  align-items: start;
+}
+@media (max-width: 767px) {
+  .ap-lookbookshop__item-list {
+    grid-auto-flow: row;
+  }
+  .ap-lookbookshop__item ,
+  .ap-lookbookshop__item:last-child {
+    max-width: 100%;
+  }
+}

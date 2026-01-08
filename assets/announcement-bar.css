@@ -1,0 +1,74 @@
+.announcement-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+.ap-announcementbar {
+  padding: 0;
+}
+.ap-announcementbar .container-fluid {
+  padding: 0 15px;
+}
+.ap-announcementbar__message {
+  padding: 0;
+}
+.ap-announcementbar__message p {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+}
+.social-media__link svg.icon {
+  display: none;
+}
+.no-focus-outline .social-media__item {
+  box-shadow: none;
+  overflow: visible;
+}
+.social-media__link {
+  height: 100%;
+  width: 100%;
+}
+.social-media__item {
+  margin: 0 8px;
+}
+.social-media__item:last-child {
+  margin-right: 0;
+}
+.bar-menu-social svg {
+  display: none;
+}
+.social-media__link {
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.bar-menu-social .social-media__item:after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  background-color: rgb(var(--border-color));
+  height: 100%;
+  top: 0;
+  width: 1px;
+}
+.social-media__item:last-child:after {
+  display: none;
+}
+.social-media__item:hover .social-media__link {
+  color: var(--primary);
+}     
+@media (min-width: 1200px) {
+  .ap-announcementbar .container-fluid {
+    padding: 0 80px;
+  }
+}
+@media (max-width: 767px) {
+  .announcement-row {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px 0;
+    justify-content: center;
+  }
+}

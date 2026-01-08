@@ -1,0 +1,60 @@
+.contact img {
+  max-width: 100%;
+}
+
+.contact .form__message {
+  align-items: center;
+}
+   
+.contact .icon-success {
+  margin-top: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.contact .field {
+  margin-bottom: 1.5rem;
+}
+
+.contact .field__label {
+  display: none;
+}
+
+.contact .field__input {
+  width: 100%;
+  padding: 9px 75px 9px 15px;
+}
+
+.contact__button .button {
+  background-color: var(--primary);
+  width: 100%;
+  transition: all .4s;
+}
+
+.contact__button .button:hover {
+  background-color: #fff;
+}
+
+@media screen and (min-width: 750px) {
+  .contact .field {
+    margin-bottom: 2rem;
+  }
+}
+
+.contact__button {
+  margin-top: 3rem;
+}
+
+@media screen and (min-width: 750px) {
+  .contact__button {
+    margin-top: 3rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .contact__fields {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 2rem;
+  }
+}

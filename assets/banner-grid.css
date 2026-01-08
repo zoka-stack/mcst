@@ -1,0 +1,200 @@
+.banner-text {
+  position: absolute;
+  bottom: 80px;
+  left: 60px;
+}
+.heading-title {
+  font-size: 42px;
+  line-height: 44px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.heading-title span {
+  color: var(--color-text);
+}
+.heading-center span,
+.col-full .description span {
+  color: var(--color-text-2);
+}
+.banner-col {
+  padding: 30px;
+  border-right: 1px solid rgb(var(--border-color));
+}
+.banner-grid {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: rgb(var(--border-color));
+}
+.heading-title span,
+.col-full .description span,
+.heading-center span {
+  transition: all 0.8s;
+  background-color: var(--primary);
+  background-image: linear-gradient(var(--bg-color), var(--bg-color), var(--bg-color));
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: 150%;
+}
+.banner-content:hover .heading-title span,
+.banner-content:hover .heading-center span span,
+.col-full .banner-content:hover .description span,
+.banner-content:hover .heading-center span {
+  background-size: 0;
+  color: var(--color-hover);
+}
+.heading-center {
+  font-size: 70px;
+  line-height: 65px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.heading-center span span {
+  color: var(--primary);
+}
+.banner-content {
+  position: relative;
+}
+.description {
+  font-size: 20px;
+  line-height: 24px;
+  margin: 20px 0 40px;
+  color: var(--color-text-2);
+}
+.banner-content:hover img.banner-list-image {
+  transform: scale(1.1);
+}
+.banner-image {
+  overflow: hidden;
+}
+.banner-image-child {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  /* animation: rotate 12s linear infinite; */
+}
+@keyframes rotate {
+  from {
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  to {
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.banner-col:nth-child(2) .heading-title,
+.banner-col:nth-child(2) .heading-center {
+  font-size: 70px;
+  line-height: 70px;
+}
+.wrapper-button {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* COL FULL */
+.col-full .banner-text {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 80px;
+}
+.col-full .heading-title {
+  font-size: 54px;
+  line-height: 54px;
+}
+.col-full .heading-center {
+  font-size: 80px;
+  line-height: 80px;
+}
+.col-full .description {
+  font-size: 30px;
+  line-height: 40px;
+  margin: 0 0 42px;
+  text-transform: uppercase;
+}
+.col-full a.button.btn-base-2,
+.col-full .btn-base-2 {
+  border: 1px solid var(--btn-color);
+  color: var(--btn-color);
+  background-color: var(--bg-color-btn);
+}
+.col-full .btn-base-2:before {
+  background-color: var(--bg-color-btn-hover);
+}
+.col-full a.button.btn-base-2 path,
+.col-full .btn-base-2 path {
+  fill: var(--btn-color);
+}
+
+@media (max-width: 1500px) {
+  .banner-text {
+    bottom: 30px;
+    left: 15px;
+  }
+  .heading-center,
+  .banner-col:nth-child(2) .heading-title,
+  .banner-col:nth-child(2) .heading-center {
+    font-size: 50px;
+    line-height: 45px;
+  }
+}
+@media (max-width: 1299px) {
+  .wrapper-button {
+    align-items: start;
+    gap: 5px;
+    flex-direction: column;
+  }
+  .description {
+    font-size: 16px;
+    line-height: 20px;
+    margin: 10px 0 20px;
+    max-width: 300px;
+  }
+  .heading-center,
+  .banner-col:nth-child(2) .heading-title,
+  .banner-col:nth-child(2) .heading-center {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .heading-title {
+    font-size: 24px;
+    line-height: 24px;
+  }
+  .col-full .banner-list-image {
+    min-height: 600px;
+    object-fit: cover;
+  }
+  .col-full .banner-text {
+    left: 15px;
+  }
+}
+@media (max-width: 767px) {
+  .banner-col {
+    border-right: none;
+    border-bottom: 1px solid rgb(var(--border-color));
+  }
+}
+@media (max-width: 480px) {
+  .col-full .banner-list-image {
+    min-height: 400px;
+  }
+  .col-full .heading-center {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .col-full .heading-title {
+    font-size: 30px;
+    line-height: 30px;
+  }
+  .col-full .description {
+    margin: 0 0 20px;
+  }
+}

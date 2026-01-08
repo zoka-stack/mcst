@@ -1,0 +1,109 @@
+.newsletter .ap-imagetextblock__content.content-box--text-left {
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  margin: auto;
+  max-width: 673px;
+  text-align: center;
+}
+.newsletter-section {
+  margin: 0;
+}
+.newsletter h2.heading.heading--small {
+  font-weight: 400;
+  position: relative;
+  line-height: 80px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 60px;
+  font-family: var(--hd-font-family);
+  margin: 0 0 13px;
+  text-shadow: -4px 3px 0px var(--primary);
+}
+.newsletter h2.heading.heading--small span {
+  color: var(--primary);
+  font-family: var(--g-font-other);
+}
+.newsletter .newsletter-content > p {
+  margin: 0px 0 40px;
+  font-size: 16px;
+  line-height: 26px;
+}
+.description-newsletter {
+  margin-top: 10px;
+}
+.input-row {
+  width: 100%;
+  margin-bottom: 0;
+}
+.wp-newsletter-input {
+  display: flex;
+  align-items: center;
+}
+.wp-newsletter-input button.button.button--primary {
+  padding: 0.8em 1.7em;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+  font-family: var(--hd-font-family);
+  height: 48px;
+}
+[dir="ltr"] .wp-newsletter-input .input__label {
+  left: 21px;
+  background-color: transparent;
+}
+.wp-newsletter-input .input__field {
+  line-height: 20px;
+  border: 1px solid rgb(var(--border-color));
+  padding: 0.6em 1.5em;
+  height: 48px;
+}
+.newsletter .js .no-focus-outline *:focus {
+  border: none;
+  box-shadow: none;
+}
+.wp-newsletter-input .input__field ~ .input__label {
+  background-color: #fff;
+  padding: 0 10px;
+}
+.newsletter .ap-text-loaderbutton {
+  gap: 15px;
+  font-size: 12px;
+  line-height: 18px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.wp-newsletter-input button.button.button--primary::before {
+  content: "";
+  height: 100%;
+  width: 0;
+  position: absolute;
+  background-color: var(--primary);
+  top: 0;
+  left: 0;
+  transition: all 0.4s;
+  z-index: -1;
+}
+.wp-newsletter-input button.button.button--primary:hover:before {
+  width: 100%;
+}
+.newsletter .ap-imagetextblock {
+  min-height: 100%;
+}
+.wp-newsletter-input button.button.button--primary:hover {
+  color: rgb(var(--button-text-color));
+}
+@media (max-width: 576px) {
+  .newsletter .ap-imagetextblock__content.content-box--text-left {
+    padding: 0 15px;
+  }
+}
+@media (max-width: 480px) {
+  .wp-newsletter-input > .input,
+  .wp-newsletter-input button.button.button--primary {
+    width: 100%;
+  }
+  .wp-newsletter-input {
+    flex-direction: column;
+  }
+}
