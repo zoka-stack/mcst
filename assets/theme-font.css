@@ -1,0 +1,19 @@
+
+
+@font-face {
+        font-family: 'Clash-Display';
+        src: local('☺'), url('https://cdn.shopify.com/s/files/1/0743/3932/0114/files/ClashDisplay-Semibold.woff?v=1680493906') format('woff'),
+        local('☺'), url('https://cdn.shopify.com/s/files/1/0743/3932/0114/files/ClashDisplay-Semibold.woff2?v=1680493906') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display:swap;
+    }
+
+
+
+:root {
+    --hd-font-family: Clash-Display;
+    --body-font-family: ;
+
+    --g-font-other: ;
+}

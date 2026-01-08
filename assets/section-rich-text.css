@@ -1,0 +1,33 @@
+h2.heading.heading--large {
+  font-size: 200px;
+  width: max-content;
+  line-height: 180px;
+  text-transform: uppercase;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.rich-text .content-box {
+  width: 100%;
+  position: relative;
+  min-height: 180px;
+  overflow: hidden;
+}
+.section-rich-text {
+  margin: 0;
+}
+h2.heading.heading--nomal {
+  font-size: 54px;
+  line-height: 1;
+  max-width: 830px;
+  margin: 0 auto 40px;
+  text-transform: uppercase;
+}
+.rich-text__buttons a.button.btn-base-2 {
+  margin: auto;
+}
+@media (max-width: 480px) {
+  h2.heading.heading--nomal {
+    font-size: 35px;
+  }
+}
