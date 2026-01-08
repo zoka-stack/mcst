@@ -8,6 +8,9 @@
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
   }
 
   @media screen and (min-width: 750px) {
@@ -16,13 +19,21 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .founders-circle__heading {
+    color: {{ section.settings.heading_color | default: '#ffffff' }};
+  }
+
+  .founders-circle__subheading {
+    color: {{ section.settings.text_color | default: '#ffffff' }};
+  }
 {%- endstyle -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient founders-circle section-{{ section.id }}-padding">
-  <div class="page-width">
+  <div class="page-width page-width--narrow">
     <div class="founders-circle__container">
       {%- if section.settings.heading != blank -%}
-        <h1 class="founders-circle__heading {{ section.settings.heading_size }}">
+        <h1 class="founders-circle__heading main-page-title page-title {{ section.settings.heading_size }}">
           {{ section.settings.heading | escape }}
         </h1>
       {%- endif -%}
@@ -216,6 +227,24 @@
     {
       "type": "header",
       "content": "Section Settings"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color",
+      "default": "#282828"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#ffffff"
     },
     {
       "type": "select",
