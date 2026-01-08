@@ -1,0 +1,195 @@
+{{ 'recently-viewed.css' | asset_url | stylesheet_tag }}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    margin: 60px 0
+  }
+</style>
+
+<ap-recentlyproductsviewed section-id="{{ section.id }}" products-count="{{ section.settings.products_to_show }}" class="section section--flush">
+    <div class="container vertical-breather vertical-breather--tight vertical-breather--margin">
+        <header class="header-title">
+          <h2 class="heading h{{ section.settings.heading_size }}">{{ section.settings.heading | escape }}</h2>
+        </header>
+        <ap-productlist stagger-apparition="" class="ap-productlist ap-object-loaded">
+          <div class="scroller">
+              <div class="recently-wp-content">
+
+                <div class="ap-productlist__inner ap-productlist__inner--scroller ap-productlist__inner--desktop-no-scroller hide-scrollbar">
+                {%- for product in predictive_search.resources.products -%}
+                    {% render 'product-grid', product: product %}
+                {% endfor %}
+                </div>
+                
+              </div>
+            </div>     
+        </ap-productlist>
+    </div>
+</ap-recentlyproductsviewed>
+       
+{% schema %}
+{
+  "name": "Recently viewed products",
+  "tag": "section",
+  "class": "section recenty-section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Setting Recently viewed products"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Recently viewed products",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "default": 10,
+      "label": "Show product"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Desktop columns"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "options": [
+        {
+          "value": "accent-1",
+          "label": "Accent-1"
+        },
+        {
+          "value": "accent-2",
+          "label": "Accent-2"
+        },
+        {
+          "value": "background-1",
+          "label": "Background 1"
+        },
+        {
+          "value": "background-2",
+          "label": "Background 2"
+        },
+        {
+          "value": "inverse",
+          "label": "Inverse"
+        }
+      ],
+      "default": "background-1",
+      "label": "Color scheme"
+    },
+    {
+      "type": "header",
+      "content": "Setting Img"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show secondary img"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show Rating"
+    },
+    {
+      "type": "header",
+      "content": "Settings Mobile"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "1",
+      "label": "Columns mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1"
+        },
+        {
+          "value": "2",
+          "label": "2"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Recently viewed products"
+    }
+  ]
+}
+{% endschema %}
+  

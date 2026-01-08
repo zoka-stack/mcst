@@ -1,0 +1,130 @@
+{{ 'service.css' | asset_url | stylesheet_tag }}
+
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --color-text: {{ section.settings.color_text }};
+        --color-text-2: {{ section.settings.color_text_2 }};
+    }
+</style>
+
+<div class="service">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        <div class="row">
+            <div class="service-title">
+                <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}</h3>
+            </div>
+            <div class="service-list">
+                {% for block in section.blocks %}
+                    <div class="service-list-content">
+                        <div class="service-list-title">{{ block.settings.title }}</div>
+                        <div class="service-list-description">{{ block.settings.description }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Service",
+  "tag": "section",
+  "class": "section shopify-section-service",
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings color"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Color text"
+    },
+    {
+      "type": "color",
+      "id": "color_text_2",
+      "label": "Color text 2",
+      "default": "#484848"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "service",
+      "name": "Service",
+      "settings": [
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Titile"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ap service",
+      "blocks": [
+        {
+          "type": "service"
+        },
+        {
+          "type": "service"
+        },
+        {
+          "type": "service"
+        },
+        {
+          "type": "service"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

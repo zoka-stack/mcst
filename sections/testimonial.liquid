@@ -1,0 +1,417 @@
+{{ 'testimonial.css' | asset_url | stylesheet_tag }}
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+      --ap-nextap-buttonprev-background: {{ section.settings.prev_next_button_background | color_extract: 'red' }}, {{ section.settings.prev_next_button_background | color_extract: 'green' }}, {{ section.settings.prev_next_button_background | color_extract: 'blue' }};
+      --ap-nextap-buttonprev-color: {{ section.settings.prev_next_button_color | color_extract: 'red' }}, {{ section.settings.prev_next_button_color | color_extract: 'green' }}, {{ section.settings.prev_next_button_color | color_extract: 'blue' }};
+      
+      --section-background: {{ section.settings.section_background | color_extract: 'red' }}, {{ section.settings.section_background | color_extract: 'green' }}, {{ section.settings.section_background | color_extract: 'blue' }};
+    }
+
+    {% if section.settings.bg_testimonial != blank %}
+    .ap-listtestimonial {
+      background-image: url({{ section.settings.bg_testimonial | image_url: width: 2000 }});
+      background-repeat: round;
+    }
+  {% endif %}
+  </style>
+  
+<section class="section testimonials-section {%- if section.settings.style_2 -%}{{ 'one-column' | prepend: ' ' }}{%- endif -%}">
+  <div class="section__color-wrapper ">
+      <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        <div class="row">
+          <ap-listtestimonial reveal-on-scroll="" class="ap-listtestimonial ap-object-loaded">
+              <h3 class="heading h{{ section.settings.heading_size_range }}">{{ section.settings.heading }}</h3>
+              <h2 class="heading {{ section.settings.description_size }}">{{ section.settings.description }}</h2>
+              <div class="ap-listtestimonial__wrapper">
+                  {% for block in section.blocks %}
+                      <ap-testimonialitem id="block-{{ block.id }}" class="testimonial" {% if forloop.index != 1 %}hidden=""{% endif %}>
+                          {% if block.settings.img_icon != blank %}
+                              <img class="testimonial__icon" loading="lazy" 
+                                sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                alt="" 
+                                src="{{ block.settings.img_icon | image_url: width: block.settings.img_icon.width }}" 
+                                srcset="
+                                  {%- if block.settings.img_icon.width >= 3000 -%}{{ block.settings.img_icon | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                  {{ block.settings.img_icon | image_url }} {{ block.settings.img_icon.width }}w"
+                                src="{{ block.settings.img_icon | image_url: width: 1500 }}"
+                                height="{{ block.settings.img_icon.height }}"
+                                ap-revealvisibility=""
+                                width="{{ block.settings.img_icon.width }}">
+                          {% else %}
+                                <div class="testimonial-icon">
+                                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>
+                          {% endif %}
+                          <ap-blockquote class="testimonial__content ap-blockquote">
+                              <ap-splitlines ap-revealvisibility="">
+                                  {{ block.settings.content }}
+                              </ap-splitlines>
+                          </ap-blockquote>
+                          <div class="testimonial-info">
+                            <div class="testimonial-info-img">
+                              {% if block.settings.img_info != blank %}
+                                <img class="testimonial__icon testimonial__icon_info" loading="lazy" 
+                                  sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                  alt="" 
+                                  src="{{ block.settings.img_info | image_url: width: block.settings.img_info.width }}" 
+                                  srcset="
+                                    {%- if block.settings.img_info.width >= 3000 -%}{{ block.settings.img_info | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                    {{ block.settings.img_info | image_url }} {{ block.settings.img_info.width }}w"
+                                  src="{{ block.settings.img_info | image_url: width: 1500 }}"
+                                  height="{{ block.settings.img_info.height }}"
+                                  ap-revealvisibility=""
+                                  width="{{ block.settings.img_info.width }}">
+                              {% else %}
+                                <div class="testimonial-icon">
+                                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                </div>
+                              {% endif %}
+                            </div>
+                            <div class="testimonial-info-content">
+                              <p style="color: {{ block.settings.color_author }}" ap-revealvisibility="" class="testimonial__author">{{ block.settings.author }}</p>
+                              <p style="color: {{ block.settings.color_info }}" ap-revealvisibility="" class="testimonial__info">{{ block.settings.info }}</p>
+                            </div>
+                          </div>
+                      </ap-testimonialitem>
+                  {% endfor %}
+
+              </div>
+              <div class="ap-listtestimonial__nav">
+                  {% if section.settings.show_arrow %}
+                  <ap-button-nextprev class="ap-listtestimonial__ap-button-nextprev ap-button-nextprev ap-button-nextprev--row hd-phone">
+                      <button class="ap-listtestimonial__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev">
+                          <span class="visually-hidden">Previous</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">
+                            <path d="M14 3.43935H4V4.43935H14V3.43935Z" fill="black"/>
+                            <path d="M4.43933 0L0.439316 4.00002L4.43933 8.00004V0Z" fill="black"/>
+                          </svg>
+                      </button>
+      
+                      <button class="ap-listtestimonial__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                          <span class="visually-hidden">Next</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="8" viewBox="0 0 14 8" fill="none">
+                            <path d="M0 3.43935H10V4.43935H0V3.43935Z" fill="black"/>
+                            <path d="M9.56067 0L13.5607 4.00002L9.56067 8.00004V0Z" fill="black"/>
+                          </svg>
+                      </button>
+                  </ap-button-nextprev>   
+                  {% endif %}
+
+                  {% if section.settings.show_nav %}
+                  <ap-pagedots class="ap-listtestimonial__dots dots-nav">
+                      <button class="dots-nav__item tap-area" ap-currentaria="true">
+                          <span class="visually-hidden">Go to slide 1</span>
+                      </button>
+                      <button class="dots-nav__item tap-area" ap-currentaria="false">
+                          <span class="visually-hidden">Go to slide 2</span>
+                      </button>
+                      <button class="dots-nav__item tap-area" ap-currentaria="false">
+                          <span class="visually-hidden">Go to slide 3</span>
+                      </button>
+                  </ap-pagedots>
+                  {% endif %}
+              </div>
+          </ap-listtestimonial>
+          {% if section.settings.show_collection %}
+          <ap-collectionlist reveal-on-scroll="" class="testimonial-collection">
+            {% liquid
+              assign _link = section.settings.collection.url
+              if section.settings.link != ''  
+                assign _link = section.settings.link
+              endif
+            %}
+            <a id="block-{{ section.id }}-{{ forloop.index }}" href="{{ _link }}" class="list-collections__item has-overlay image-zoom">
+              <div class="list-collections__item-image-wrapper">
+                {% if section.settings.featured_image != blank %}
+                  <img class="list-collections__item-image" reveal="" loading="lazy" 
+                    sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                    alt="" 
+                    src="{{ section.settings.featured_image | image_url: width: section.settings.featured_image.width }}" 
+                    srcset="{%- if section.settings.featured_image.width >= 195 -%}{{ section.settings.featured_image | image_url: width: 195, crop: 'center' }} 195w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 330 -%}{{ section.settings.featured_image | image_url: width: 330, crop: 'center' }} 330w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 535 -%}{{ section.settings.featured_image | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 750 -%}{{ section.settings.featured_image | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 1000 -%}{{ section.settings.featured_image | image_url: width: 1000, crop: 'center' }} 1000w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 1500 -%}{{ section.settings.featured_image | image_url: width: 1500 }} 1500w,{%- endif -%}
+                      {%- if section.settings.featured_image.width >= 3000 -%}{{ section.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                      {{ section.settings.featured_image | image_url }} {{ section.settings.featured_image.width }}w"
+                    src="{{ section.settings.featured_image | image_url: width: 1500 }}"
+                    height="{{ section.settings.featured_image.height }}"
+                    width="{{ section.settings.featured_image.width }}">
+                {% else %}
+                  <div class="list-collections__item-image">
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="list-collections__item-info text-container">
+                <p class="heading h{{ section.settings.heading_size_collection }}" reveal="">
+                  {% if section.settings.heading != blank %}
+                    {{- section.settings.heading -}}</p>
+                  {% endif %}
+                  
+                {% if section.settings.heading_2 != blank %}
+                  <span class="heading {{ section.settings.heading_2_size }} link" reveal="">{{ section.settings.heading_2 }}</span>
+                {% endif %}
+              </div>
+            </a>
+          </ap-collectionlist>
+          {% endif %}
+        </div>
+      </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonial",
+  "tag": "section",
+  "class": "shopify-section--testimonials",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "style_2",
+      "label": "Show 1 column",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_collection",
+      "label": "Show Collection",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrow",
+      "label": "Show Arrow",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_nav",
+      "label": "t:sections.all.show_nav.label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_testimonial",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#ffffff",
+      "label": "t:sections.all.section_background.label"
+    },
+    {
+      "type": "liquid",
+      "id": "heading",
+      "default": "Testimonial",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.heading_size_range.label"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.all.description.label"
+    },
+    {
+      "type": "select",
+      "id": "description_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "t:sections.all.description_size.options__1.label"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "t:sections.all.description_size.options__2.label"
+        },
+        {
+          "value": "heading--small",
+          "label": "t:sections.all.description_size.options__3.label"
+        },
+        {
+          "value": "",
+          "label": "t:sections.all.description_size.options__4.label"
+        },
+        {
+          "value": "heading--large",
+          "label": "t:sections.all.description_size.options__5.label"
+        }
+      ],
+      "default": "",
+      "label": "t:sections.all.description_size.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.all.prev_next_button_color.label"
+    },
+    {
+      "type": "header",
+      "content": "Collection Content"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.all.collection.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image",
+      "label": "t:sections.all.featured_image.label"
+    },
+    {
+      "type": "liquid",
+      "id": "heading_collection",
+      "label": "Heading"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_collection",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 4,
+      "label": "Heading size"
+    },
+    {
+      "type": "liquid",
+      "id": "heading_2",
+      "label": "Heading 2"
+    },
+    {
+      "type": "select",
+      "id": "heading_2_size",
+      "options": [
+        {
+          "value": "heading--xxsmall",
+          "label": "xxsmall"
+        },
+        {
+          "value": "heading--xsmall",
+          "label": "xsmall"
+        },
+        {
+          "value": "heading--small",
+          "label": "small"
+        },
+        {
+          "value": "heading--nomal",
+          "label": "nomal"
+        },
+        {
+          "value": "heading--large",
+          "label": "large"
+        }
+      ],
+      "default": "heading--xsmall",
+      "label": "Select tab name size"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "img_icon",
+          "label": "Testimonial Icon"
+        },
+        {
+          "type": "image_picker",
+          "id": "img_info",
+          "label": "Testimonial image info"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Testimonial content",
+          "label": "content"
+        },
+        {
+          "type": "liquid",
+          "id": "author",
+          "default": "Author",
+          "label": "Author"
+        },
+        {
+          "type": "color",
+          "id": "color_author",
+          "label": "Color author"
+        },
+        {
+          "type": "liquid",
+          "id": "info",
+          "default": "Info",
+          "label": "Info"
+        },
+        {
+          "type": "color",
+          "id": "color_info",
+          "label": "Color Info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonial",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

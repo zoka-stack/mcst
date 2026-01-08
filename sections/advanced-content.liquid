@@ -1,0 +1,700 @@
+{{ 'advanced-content.css' | asset_url | stylesheet_tag }}
+
+<style>
+    #shopify-section-{{ section.id }} {
+      --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+      --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+      --primary-button-background: {{ section.settings.primary_bg | color_extract: 'red' }}, {{ section.settings.primary_bg | color_extract: 'green' }}, {{ section.settings.primary_bg | color_extract: 'blue' }};
+      --primary-button-text-color: 255, 255, 255;
+      --color-a: {{ section.settings.color_a }};
+      --color-a-hover: {{ section.settings.color_a_hover }};
+  
+      --ap-nextap-buttonprev-background: {{ section.settings.prev_next_button_background | color_extract: 'red' }}, {{ section.settings.prev_next_button_background | color_extract: 'green' }}, {{ section.settings.prev_next_button_background | color_extract: 'blue' }};
+      --ap-nextap-buttonprev-color: {{ section.settings.prev_next_button_color | color_extract: 'red' }}, {{ section.settings.prev_next_button_color | color_extract: 'green' }}, {{ section.settings.prev_next_button_color | color_extract: 'blue' }};;
+  
+      --section-background: {{ section.settings.section_background | color_extract: 'red' }}, {{ section.settings.section_background | color_extract: 'green' }}, {{ section.settings.section_background | color_extract: 'blue' }};
+    }
+    {% for block in section.blocks %} 
+    #shopify-section-{{ section.id }} #block-{{ block.id }} {
+        --section-products-per-row: {{ block.settings.products_per_row }};
+    }
+  
+    @media screen and (min-width: 741px) {
+      #shopify-section-{{ section.id }} #block-{{ block.id }} {
+        --section-products-per-row: {{ block.settings.products_per_row_mobile }};
+      }
+    }
+  
+    @media screen and (min-width: 1000px) {
+      #shopify-section-{{ section.id }} #block-{{ block.id }} {
+        --section-products-per-row: {{ block.settings.products_per_row_tablet }}
+      }
+    }
+  
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} #block-{{ block.id }} {
+        --section-products-per-row: {{ block.settings.products_per_row_desktop }};
+      }
+    }
+    {% endfor %} 
+  </style>
+  
+<section class="section advanced-content {{ section.settings.class }}">
+    <div class="section__color-wrapper">
+        <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+            {% if section.settings.tab_heading != blank %}
+            <header class="section__header ">
+                <div class="text-container">
+                <h3 class="heading h{{ section.settings.tab_heading_size }}">{{ section.settings.tab_heading }}</h3>
+                </div>
+                {% if section.settings.tab_description %}
+                <div class="heading-description">
+                    {{ section.settings.tab_description }}
+                </div>
+                {% endif %}
+            </header>
+            {% endif %}
+            <div class="row">
+                {% for block in section.blocks %}
+                  {%- case block.settings.width -%}
+                  {%- when '25%' -%}
+                  {%- assign block_width = 'col-25' -%}
+                  {%- when '33%' -%}
+                  {%- assign block_width = 'col-33' -%}
+                  {%- when '40%' -%}
+                  {%- assign block_width = 'col-40' -%}
+                  {%- when '50%' -%}
+                  {%- assign block_width = 'col-50' -%}
+                  {%- when '60%' -%}
+                  {%- assign block_width = 'col-60' -%}
+                  {%- when '66%' -%}
+                  {%- assign block_width = 'col-66' -%}
+                  {%- when '75%' -%}
+                  {%- assign block_width = 'col-75' -%}
+                  {%- when '100%' -%}
+                  {%- assign block_width = 'col-100' -%}
+                  {%- endcase -%}
+                  <div class="{{ block_width }}">
+                    {% case block.type %}
+
+                      {%- when 'product' -%}
+                        <div id="block-{{ block.id }}" class="featured-collections advanced-product {%- if block.settings.style_2 -%}{{ 'advanced-product-' | prepend: ' ' }}{%- endif -%}">
+                        <h3 class="header-product">{{ block.settings.header_product }}</h3>
+                              <ap-productlist stagger-apparition="" class="ap-productlist ap-productlist--center ap-object-loaded">
+                                  <div class="scroller">
+                                      <div class="ap-productlist__inner ap-productlist__inner--scroller hide-scrollbar">
+                                      {%- if block.settings.collection != blank -%}
+                                        {% liquid
+                                            assign limit = block.settings.limit
+                                            for product in block.settings.collection.products limit: limit
+                                            render 'product-grid', product: product
+                                            endfor
+                                        %}
+                                      {%- else -%}
+                                        {% liquid
+                                          if block.settings.collection == blank
+                                            for i in (1..6)
+                                            echo '<div class="product-items">'
+                                              capture current
+                                              cycle 1
+                                              endcapture
+                                              assign img = 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg'
+                                              echo img
+                                              echo '</div>'
+                                            endfor
+                                          endif
+                                        %}
+                                      {%- endif -%}
+                                      </div>
+                                  </div>
+                                  <ap-button-nextprev class="ap-productlist__ap-nextprev hd-pocket" style="--smallest-image-aspect-ratio: 1.0">
+                                      <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled="">
+                                      <span class="visually-hidden">Previous</span>
+                                      <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                                          <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                      </svg>
+                                      </button>
+                                      <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                                      <span class="visually-hidden">Next</span>
+                                      <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                                          <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                      </svg>
+                                      </button>
+                                  </ap-button-nextprev>
+                              </ap-productlist>
+                        </div>
+
+                      {%- when 'image' -%}
+                        <ap-imagetextblock reveal-on-scroll="" class="ap-imagetextblock ap-imagetextblock--cover ap-object-loaded">
+                            <div class="ap-imagetextblock__image-wrapper">
+                                <img class="ap-imagetextblock__image" reveal="" loading="lazy" 
+                                    sizes="(max-width: 999px) 100vw, 72vw" alt="" 
+                                    src="{{ block.settings.image_background | image_url: width: block.settings.image_background.width }}" 
+                                    srcset="
+                                    {{ block.settings.image_background | image_url: width: 600 }} 600w, 
+                                    {{ block.settings.image_background | image_url: width: 700 }} 700w, 
+                                    {{ block.settings.image_background | image_url: width: 800 }} 800w, 
+                                    {{ block.settings.image_background | image_url: width: 1000 }} 1000w, 
+                                    {{ block.settings.image_background | image_url: width: 1200 }} 1200w, 
+                                    {{ block.settings.image_background | image_url: width: 1400 }} 1400w, 
+                                    {{ block.settings.image_background | image_url: width: 1600 }} 1600w, 
+                                    {{ block.settings.image_background | image_url: width: 1800 }} 1800w, 
+                                    {{ block.settings.image_background | image_url: width: 2000 }} 2000w" 
+                                    width="{{ block.settings.image_background.width }}" height="{{ block.settings.image_background.height }}">                                  
+                            </div>
+                            <div class="image-width-text_content">
+                              {% if block.settings.content_title != blank %}
+                              <h2 class="heading adv-content-title">
+                                {{ block.settings.content_title }}
+                              </h2>
+                              {% endif %}
+                              {% if block.settings.content_description != blank %}
+                              <p class="adv-content-description">
+                                {{ block.settings.content_description }}
+                              </p>
+                              {% endif %}
+                              {% if block.settings.content_description_2 != blank %}
+                              <p class="adv-content-description-2">
+                                {{ block.settings.content_description_2 }}
+                              </p>
+                              {% endif %}
+                              {% if block.settings.button1_label != blank %}
+                              <a href="{{ block.settings.link1 }}" class="button btn-base">
+                                {{ block.settings.button1_label }}
+                                {% render 'icon-arrow-2' %}
+                              </a>
+                              {% endif %}
+                            </div>
+                        </ap-imagetextblock>
+
+                      {%- when 'text' -%}
+                        <ap-imagetextblock reveal-on-scroll="" class="ap-object-loaded text-list">
+                            <div class="text-list-content">
+                              <h2 style="color: {{ block.settings.color_title }}" class="heading text-list-title">
+                                {{ block.settings.content_title }}
+                              </h2>
+                              <p class="text-list-description">
+                                {{ block.settings.content_description }}
+                              </p>
+                              {% if block.settings.button1_label != blank %}
+                              <a href="{{ block.settings.link1 }}" class="button btn-base">
+                                {{ block.settings.button1_label }}
+                                {% render 'icon-arrow-2' %}
+                              </a>
+                              {% endif %}
+                            </div>
+                            <div class="bg-text">{{ block.settings.bg_text }}</div>
+                        </ap-imagetextblock>
+
+                      {%- when 'product-vertical' -%}
+                        {%- if block.settings.collection != blank -%}
+                            <ap-product-carousel reveal-on-scroll="" auto-play="" transition-type="sweep" class="product-vertical product-carousel-content ap-product-carousel">
+                                <div class="ap-product-carousel__wrapper">
+                                {% assign limit = block.settings.limit %}
+                                {% for product in block.settings.collection.products limit: limit %}
+                                <product-carousel class="product-carousel" {% if forloop.index != 1 %}hidden=""{% endif %}> 
+                                    <div class="product-carousel-box" reveal-visibility="">
+                                        {% render 'product-grid', product: product, show_rating: block.settings.show_rating %}
+                                    </div>
+                                </product-carousel>
+                                {% endfor %}
+                                
+                              </div>
+                              <div class="ap-product-carousel__nav">
+                                {% if block.settings.show_button %}
+                                  <ap-button-nextprev class="ap-productlist__ap-nextprev" style="--smallest-image-aspect-ratio: 1.0">
+                                    <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev">
+                                    <span class="visually-hidden">Previous</span>
+                                    <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+                                        <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                    </svg>
+                                    </button>
+                                    <button class="ap-productlist__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                                    <span class="visually-hidden">Next</span>
+                                    <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+                                        <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+                                    </svg>
+                                    </button>
+                                  </ap-button-nextprev>  
+                                {% endif %}
+                                  <ap-pagedots class="advancedcontent__nav container">
+                                  {% for product in block.settings.collection.products limit: limit %}
+                                    <button class="advancedcontent__progress-bar dots-nav__item tap-area" ap-currentaria="{% if forloop.index == 1 %}true{% else %}false{% endif %}">
+                                      <span class="visually-hidden">{{ forloop.index }}</span>
+                                    </button>
+                                  {% endfor %}
+                                  </ap-pagedots>
+                              </div>
+                          
+                            </ap-product-carousel>
+                        {%- else -%}
+                          <div class="product-items">
+                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                            {{ 'onboarding.product_title' | t }}
+                          </div>
+                        {%- endif -%}
+
+                    {% endcase %}
+                  </div>
+                {% endfor %}
+            </div>   
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.advanced-content.name",
+  "class": "shopify-section--advanced-content",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "primary_bg",
+      "default": "#ffffff",
+      "label": "Primary background"
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#ffffff",
+      "label": "t:sections.advanced-content.settings.section_background.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "color_a",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.color_a.label"
+    },
+    {
+      "type": "color",
+      "id": "color_a_hover",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.color_a_hover.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.advanced-content.settings.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.advanced-content.settings.prev_next_button_color.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_heading",
+      "default": "Welcome to our store",
+      "label": "t:sections.advanced-content.settings.tab_heading.label"
+    },
+    {
+      "type": "range",
+      "id": "tab_heading_size",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.advanced-content.settings.tab_heading_size.label"
+    },
+    {
+      "type": "text",
+      "id": "tab_description",
+      "label": "t:sections.advanced-content.settings.tab_description.label"
+    },
+    {
+      "type": "select",
+      "id": "tab_name_size",
+      "options": [
+        {
+          "value": "text--xxsmall",
+          "label": "t:sections.advanced-content.settings.tab_name_size.xxsmall.label"
+        },
+        {
+          "value": "text--xsmall",
+          "label": "t:sections.advanced-content.settings.tab_name_size.xsmall.label"
+        },
+        {
+          "value": "text--small",
+          "label": "t:sections.advanced-content.settings.tab_name_size.small.label"
+        },
+        {
+          "value": "text--nomal",
+          "label": "t:sections.advanced-content.settings.tab_name_size.nomal.label"
+        },
+        {
+          "value": "text--large",
+          "label": "t:sections.advanced-content.settings.tab_name_size.large.label"
+        }
+      ],
+      "default": "text--nomal",
+      "label": "t:sections.advanced-content.settings.tab_name_size.label"
+    },
+    {
+      "type": "text",
+      "id": "class",
+      "label": "Class"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.advanced-content.blocks.product.name",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width product",
+          "default": "66%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "60%",
+              "label": "60%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "t:sections.advanced-content.blocks.product.settings.collection.label"
+        },
+        {
+          "type": "text",
+          "id": "header_product",
+          "label": "Header product"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 10,
+          "label": "t:sections.advanced-content.blocks.product.settings.limit.label"
+        },
+        {
+          "type": "range",
+          "id": "products_per_row",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 4,
+          "label": "t:sections.advanced-content.blocks.product.settings.products_per_row.label"
+        },
+        {
+          "type": "range",
+          "id": "products_per_row_mobile",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 2,
+          "label": "t:sections.advanced-content.blocks.product.settings.products_per_row_mobile.label"
+        },
+        {
+          "type": "range",
+          "id": "products_per_row_tablet",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 4,
+          "label": "t:sections.advanced-content.blocks.product.settings.products_per_row_tablet.label"
+        },
+        {
+          "type": "range",
+          "id": "products_per_row_desktop",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 4,
+          "label": "t:sections.advanced-content.blocks.product.settings.products_per_row_desktop.label"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width Image",
+          "default": "66%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "60%",
+              "label": "60%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "image_background",
+          "label": "t:sections.advanced-content.blocks.image.settings.image_background.label"
+        },
+        {
+          "type": "header",
+          "content": "t:sections.advanced-content.blocks.image.settings.header_1.content"
+        },
+        {
+          "type": "text",
+          "id": "content_title",
+          "label": "Content title"
+        },
+        {
+          "type": "text",
+          "id": "content_description",
+          "label": "Content description"
+        },
+        {
+          "type": "liquid",
+          "id": "content_description_2",
+          "label": "Content description 2"
+        },
+        {
+          "type": "text",
+          "id": "button1_label",
+          "label": "Text button"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "t:sections.advanced-content.blocks.image.settings.link_1.label"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width Image",
+          "default": "66%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "60%",
+              "label": "60%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "content_title",
+          "label": "Content title"
+        },
+        {
+          "type": "color",
+          "id": "color_title",
+          "label": "Color title",
+          "default": "#000"
+        },
+        {
+          "type": "liquid",
+          "id": "content_description",
+          "label": "Content description"
+        },
+        {
+          "type": "text",
+          "id": "button1_label",
+          "label": "Text button"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "t:sections.advanced-content.blocks.image.settings.link_1.label"
+        },
+        {
+          "type": "text",
+          "id": "bg_text",
+          "label": "Text Child",
+          "default": "New collection"
+        }
+      ]
+    },
+    {
+      "type": "product-vertical",
+      "name": "Product Vertical",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width product vertical",
+          "default": "66%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "60%",
+              "label": "60%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "id": "collection",
+          "type": "collection",
+          "label": "t:sections.all.collection.label"
+        },
+        {
+          "type": "range",
+          "id": "limit",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "default": 10,
+          "label": "t:sections.all.limit.label"
+        },
+        {
+          "id": "show_button",
+          "type": "checkbox",
+          "label": "Show button",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.advanced-content.presets.name",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
