@@ -1,0 +1,266 @@
+<vertical-menu id="vertical-menu-drawer" class="drawer drawer--from-left">
+    <span class="drawer__overlay"></span>
+    <div class="drawer__header drawer__header--shadowed">
+      <button type="button" class="drawer__close-button drawer__close-button--block tap-area" data-action="close" title="Close">
+        <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+          <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+        </svg>
+      </button>
+    </div>
+    {% render 'header-logo' %}
+    <div class="header-search">
+        <form class="predictive-search__form" action="/search" method="get"
+            role="search">
+            <input type="hidden" name="type" value="product">
+            <input type="hidden" name="options[prefix]" value="last">
+            <input type="hidden" name="options[unavailable_products]" value="last">
+            <input class="predictive-search__input" is="ap-predictivesearchinput"
+                type="text" name="q" autocomplete="off" autocorrect="off"
+                ap-controlsaria="search-drawer" ap-expanded-aria="false"
+                aria-label="Search" placeholder="Search products…">
+            <button class="btn-search-header">
+                <svg focusable="false" width="18" height="18"
+                    class="icon icon--header-search   " viewBox="0 0 18 18">
+                    <path
+                        d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17"
+                        fill="none" stroke="currentColor" stroke-width="1.2"></path>
+                </svg>
+            </button>
+        </form>
+    </div>
+    <div class="drawer__content">
+      <ul class="vertical-nav vertiacl-nav-1 list--unstyled" role="list">
+        {%- for link in section.settings.menu_vertical.links -%}
+
+            {% liquid
+                assign menu_index = forloop.index
+                assign is_megamenu = false
+                assign is_child_menu = ''
+                assign is_child_image = ''
+
+                for block in section.blocks
+
+                    if block.settings.parent_megamenu == section.settings.menu_vertical and block.settings.parent_menu == link.title
+                    
+                        if block.type == 'image_block_vertical'
+                            assign is_megamenu = true
+                            assign is_child_image = true
+                        endif
+
+                        if block.type == 'child_menu_vertical'
+                            assign is_megamenu = true
+                            assign is_child_menu = true
+                        endif
+            
+                    endif
+                    
+                endfor
+            %}
+                {% if is_megamenu == true %}
+                    <li class="vertical-nav__item" data-level="1">
+                        <button is="toggle-button" class="vertical-nav__link vertical-nav__link-1 heading h6" ap-controlsaria="vertical-menu-{{ menu_index }}" ap-expanded-aria="false">{{ link.title | escape }} {% if is_megamenu == true %}<span class="vertical-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                <path
+                                    d="M4.97656 5.99999L0.851562 1.87499L2.0299 0.696655L7.33323 5.99999L2.0299 11.3033L0.851562 10.125L4.97656 5.99999Z"
+                                    fill="black" />
+                            </svg>
+                        </span>{% endif %}</button>
+                        <a class="header__linklist-link list-link_mega link--animated d-xl-none {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">{{ link.title | escape }}</a>
+
+                        <ap-contentcollapsible id="vertical-menu-{{ menu_index }}" class="collapsible collapsible-mega">
+                            {% if is_child_menu == true %}
+                                <ul class="vertical-nav list--unstyled vertiacl-nav-1_1" role="list">
+                                    {% for block in section.blocks %}
+                                        {% if block.type == 'child_menu_vertical' %}
+                                            {%- if block.settings.parent_megamenu == section.settings.menu_vertical and block.settings.parent_menu == link.title -%}
+                                                <li class="vertical-nav__item" data-level="2">
+                                                    <button is="toggle-button" class="vertical-nav__link vertical-nav__link_child" ap-controlsaria="vertical-menu-{{ menu_index }}-{{ forloop.index }}" ap-expanded-aria="false">{{ block.settings.heading }} <span class="vertical-icon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                                            <path
+                                                                d="M4.97656 5.99999L0.851562 1.87499L2.0299 0.696655L7.33323 5.99999L2.0299 11.3033L0.851562 10.125L4.97656 5.99999Z"
+                                                                fill="black" />
+                                                        </svg>
+                                                    </span></button>
+                                                    <ap-contentcollapsible id="vertical-menu-{{ menu_index }}-{{ forloop.index }}" class="collapsible">
+                                                        <ul class="vertical-nav list--unstyled vertiacl-nav-1_1_1" role="list">
+                                                            {%- for child_link in block.settings.menu_vertical.links -%}
+                                                                <li class="vertical-nav__item" data-level="3">
+                                                                    <a href="{{ child_link.url }}" class="vertical-nav__link">{{ child_link.title | escape }}</a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </ap-contentcollapsible>
+                                                </li>
+                                            {%- endif -%}
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            
+                        
+                            {% if is_child_image == true %}
+                                <div class="vertical-nav__images-wrapper vertical-nav__images-wrapper--tight hide-scrollbar">
+                                    <div class="vertical-nav__images-scroller">
+                                        {% for block in section.blocks %}
+                                            {% if block.type == 'image_block_vertical' %}
+                                                {%- if block.settings.parent_megamenu == section.settings.menu_vertical and block.settings.parent_menu == link.title -%}
+
+                                                    <a href="{{ block.settings.link }}" class="vertical-nav__image-push">
+                                                        <img class="mega-menu__image" loading="lazy" sizes="240px" alt="" 
+                                                            src="{{ block.settings.image | image_url : width: 560 }}" 
+                                                            srcset="{{ block.settings.image | image_url : width: 2000 }} 2000w, {{ block.settings.image | image_url : width: 480 }} 480w, {{ block.settings.image | image_url : width: 560 }} 560w" 
+                                                            width="auto" height="auto">
+                                                        {% if block.settings.heading != blank %}
+                                                        <p class="vertical-nav__image-heading heading heading--xsmall">{{ block.settings.heading }}</p>
+                                                        {% endif %}
+                                                        {% if block.settings.description != blank %}
+                                                        <span class="vertical-nav__image-text text--xsmall">{{ block.settings.description }}</span>
+                                                        {% endif %}
+                                                    </a>
+
+                                                {%- endif -%}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </ap-contentcollapsible>
+                    </li>
+
+                {%- elsif link.links != blank -%}
+                    <li class="vertical-nav__item" data-level="1">
+                        <button is="toggle-button" class="vertical-nav__link vertical-nav__link-1 heading h6" ap-controlsaria="vertical-menu-{{ menu_index }}" ap-expanded-aria="false">
+                            {%- render 'processMenuTitle' , itemName: link.title -%}
+                            {%- render 'processMenuLabel' , itemName: link.title -%}
+                            <span class="vertical-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                <path
+                                    d="M4.97656 5.99999L0.851562 1.87499L2.0299 0.696655L7.33323 5.99999L2.0299 11.3033L0.851562 10.125L4.97656 5.99999Z"
+                                    fill="black" />
+                                </svg>
+                            </span>
+                        </button>
+                        <ap-contentcollapsible id="vertical-menu-{{ menu_index }}" class="collapsible">
+                            <ul class="vertical-nav_mega list--unstyled vertiacl-nav-1_1 c-1" role="list">
+                                {%- for childlink in link.links -%}
+                                <li class="vertical-nav__item drawer__nav-item">
+                                    {%- if childlink.links != blank -%}
+                                    {%- assign grandchild_list_handle = childlink.title | handleize -%}
+                                    <button is="toggle-button" class="vertical-nav__link vertical-nav__link_child" ap-controlsaria="vertical-menu-1_1-{{ menu_index }}-{{ forloop.index }}" ap-expanded-aria="false">
+                                        <a href="{{ childlink.url }}" 
+                                            class="vertical-meganav__link_mega-existed drawer__nav-link drawer__nav-link--split{% if childlink.active %} meganav__link--active{% endif %}" 
+                                            id="DrawerLabel-{{ grandchild_list_handle }}"
+                                            {% if childlink.active %} aria-current="page"{% endif %}
+                                            >
+                                            {%- render 'processMenuTitle' , itemName: childlink.title -%}
+                                            {%- render 'processMenuLabel' , itemName: childlink.title -%}
+                                        </a>
+                                        <span class="vertical-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="12" viewBox="0 0 8 12" fill="none">
+                                            <path
+                                                d="M4.97656 5.99999L0.851562 1.87499L2.0299 0.696655L7.33323 5.99999L2.0299 11.3033L0.851562 10.125L4.97656 5.99999Z"
+                                                fill="black" />
+                                            </svg>
+                                        </span>
+                                    </button>
+    
+                                    <ap-contentcollapsible id="vertical-menu-1_1-{{ menu_index }}-{{ forloop.index }}" class="collapsible">
+                                    <ul class="vertical-nav_mega_child list--unstyled vertiacl-nav-1_1_1 meganav__nav meganav__nav--third-level">
+                                        {%- for grandchildlink in childlink.links -%}
+                                        <li>
+                                        <a href="{{ grandchildlink.url }}" class="vertical-meganav-mega_child__link {% if grandchildlink.active %} meganav__link--active{% endif %}"{% if grandchildlink.active %} aria-current="page"{% endif %}>
+                                            {%- render 'processMenuTitle' , itemName: grandchildlink.title -%}
+                                            {%- render 'processMenuLabel' , itemName: grandchildlink.title -%}
+                                        </a>
+                                        </li>
+                                        {%- endfor -%}
+                                    </ul>
+                                    </ap-contentcollapsible>
+                                    {%- else -%}
+                                    <a href="{{ childlink.url }}" 
+                                    class="drawer__nav-link vertical-meganav__link {% if childlink.active %} meganav__link--active{% endif %}"
+                                    {% if childlink.active %} aria-current="page"{% endif %}
+                                    >
+                                    {%- render 'processMenuTitle' , itemName: childlink.title -%}
+                                    {%- render 'processMenuLabel' , itemName: childlink.title -%}
+                                    </a>
+                                    {%- endif -%}
+                                </li>
+                                {%- endfor -%}
+                            </ul>
+                        </ap-contentcollapsible>
+                    </li>        
+                {% else %}
+                    <li class="vertical-nav__item" data-level="1">
+                        <a class="header__linklist-link link--animated {% if link.current %}menu-item--active{% endif %}" href="{{ link.url }}">{{ link.title | escape }}</a>
+                    </li>
+                {% endif %}
+
+        {%- endfor -%}
+      </ul>
+    </div>
+    <div class="header__secondary-links">
+
+        <div class="header__icon-list">
+            <div class="user">
+                {% if customer %}
+                <a href="/account" class="header__icon-wrapper tap-area" aria-label="My Account">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                        fill="none">
+                        <path
+                            d="M4.3163 18.4384C4.92462 17.0052 6.34492 16 8 16H14C15.6551 16 17.0754 17.0052 17.6837 18.4384M15 8.5C15 10.7091 13.2091 12.5 11 12.5C8.79086 12.5 7 10.7091 7 8.5C7 6.29086 8.79086 4.5 11 4.5C13.2091 4.5 15 6.29086 15 8.5ZM21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
+                            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+                {% else %}
+                <a href="/account/login" class="header__icon-wrapper tap-area">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"
+                        fill="none">
+                        <path
+                            d="M4.3163 18.4384C4.92462 17.0052 6.34492 16 8 16H14C15.6551 16 17.0754 17.0052 17.6837 18.4384M15 8.5C15 10.7091 13.2091 12.5 11 12.5C8.79086 12.5 7 10.7091 7 8.5C7 6.29086 8.79086 4.5 11 4.5C13.2091 4.5 15 6.29086 15 8.5ZM21 11C21 16.5228 16.5228 21 11 21C5.47715 21 1 16.5228 1 11C1 5.47715 5.47715 1 11 1C16.5228 1 21 5.47715 21 11Z"
+                            stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+                {% endif %}
+            </div>
+            <a href="/pages/compare" class="header__icon-wrapper tap-area" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="none">
+                <path d="M11.6438 2.18223C11.6411 2.18219 11.6386 2.18182 11.636 2.18182H7.57357L8.51386 1.24153C8.79787 0.957515 8.79787 0.497018 8.51386 0.213008C8.22985 -0.0710025 7.76935 -0.0710025 7.48534 0.213008L5.30353 2.39482C5.28659 2.41176 5.27057 2.42959 5.25536 2.4481C5.24848 2.45649 5.24248 2.46535 5.236 2.47397C5.22823 2.48434 5.22021 2.49446 5.21302 2.50524C5.2061 2.51557 5.2001 2.5263 5.19379 2.53691C5.18796 2.54666 5.18183 2.5562 5.17644 2.56626C5.17068 2.57706 5.16577 2.58818 5.16059 2.59919C5.15565 2.60969 5.1504 2.62002 5.14593 2.63076C5.1415 2.64146 5.13792 2.65241 5.13403 2.66325C5.12987 2.67477 5.12548 2.68616 5.1219 2.69795C5.11862 2.70879 5.1162 2.71984 5.11344 2.73081C5.11041 2.74285 5.10703 2.75471 5.10461 2.76698C5.10209 2.77967 5.10059 2.79248 5.09878 2.80523C5.09725 2.81594 5.09524 2.82644 5.09415 2.83728C5.09183 2.8609 5.09057 2.8846 5.09057 2.90832C5.09057 2.90809 5.09057 2.90856 5.09057 2.90832C5.09057 2.9086 5.09057 2.90955 5.09057 2.90982C5.0906 2.93352 5.09183 2.95721 5.09415 2.9808C5.0952 2.99164 5.09725 3.00218 5.09878 3.01288C5.10062 3.02567 5.10209 3.03845 5.10461 3.05113C5.10703 3.0634 5.11041 3.07527 5.11344 3.0873C5.1162 3.09828 5.11859 3.10929 5.1219 3.12013C5.12548 3.13193 5.12991 3.14331 5.13403 3.15487C5.13792 3.16571 5.1415 3.17662 5.1459 3.18729C5.15036 3.19806 5.15561 3.20839 5.16056 3.21889C5.16574 3.2299 5.17065 3.24102 5.17641 3.25179C5.18179 3.26185 5.18793 3.27143 5.19379 3.28118C5.2001 3.29174 5.2061 3.30248 5.21302 3.31281C5.22025 3.32362 5.22829 3.33378 5.23607 3.34414C5.24251 3.35273 5.24848 3.3616 5.25536 3.36995C5.27057 3.38849 5.28659 3.40632 5.30353 3.42327L7.48534 5.60507C7.76935 5.88908 8.22985 5.88908 8.51386 5.60507C8.79787 5.32106 8.79787 4.86057 8.51386 4.57656L7.57357 3.63626H11.6298C11.6318 3.63626 11.6336 3.63657 11.6356 3.63657C14.0485 3.63657 15.9992 5.58731 15.9992 8.00019C15.9992 9.05932 15.5762 10.0558 14.836 10.7967C14.5521 11.0808 14.5523 11.5413 14.8364 11.8252C15.1206 12.1091 15.581 12.1089 15.8649 11.8248C16.8744 10.8144 17.4537 9.44966 17.4537 8.00019C17.4537 4.78683 14.8562 2.18666 11.6438 2.18223Z" fill="#332F2C"/>
+                <path d="M12.2178 13.5259C12.2255 13.5156 12.2335 13.5054 12.2407 13.4947C12.2476 13.4843 12.2536 13.4736 12.26 13.463C12.2658 13.4532 12.2719 13.4437 12.2773 13.4337C12.2831 13.4228 12.288 13.4117 12.2932 13.4006C12.2981 13.3902 12.3034 13.3799 12.3078 13.3692C12.3122 13.3584 12.3158 13.3475 12.3197 13.3365C12.3238 13.3251 12.3282 13.3137 12.3318 13.302C12.3351 13.2911 12.3375 13.28 12.3403 13.269C12.3433 13.257 12.3466 13.2452 12.3491 13.233C12.3516 13.2202 12.3531 13.2073 12.355 13.1945C12.3565 13.1839 12.3585 13.1735 12.3596 13.1627C12.3643 13.115 12.3643 13.0669 12.3596 13.0192C12.3585 13.0084 12.3565 12.998 12.355 12.9874C12.3531 12.9745 12.3516 12.9616 12.3491 12.9488C12.3467 12.9366 12.3433 12.9248 12.3403 12.9128C12.3375 12.9018 12.3351 12.8907 12.3318 12.8798C12.3283 12.8681 12.3238 12.8568 12.3197 12.8453C12.3158 12.8344 12.3122 12.8234 12.3078 12.8126C12.3034 12.8019 12.2981 12.7917 12.2932 12.7812C12.288 12.7702 12.2831 12.759 12.2772 12.7481C12.2719 12.7382 12.2658 12.7286 12.26 12.7189C12.2536 12.7083 12.2476 12.6975 12.2407 12.6872C12.2335 12.6764 12.2255 12.6663 12.2178 12.656C12.2113 12.6473 12.2053 12.6384 12.1984 12.63C12.1834 12.6117 12.1676 12.5942 12.1509 12.5775C12.1507 12.5772 12.1504 12.5769 12.1502 12.5767L9.96837 10.3949C9.68436 10.1109 9.22387 10.1109 8.93986 10.3949C8.65585 10.6789 8.65585 11.1394 8.93986 11.4234L9.88015 12.3637H5.82393C5.82198 12.3637 5.82011 12.3634 5.81817 12.3634C3.40529 12.3634 1.45455 10.4127 1.45455 7.99978C1.45455 6.94065 1.87755 5.94414 2.61776 5.20328C2.90167 4.91913 2.90146 4.45867 2.61732 4.17476C2.33317 3.89085 1.87271 3.89106 1.5888 4.17521C0.579304 5.18548 0 6.55024 0 7.99971C0 11.2132 2.59758 13.8133 5.80998 13.8178C5.81261 13.8178 5.81517 13.8182 5.81779 13.8182H9.88015L8.93986 14.7585C8.65585 15.0425 8.65585 15.503 8.93986 15.787C9.22387 16.071 9.68436 16.071 9.96837 15.787L12.1502 13.6052C12.15 13.6053 12.1503 13.605 12.1502 13.6052C12.167 13.5884 12.1833 13.5703 12.1984 13.5519C12.2053 13.5434 12.2113 13.5345 12.2178 13.5259Z" fill="#332F2C"/>
+                </svg>
+                <ap-comparecount id="comparecount"></ap-comparecount>
+            </a>
+            <a href="/pages/wishlist" class="header__icon-wrapper tap-area" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10.9966 8.06791C9.9969 6.8992 8.32987 6.58482 7.07735 7.65501C5.82482 8.72519 5.64848 10.5145 6.6321 11.7802C7.26211 12.5909 8.87558 14.0942 9.95424 15.0704C10.3127 15.3947 10.4919 15.5569 10.7066 15.622C10.8911 15.6779 11.102 15.6779 11.2866 15.622C11.5012 15.5569 11.6805 15.3947 12.0389 15.0704C13.1176 14.0942 14.731 12.5909 15.3611 11.7802C16.3447 10.5145 16.1899 8.71393 14.9158 7.65501C13.6417 6.59608 11.9963 6.8992 10.9966 8.06791Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <ap-wishlistcount class="header-ap_wishlistcount" id="wishlistcount"></ap-wishlistcount>
+            </a>
+            <a href="/cart" is="ap-togglelink" ap-controlsaria="mini-cart" ap-expanded-aria="false" class="header__icon-wrapper tap-area " aria-label="Cart" data-no-instant="">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                <path d="M3.52 1.64L1.96 3.72C1.65102 4.13198 1.49652 4.33797 1.50011 4.51039C1.50323 4.66044 1.57358 4.80115 1.69175 4.89368C1.82754 5 2.08503 5 2.6 5H17.4C17.915 5 18.1725 5 18.3083 4.89368C18.4264 4.80115 18.4968 4.66044 18.4999 4.51039C18.5035 4.33797 18.349 4.13198 18.04 3.72L16.48 1.64M3.52 1.64C3.696 1.40533 3.784 1.288 3.89552 1.20338C3.9943 1.12842 4.10616 1.0725 4.22539 1.03845C4.36 1 4.50667 1 4.8 1H15.2C15.4933 1 15.64 1 15.7746 1.03845C15.8938 1.0725 16.0057 1.12842 16.1045 1.20338C16.216 1.288 16.304 1.40533 16.48 1.64M3.52 1.64L1.64 4.14666C1.40254 4.46328 1.28381 4.62159 1.1995 4.79592C1.12469 4.95062 1.07012 5.11431 1.03715 5.28296C1 5.47301 1 5.6709 1 6.06666L1 17.8C1 18.9201 1 19.4802 1.21799 19.908C1.40973 20.2843 1.71569 20.5903 2.09202 20.782C2.51984 21 3.07989 21 4.2 21L15.8 21C16.9201 21 17.4802 21 17.908 20.782C18.2843 20.5903 18.5903 20.2843 18.782 19.908C19 19.4802 19 18.9201 19 17.8V6.06667C19 5.6709 19 5.47301 18.9628 5.28296C18.9299 5.11431 18.8753 4.95062 18.8005 4.79592C18.7162 4.62159 18.5975 4.46328 18.36 4.14667L16.48 1.64M14 9C14 10.0609 13.5786 11.0783 12.8284 11.8284C12.0783 12.5786 11.0609 13 10 13C8.93913 13 7.92172 12.5786 7.17157 11.8284C6.42143 11.0783 6 10.0609 6 9" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <ap-cartcount class="header__ap-cartcount header__ap-cartcount--floating bubble-count">{{ cart.item_count }}</ap-cartcount>
+            </a>
+            {% if section.settings.enable_localization %}
+                {% render 'localization' %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="header-social">
+        <h3 class="header-socia-title">
+            {{ section.settings.social_title }}
+        </h3>
+        {% render 'social_header' %}
+    </div>
+    <div class="drawer__footer drawer__footer--tight drawer__footer--bordered" style="opacity: 1;">
+      <div class="vertical-nav__footer">
+        <a class="icon-text" href="/account/login">
+          <svg focusable="false" width="18" height="17" class="icon icon--header-customer   " viewBox="0 0 18 17">
+            <circle cx="9" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></circle>
+            <path d="M1 17v0a4 4 0 014-4h8a4 4 0 014 4v0" fill="none" stroke="currentColor" stroke-width="2"></path>
+          </svg>Account </a>
+      </div>
+    </div>
+</vertical-menu>
