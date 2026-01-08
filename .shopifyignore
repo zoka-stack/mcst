@@ -1,0 +1,31 @@
+# Shopify ignore file
+# Files and directories listed here will NOT be synced to Shopify
+
+# Development files
+node_modules/
+.git/
+.gitignore
+.shopifyignore
+*.log
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Documentation
+README.md
+*.md
+
+# Environment files
+.env
+.env.local
+
+# Build files (if any)
+dist/
+build/
+
