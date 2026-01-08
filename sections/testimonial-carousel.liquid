@@ -1,0 +1,646 @@
+<!-- testimonial-carousel.liquid -->
+<style>
+    #shopify-section-{{ section.id }} {
+      --ap-nextap-buttonprev-color: 67, 70, 78;
+    }
+    .testimonial-carousel__ap-nextprev{
+        display: inline-flex;
+        align-items: center;
+    }
+    .testimonial-carousel__arrow{
+        background-color: transparent;
+    }
+    .testimonial-carousel-box{
+        padding: 9%;
+        background-color: #fff;
+    }
+    .testimonial-carousel-infor{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .testimonial-carousel-author{
+        display: flex;
+        align-items: center;
+    }
+    .testimonial-carousel-author img{
+        width: 64px;
+        height: auto;
+        border-radius: 50%;
+    }
+    .testimonial-name-job{
+        padding-left: 15px;
+    }
+    .testimonial-carousel-icon{
+        line-height: 1;
+    }
+    .testimonial-name-job .testimonial__author{
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 1.3;
+        text-transform: capitalize;
+        font-family: var(--g-font-other);
+        margin-bottom: 5px;
+        color: {{ section.settings.color_author }};
+    }
+    .testimonial-name-job .testimonial__job{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.7;
+        color: {{ section.settings.color_job }};
+    }
+    .testimonial-carousel-rating{
+        text-align: right;
+    }
+    .testimonial-carousel-box .testimonial__content{
+        font-size: 14px;
+        color:{{ section.settings.color_content }};
+    }
+    .testimonial-carousel-icon svg path{
+        fill:{{ section.settings.color_icon }};
+    }
+    .testimonial-carousel-content{
+        padding: 0px 15px;
+    }
+
+
+    .testimonial-carousel__ap-nextprev .ap-nextap-buttonprev{
+      position: absolute;
+      top: 50%;
+    }
+    .testimonial-carousel__ap-nextprev .ap-nextap-buttonprev{
+      transition: all .3 ease;
+      opacity: 0;
+      background-color: #fff;
+      visibility: hidden;
+    }
+    .testimonial-carousel__ap-nextprev .ap-nextap-buttonprev--prev{
+        transform: translate(-10px,-50%);
+      left: 0;
+    }
+    .testimonial-carousel__ap-nextprev .ap-nextap-buttonprev--next{
+        transform: translate(10px,-50%);
+      right: 0;
+    }
+    .testimonial-carousel-content{
+      position: relative;
+    }
+    .testimonial-carousel-content:hover .testimonial-carousel__ap-nextprev .ap-nextap-buttonprev{
+        transform: translate(0px,-50%);
+      opacity: 1;
+      visibility: visible;
+    } 
+
+
+    {% assign have_image = 0 %}
+    {% for block in section.blocks %}
+    {% liquid
+      if block.type == 'image_left'
+        assign have_image = 1
+      endif
+    %}
+    {% case block.type %}
+    {%- when 'image_left' -%}
+    {% if block.settings.image_left != blank %}
+    .testimonial-carousel-image-left#block-{{ block.id }}{
+        background-image:url({{ block.settings.image_left | image_url: width: 1920 }});
+        background-position:center center;
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    
+    {% endif %}
+    {% endcase %}
+    {% endfor %}
+    {% if have_image != 0 %}
+
+    .testimonial-carousel-flex{
+        flex-wrap: wrap;
+        display: flex;
+    }
+    .testimonial-carousel,.testimonial-carousel-image-left{
+        width: 100%;
+    }
+    .testimonial-carousel{
+        padding: 60px 15px;
+    }
+    @media (min-width:1200px) {
+        .testimonial-carousel-image-left{
+            width: 40%;
+        }
+        .testimonial-carousel-box{
+            padding: 30px 15px;
+        }
+        .testimonial-carousel{
+            width: 60%;
+            padding: 110px 15px 110px 15px;   
+        }
+    }
+    @media (min-width:1500px) {
+        .testimonial-carousel-box{
+            padding: 30px 30px;
+        }
+        .testimonial-carousel-content{
+            transform: translateX(-30%);
+        }
+        .testimonial-carousel-image-left{
+            width: 50%;
+        }
+        .testimonial-carousel{
+            width: 50%;
+            padding: 140px 15px 140px 4%;
+        }
+    }
+    @media (min-width:768px) and (max-width:1199px) {
+        .testimonial-carousel-image-left{
+            width: 40%;
+        }
+        .testimonial-carousel{
+            width: 60%;
+            padding:80px 15px 80px 15px;
+            
+        }
+    }
+
+    {% endif %} 
+
+
+
+
+
+    @media (min-width:1200px) {
+        .testimonial-carousel-header{
+            text-align: left;
+        }
+        .testimonial-carousel-header-son{
+            display: flex;
+            justify-content: space-between;
+        }
+        .testimonial-carousel-header .description-header{
+            max-width: 420px;
+        }
+    }
+
+    @media screen and (max-width: 575px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_mobile }};
+      }
+      .testimonial-carousel-section .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0px;
+        grid-auto-columns:calc((100% - var(--ap-productlist-column-gap) * ({{ section.settings.products_per_row_mobile }} - 1)) / {{ section.settings.products_per_row_mobile }});
+      } 
+    }
+
+    @media (min-width:576px) and (max-width: 767px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_ipad }};
+      }
+      .testimonial-carousel-section .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0px;
+        grid-auto-columns:calc((100% - var(--ap-productlist-column-gap) * ({{ section.settings.products_per_row_ipad }} - 1)) / {{ section.settings.products_per_row_ipad }});
+      }
+ 
+    }
+  
+    @media (min-width: 768px) and (max-width: 1199px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_tablet }}
+      }
+      .testimonial-carousel-section .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0;
+        grid-auto-columns:calc((100% - var(--ap-productlist-column-gap) * ({{ section.settings.products_per_row_tablet }} - 1)) / {{ section.settings.products_per_row_tablet }});
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      #shopify-section-{{ section.id }} {
+        --section-products-per-row: {{ section.settings.products_per_row_desktop }};
+      }
+      .testimonial-carousel-section .ap-productlist__inner--scroller{
+        margin:0;
+        padding:0;
+        grid-auto-columns:calc((100% - var(--ap-productlist-column-gap) * ({{ section.settings.products_per_row_desktop }} - 1)) / {{ section.settings.products_per_row_desktop }});
+      }
+    }
+</style>
+
+{% render 'section-style' %}
+
+<section class="section testimonial-carousel-section" id="section{{ section.id }}">
+    
+    <div class="{{ section.settings.fullwidth2 }}">
+        <div class="testimonial-carousel-flex">
+            {% for block in section.blocks %}
+            {% case block.type %}
+            {% when 'image_left' %}
+            <div class="testimonial-carousel-image-left" id="block-{{ block.id }}">
+              
+                    {% if block.settings.image_left != blank %}
+
+                    {% else %}
+                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {% endif %}
+               
+            </div>
+            {% endcase %}
+            {% endfor %}
+            <testimonial-carousel stagger-apparition="" class="testimonial-carousel testimonial-carousel--center ap-object-loaded">
+                <div class="container">
+                    {% if section.settings.sub_header != blank or section.settings.title_header != blank or section.settings.description != blank  %}
+                        <div class="section-header testimonial-carousel-header text-{{ section.settings.style_header }}">
+                        {% if section.settings.sub_header != blank %}
+                        <div class="sub-header" style="color:{{ section.settings.color_sub_header }};">
+                            {{ section.settings.sub_header }}
+                        </div>
+                        {% endif %}
+                        <div class="testimonial-carousel-header-son">
+                            {% if section.settings.title_header != blank %}
+                            <div class="title-header" style="color:{{ section.settings.color_title_header }};">
+                                {{ section.settings.title_header }}
+                            </div>
+                            {% endif %}
+                            {% if section.settings.description != blank %}
+                            <div class="description-header" style="color:{{ section.settings.color_description }};">
+                                {{ section.settings.description }}
+                            </div>
+                            {% endif %}
+                           
+                        </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="testimonial-carousel-content">
+                    <div class="scroller">
+                        <div class="ap-productlist__inner ap-productlist__inner--scroller hide-scrollbar">
+                            {% for block in section.blocks %}
+                            {% case block.type %}
+                            {% when 'testimonial_item' %}
+                            <testimonial-carousel-item id="block-{{ block.id }}" style="opacity: 1;" reveal="" class="testimonial-carousel-item has-overlay">
+                                <div class="testimonial-carousel-box">
+                                    <div class="testimonial-carousel-infor">
+                                        <div class="testimonial-carousel-author">
+                                            {% if block.settings.image != blank %}
+                                            <img src="{{ block.settings.image | image_url: width: 1920 }}" width="auto" height="auto" loading="lazy" alt="">
+                                            {% else %}
+                                            {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                            {% endif %}
+                                            <div class="testimonial-name-job">
+                                                <div class="testimonial__author">{{ block.settings.author }}</div>
+                                                <div class="testimonial__job">{{ block.settings.job }}</div>
+                                            </div>
+                                        </div>
+                                        <div class="testimonial-carousel-rating">
+                                            {% if block.settings.icon_testimonial != blank %}
+                                                <div class="testimonial-carousel-icon">
+                                                    {{ block.settings.icon_testimonial }}
+                                                </div>
+                                            {% endif %}
+                                            {% if block.settings.rate != 0 %}
+                                                <ul class="quote-rating list-unstyled">
+                                                    {% for i in (1..5) %}
+                                                    {% assign iMax = block.settings.rate %}
+                                                    {% if i <= iMax %}
+                                                        <li class="rated">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                                                <path d="M9.16966 6.81574L11.7859 4.72705C12.1884 4.39725 11.9871 3.8476 11.484 3.8476L8.16342 3.62773C7.96217 3.62773 7.76092 3.5178 7.76092 3.29794L6.45281 0.329794C6.25156 -0.109931 5.64782 -0.109931 5.44657 0.329794L4.3397 3.29794C4.23908 3.5178 4.03783 3.62773 3.83658 3.62773L0.515989 3.8476C0.0128689 3.8476 -0.188379 4.39725 0.214117 4.72705L2.83034 6.81574C2.93097 6.92567 3.03159 7.0356 2.93097 7.25547L2.12597 10.4435C2.02535 10.7733 2.52847 11.213 2.93097 10.8832L5.74844 9.1243C5.94969 9.01437 6.15094 9.01437 6.35219 9.1243L9.06903 10.8832C9.47153 11.1031 9.97465 10.7733 9.87403 10.3335L9.06903 7.25547C8.96841 7.14553 9.06903 6.92567 9.16966 6.81574Z" fill="#E6AF5D"/>
+                                                                </svg>                                                    
+                                                        </li>
+                                                    {% else %}
+                                                        <li>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="11" viewBox="0 0 12 11" fill="none">
+                                                                <path d="M9.16966 6.81574L11.7859 4.72705C12.1884 4.39725 11.9871 3.8476 11.484 3.8476L8.16342 3.62773C7.96217 3.62773 7.76092 3.5178 7.76092 3.29794L6.45281 0.329794C6.25156 -0.109931 5.64782 -0.109931 5.44657 0.329794L4.3397 3.29794C4.23908 3.5178 4.03783 3.62773 3.83658 3.62773L0.515989 3.8476C0.0128689 3.8476 -0.188379 4.39725 0.214117 4.72705L2.83034 6.81574C2.93097 6.92567 3.03159 7.0356 2.93097 7.25547L2.12597 10.4435C2.02535 10.7733 2.52847 11.213 2.93097 10.8832L5.74844 9.1243C5.94969 9.01437 6.15094 9.01437 6.35219 9.1243L9.06903 10.8832C9.47153 11.1031 9.97465 10.7733 9.87403 10.3335L9.06903 7.25547C8.96841 7.14553 9.06903 6.92567 9.16966 6.81574Z" fill="#ccc"/>
+                                                                </svg>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </ul>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <blockquote class="testimonial__content blockquote">
+                                        {{ block.settings.content }}
+                                    </blockquote>
+                                </div>
+                            </testimonial-carousel-item>
+                            {% endcase %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% if section.settings.show_arrow %}
+                        <div class="testimonial-carousel-arrow">
+                            <ap-button-nextprev class="testimonial-carousel__ap-nextprev hd-pocket" style="--smallest-image-aspect-ratio: 1.0">
+                                <button class="testimonial-carousel__arrow ap-nextap-buttonprev ap-nextap-buttonprev--prev" disabled="">
+                                <span class="visually-hidden">Previous</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon--nav-arrow-left  icon--direction-aware " width="20" height="8" viewBox="0 0 20 8" fill="none">
+                                    <path d="M3.65251 7.60257C3.54738 7.60257 3.44225 7.56283 3.36277 7.48206L0.171742 4.29104C0.0537929 4.17309 0.0191775 3.99745 0.0832801 3.8436C0.147383 3.68975 0.296101 3.58975 0.462767 3.58975H19.5397C19.7666 3.58975 19.9499 3.77309 19.9499 4.00001C19.9499 4.22693 19.7666 4.41027 19.5397 4.41027H1.45251L3.94225 6.90001C4.10251 7.06027 4.10251 7.32052 3.94225 7.48078C3.86149 7.56283 3.75764 7.60257 3.65251 7.60257Z" fill="currentColor"/>
+                                    <path d="M0.461485 4.41283C0.356357 4.41283 0.251229 4.37309 0.171742 4.29232C0.0114852 4.13206 0.0114852 3.87181 0.171742 3.71155L3.36661 0.516677C3.52687 0.35642 3.78713 0.35642 3.94738 0.516677C4.10764 0.676933 4.10764 0.937189 3.94738 1.09745L0.752511 4.29232C0.671742 4.37309 0.566613 4.41283 0.461485 4.41283Z" fill="currentColor"/>
+                                </svg>
+                                </button>
+                                <button class="testimonial-carousel__arrow ap-nextap-buttonprev ap-nextap-buttonprev--next">
+                                <span class="visually-hidden">Next</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon--nav-arrow-right  icon--direction-aware " width="20" height="8" viewBox="0 0 20 8" fill="none">
+                                    <path d="M19.5385 4.4077H0.461526C0.234603 4.4077 0.0512695 4.22437 0.0512695 3.99745C0.0512695 3.77052 0.234603 3.58719 0.461526 3.58719H18.5474L16.0577 1.09745C15.8974 0.937189 15.8974 0.676933 16.0577 0.516677C16.2179 0.35642 16.4782 0.35642 16.6385 0.516677L19.8295 3.7077C19.9474 3.82565 19.982 4.00129 19.9179 4.15514C19.8538 4.3077 19.7038 4.4077 19.5385 4.4077Z" fill="currentColor"/>
+                                    <path d="M16.3436 7.60257C16.2384 7.60257 16.1333 7.56283 16.0538 7.48206C15.8936 7.3218 15.8936 7.06155 16.0538 6.90129L19.2487 3.70642C19.409 3.54616 19.6692 3.54616 19.8295 3.70642C19.9897 3.86668 19.9897 4.12693 19.8295 4.28719L16.6346 7.48206C16.5538 7.56283 16.4487 7.60257 16.3436 7.60257Z" fill="currentColor"/>
+                                </svg>
+                                </button>
+                            </ap-button-nextprev>   
+                        </div>
+                    {% endif %}
+                </div>
+            </testimonial-carousel>
+        </div>
+    </div>
+</section>
+
+{% schema %}
+{
+    "name": "Testimonial Carousel",
+    "class": "shopify-section--ap-testimonial-carousel",
+    "tag": "section",
+    "settings": [     
+        {
+            "id": "fullwidth2",
+            "type": "select",
+            "options": [
+            {
+                "value": "container--small",
+                "label": "Box small"
+            },
+            {
+                "value": "container",
+                "label": "Box"
+            },
+            {
+                "value": "container-lagre",
+                "label": "Box bigger"
+            },
+            {
+                "value": "container-fluid",
+                "label": "Full"
+            }
+            ],
+            "default": "container",
+            "label": "Width section"
+        },
+        {
+            "id": "bg_image",
+            "type": "image_picker",
+            "label": "Background image"
+        },
+        {
+            "id": "background-color",
+            "type": "color",
+            "label": "Background color"
+        },
+        {
+            "type":"header",
+            "content":"Margin section"
+        },
+        {
+            "type": "text",
+            "id": "margin_desktop",
+            "label": "Margin desktop",
+            "default": "0px 0px 0px 0px",
+            "info": "Example: 0px 0px 0px 0px"
+        },
+        {
+            "type": "text",
+            "id": "margin_mobile",
+            "label": "Margin mobile",
+            "default": "0px 0px 0px 0px",
+            "info": "Example: 0px 0px 0px 0px"
+        },
+        {
+            "type":"header",
+            "content":"Padding section"
+        },
+        {
+            "type": "text",
+            "id": "padding_desktop",
+            "label": "Padding desktop",
+            "default": "0px 0px 0px 0px",
+            "info": "Example: 0px 0px 0px 0px"
+        },
+        {
+            "type": "text",
+            "id": "padding_mobile",
+            "label": "Padding mobile",
+            "default": "0px 0px 0px 0px",
+            "info": "Example: 0px 0px 0px 0px"
+        },
+        {
+            "type":"header",
+            "content":"Heading"
+        },
+        {
+            "type":"text",
+            "id":"sub_header",
+            "label":"Sub heading",
+            "default":"Sub heading"
+        },
+        {
+            "type":"color",
+            "id":"color_sub_header",
+            "label":"Color sub",
+            "default":"#000"
+        },
+        {
+            "type":"text",
+            "id":"title_header",
+            "label":"Title heading",
+            "default":"Title heading"
+        },
+        {
+            "type":"color",
+            "id":"color_title_header",
+            "label":"Color title heading",
+            "default":"#000"
+        },
+        {
+            "type":"textarea",
+            "id":"description",
+            "label":"Description",
+            "default":"Description heading"
+        },
+        {
+            "type":"color",
+            "id":"color_description",
+            "label":"Color des_collection",
+            "default":"#000"
+        },
+        {
+            "id": "style_header",
+            "type": "select",
+            "options": [
+            {
+                "value": "start",
+                "label": "Left"
+            },
+            {
+                "value": "center",
+                "label": "Center"
+            },
+            {
+                "value": "end",
+                "label": "Right"
+            }
+            ],
+            "default": "center",
+            "label": "Style header"
+        },
+        {
+            "type":"header",
+            "content":"Setting item"
+        },
+        {
+            "type":"checkbox",
+            "id":"show_arrow",
+            "label":"Show arrow",
+            "default":true
+        },
+        {
+            "type": "range",
+            "id": "products_per_row_mobile",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "default": 1,
+            "label": "Products per row Mobile"
+          },
+          {
+            "type": "range",
+            "id": "products_per_row_ipad",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "default": 2,
+            "label": "Products per row Ipad"
+          },
+          {
+            "type": "range",
+            "id": "products_per_row_tablet",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "default": 3,
+            "label": "t:sections.all.products_per_row_tablet.label"
+          },
+          {
+            "type": "range",
+            "id": "products_per_row_desktop",
+            "min": 1,
+            "max": 10,
+            "step": 1,
+            "default": 3,
+            "label": "t:sections.all.products_per_row_desktop.label"
+        },
+        {
+            "type":"header",
+            "content":"Color item"
+        },
+        {
+            "type": "color",
+            "id": "color_author",
+            "label": "Color author",
+            "default": "#332F2C"
+        },
+        {
+            "type": "color",
+            "id": "color_job",
+            "label": "Color job",
+            "default": "#8D9396"
+        },
+        {
+            "type": "color",
+            "id": "color_icon",
+            "label": "Color icon",
+            "default": "#E6AF5D"
+        },
+        {
+            "type": "color",
+            "id": "color_content",
+            "label": "Color content",
+            "default": "#465058"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "testimonial_item",
+            "name": "Testimonial Item",
+            "settings": [
+                {
+                    "type": "textarea",
+                    "id": "icon_testimonial",
+                    "label": "Icon"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Image"
+                },
+                {
+                    "type": "textarea",
+                    "id": "content",
+                    "default": "Testimonial content",
+                    "label": "content"
+                },
+                {
+                    "type": "range",
+                    "id": "rate",
+                    "min": 0,
+                    "max": 5,
+                    "step": 1,
+                    "label": "Rating",
+                    "default": 5
+                },
+                {
+                    "type": "text",
+                    "id": "author",
+                    "default": "Author",
+                    "label": "Author"
+                },
+                {
+                    "type": "text",
+                    "id": "job",
+                    "default": "Admin",
+                    "label": "Job"
+                }
+            ]
+        },
+
+        {
+            "type": "image_left",
+            "name": "Image left",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image_left",
+                    "label": "Image"
+                }
+            ]
+        }
+    ],
+    "presets": [
+    {
+      "name": "Testimonial Carousel",
+      "blocks": [
+        {
+          "type": "testimonial_item"
+        },
+        {
+          "type": "testimonial_item"
+        },
+        {
+          "type": "testimonial_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

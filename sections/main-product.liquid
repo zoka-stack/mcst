@@ -1,0 +1,650 @@
+<section>
+<style>
+  @media screen and (min-width: 1000px) {
+    :root {
+      --anchor-offset: 140px; /* When the sticky form is activate, every scroll must be offset by an extra value */
+    }
+  }
+  .main-product-section {
+    margin-top: 0;
+  }
+  .product-description {
+    margin: 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+ @media screen and (min-width: 1000px) {
+    :root {
+      --anchor-offset: 140px; /* When the sticky form is activate, every scroll must be offset by an extra value */
+    }
+  }
+  .main-product-section {
+    margin-top: 0;
+  }
+  .product-description {
+    margin: 15px 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* FIX: prevent image and options from overlapping on mid sizes */
+  @media screen and (max-width: 950px) {
+    .main-product {
+      display: block !important;          /* no side by side layout */
+    }
+
+    .main-product > * {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    /* media on top, info below */
+    .main-product ap-productmedia,
+    .main-product .ap-productmedia {
+      margin-bottom: 24px;
+    }
+
+    /* disable sticky behavior on small widths */
+    .main-product .product__info,
+    .main-product .ap-productmeta {
+      position: static !important;
+      top: auto !important;
+    }
+  }
+  
+</style>
+<script>
+  try {
+    const items = JSON.parse(localStorage.getItem('theme:ap-recentlyproductsviewed') || '[]');
+    if (!items.includes({{ product.id }})) {
+      items.unshift({{ product.id }});
+    }
+    localStorage.setItem('theme:ap-recentlyproductsviewed', JSON.stringify(items.slice(0, 20)));
+  } catch (e) {
+    // have error
+  }
+</script>
+{% render 'product-sticky', product: product %}
+
+<div class="container">
+      {% render 'breadcrumb', product: product %}
+      <!-- PRODUCT TOP PART -->
+      <div class="main-product product--thumbnails-{{ section.settings.thumbnails_position }}">
+        {% render 'ap-productmedia', product: product %}
+        <div class="product__info {%- if section.settings.media_type == 'list' -%}{{ 'product__info-scroll' | prepend: ' ' }}{%- endif -%}">
+          <!-- PRODUCT META -->
+          <ap-productmeta form-id="ap-productform-{{ section.id }}-{{ product.id }}" ap-priceclass="price--large" class="ap-productmeta">
+              <div class="ap-productform">
+                {%- for block in section.blocks -%}
+    
+                  {%- case block.type -%}
+                    {%- when '@app' -%}
+                      {% render block %}
+                    
+                    {%- when 'title' -%}
+                      <h1 class="ap-productmeta__title heading h3">{{ product.title }}</h1>
+                    
+                    {%- when 'price' -%}
+                      {% liquid
+                        render 'price', product: product, use_variant: true, show_badges: false, price_class: 'price--large'
+                      %}
+
+                    {% if product.metafields.my_fields.countdown_timer != blank %}
+                      {% render 'product-countdown' %}
+                    {% endif %}
+    
+                    {%- when 'product_variants' -%}
+                      {%- render 'ap-productvariants', product: product show_size_chart: true color_variant: block.settings.color_variant variant_type: block.settings.variant_type -%}
+                    
+                    {%- when 'quantity_selector' -%}
+                      {%- render 'product-quantity', product: product -%}
+                    
+                    {%- when 'buy_buttons' -%}
+                      {%- render 'product-buy',
+                        block: block,
+                        product: product,
+                        product_form_id: product_form_id,
+                        section_id: section.id,
+                        show_pickup_availability: true 
+                      -%}
+                    
+                    {%- when 'product_stock' -%}
+                      {%- render 'product-stock', product: product -%}
+                    
+                    {%- when 'product_description' -%}
+                      <div class="product-description">{{ product.description }}</div>
+                    
+                    {%- when 'share' -%}
+                      {% render 'product-share', product: product %}
+                    
+                    {%- when 'custom_liquid' -%}
+                      {{ block.settings.custom_liquid }}
+                    
+                    {%- when 'ratting' -%}
+                      {%- render 'product-ratting', product: product -%}
+                    
+                    {%- when 'product_sku' -%}
+                      {%- render 'product-sku', product: product -%}
+                    
+                    {%- when 'text' -%}
+                      {{ block.settings.text }}
+                    
+                    {%- when 'free_shipping_bar' -%}
+                      {% render 'ap-freeshippingbar' %}
+                      
+                  {% endcase %}
+                {% endfor %}
+    
+              </div>
+          </ap-productmeta>
+          
+          {% liquid
+            assign _size_chart_name = ''
+            if settings.size_chart_1_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+                assign title1 = collection.title | downcase
+                assign title2 = settings.size_chart_1_collection.title | downcase
+                if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_2_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_2_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_2
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_3_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_3_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_3
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_4_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_4_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_4
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_5_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_5_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_5
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_6_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_6_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_6
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_7_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_7_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_7
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_8_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_8_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_8
+                  assign status = true
+                endif
+              endfor
+            endif
+            if settings.size_chart_9_collection and _size_chart_name == ''
+              assign status = false
+              for collection in product.collections
+              assign title1 = collection.title | downcase
+              assign title2 = settings.size_chart_9_collection.title | downcase
+              if status == false and title1 == title2
+                  assign _size_chart_name = settings.type_size_chart_9
+                  assign status = true
+                endif
+              endfor
+            endif
+
+            if  _size_chart_name == 'men'
+              render 'size-chart-man'
+            endif
+            if  _size_chart_name == 'women'
+              render 'size-chart-women'
+            endif
+            if  _size_chart_name == 'kids'
+              render 'size-chart-kids'
+            endif
+          %}
+
+          {% if section.settings.show_cosselling %}
+            {% render 'crossselling' %}
+          {% endif %}
+
+          {% if section.settings.show_upsell %}
+            {% render 'upselling' %}
+          {% endif %}
+
+        </div>
+
+    </div>
+  </section>
+  <ap-productzoomimage product-handle="{{ product.handle }}" id="product-{{ section.id }}-{{ product.id }}-zoom" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="pswp__bg"></div>
+    <div class="pswp__scroll-wrap">
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <div class="pswp__ui pswp__ui--hidden">
+        <div class="pswp__top-bar">
+          <button class="pswp__button pswp__button--close ap-nextap-buttonprev" data-action="pswp-close" title="Close">
+            <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+              <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="pswp__prev-next-buttons hd-pocket">
+          <button class="pswp__button ap-nextap-buttonprev ap-nextap-buttonprev--prev" data-action="pswp-prev" title="Previous">
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+          <button class="pswp__button ap-nextap-buttonprev ap-nextap-buttonprev--next" data-action="pswp-next" title="Next">
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="pswp__dots-nav-wrapper hd-lap-and-up">
+          <button class="tap-area tap-area--large" data-action="pswp-prev">
+            <span class="visually-hidden">Previous</span>
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-left  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M17 7H2M8 1L2 7l6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+          
+          <div class="dots-nav dots-nav--centered">
+            
+          </div>
+
+          <button class="tap-area tap-area--large" data-action="pswp-next">
+            <span class="visually-hidden">Next</span>
+            <svg focusable="false" width="17" height="14" class="icon icon--nav-arrow-right  icon--direction-aware " viewBox="0 0 17 14">
+              <path d="M0 7h15M9 1l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </ap-productzoomimage>
+  {%- for media in product.media -%}
+    {%- if media.media_type != "image" -%}
+      <ap-contentmodal only-once="" id="popup-product-{{ section.id }}-{{ media.id }}" class="modal modal-full">
+        <div class="modal__overlay"></div>
+        <div class="modal__content">
+          <button type="button" class="modal__close-button tap-area" data-action="close" title="Close">
+            <svg focusable="false" width="14" height="14" class="icon icon--close   " viewBox="0 0 14 14">
+              <path d="M13 13L1 1M13 1L1 13" stroke="currentColor" stroke-width="2" fill="none"></path>
+            </svg>
+          </button>
+          <div class="content-popup-modal ">
+            {%- case media.media_type -%}
+              {%- when 'external_video' -%}
+                {%- assign video_class = 'js-' | append: media.host -%}
+                {%- if media.host == 'youtube' -%}
+                  {{ media | external_video_url: autoplay: true, playlist: media.external_id | external_video_tag: class: video_class, loading: "lazy" }}
+                {%- else -%}
+                  {{ media | external_video_url: autoplay: true | external_video_tag: class: video_class, loading: "lazy" }}
+                {%- endif -%}
+              {%- when 'video' -%}
+                {{ media | media_tag: image_size: "2048x", autoplay: true, controls: true, preload: "none" }}
+              {%- when 'model' -%}
+                {{ media | media_tag: image_size: "2048x", toggleable: true }}
+            {%- endcase -%}
+          </div>
+        </div>
+      </ap-contentmodal>
+    {%- endif -%}
+  {%- endfor -%}
+{% schema %}
+{
+  "name": "t:sections.main-product.name",
+  "tag": "section",
+  "class": "section main-product-section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "text",
+      "name": "t:sections.main-product.blocks.text.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Text block",
+          "label": "t:sections.main-product.blocks.text.settings.text.label"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "body",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__1.label"
+            },
+            {
+              "value": "subtitle",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__2.label"
+            },
+            {
+              "value": "uppercase",
+              "label": "t:sections.main-product.blocks.text.settings.text_style.options__3.label"
+            }
+          ],
+          "default": "body",
+          "label": "t:sections.main-product.blocks.text.settings.text_style.label"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "price",
+      "name": "t:sections.main-product.blocks.price.name",
+      "limit": 1
+    },
+    {
+      "type": "quantity_selector",
+      "name": "t:sections.main-product.blocks.quantity_selector.name",
+      "limit": 1
+    },
+    {
+      "type": "product_variants",
+      "name": "t:sections.main-product.blocks.variant_picker.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "variant_type",
+          "options": [
+            {
+              "value": "dropdown",
+              "label": "Select box"
+            },
+            {
+              "value": "grid",
+              "label": "Grid"
+            }
+          ],
+          "default": "grid",
+          "label": "Variant Type"
+        },
+        {
+          "type": "select",
+          "id": "color_variant",
+          "options": [
+            {
+              "value": "default",
+              "label": "Default"
+            },
+            {
+              "value": "system",
+              "label": "System settings"
+            },
+            {
+              "value": "image_variant",
+              "label": "Use image product"
+            }
+          ],
+          "default": "default",
+          "label": "Color variant"
+        }
+      ]
+    },
+    {
+      "type": "product_stock",
+      "name": "Product stock",
+      "limit": 1
+    },
+    {
+      "type": "product_description",
+      "name": "Product Description",
+      "limit": 1
+    },
+    {
+      "type": "product_sku",
+      "name": "Product SKU",
+      "limit": 1
+    },
+    {
+      "type": "ratting",
+      "name": "Ratting",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "Product Share",
+      "limit": 1
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        }
+      ]
+    },
+    {
+      "type": "custom_liquid",
+      "name": "t:sections.main-product.blocks.custom_liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label",
+          "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
+        }
+      ]
+    },
+    {
+      "type": "product_policy",
+      "name": "Product policy"
+    },
+    {
+      "type": "free_shipping_bar",
+      "name": "Free shipping bar"
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_sticky_info",
+      "default": true,
+      "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.main-product.settings.header.content",
+      "info": "t:sections.main-product.settings.header.info"
+    },
+    {
+      "type": "select",
+      "id": "media_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.main-product.settings.media_position.options__1.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.main-product.settings.media_position.options__2.label"
+        }
+      ],
+      "default": "left",
+      "label": "t:sections.main-product.settings.media_position.label",
+      "info": "t:sections.main-product.settings.media_position.info"
+    },
+    {
+      "type": "select",
+      "id": "media_type",
+      "options": [
+        {
+          "value": "carousel",
+          "label": "Carousel"
+        },
+        {
+          "value": "list",
+          "label": "List"
+        }
+      ],
+      "default": "carousel",
+      "label": "Media type"
+    },
+    {
+      "type": "select",
+      "id": "thumbnails_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "bottom",
+          "label": "Bottom"
+        },
+        {
+          "value": "none",
+          "label": "None"
+        }
+      ],
+      "default": "bottom",
+      "label": "Thumbnails position"
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_page_dots",
+      "default": false,
+      "label": "Carousel page dots"
+    },
+    {
+      "type": "checkbox",
+      "id": "carousel_prevnextbuttons",
+      "default": false,
+      "label": "Carousel Prev Next Buttons"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_video_looping",
+      "default": false,
+      "label": "t:sections.main-product.settings.enable_video_looping.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cosselling",
+      "default": false,
+      "label": "Show CrossSell"
+    },
+    {
+      "type": "range",
+      "id": "crossell_limit",
+      "max": 10,
+      "min": 1,
+      "step": 1,
+      "label": "Show Product Crossell",
+      "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_upsell",
+      "default": false,
+      "label": "Show Upsell"
+    },
+    {
+      "type": "range",
+      "id": "upsell_limit",
+      "max": 10,
+      "min": 1,
+      "step": 1,
+      "label": "Show Product Upsell",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

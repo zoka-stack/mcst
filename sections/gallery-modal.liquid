@@ -1,0 +1,76 @@
+{{ 'gallery-modal.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<div class="gallery-modal">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        <div class="row">
+            <div class="heading">{{ section.settings.heading }}</div>
+            <div class="images-list">
+                {% for block in section.blocks %}
+                  {% if block.settings.image != blank %}
+                    <div class="images">
+                        <img class="image-item" loading="lazy" 
+                            sizes="(max-width: 999px) 100vw, 72vw" alt="" 
+                            src="{{ block.settings.image | image_url: width: block.settings.image.width }}" 
+                            srcset="{{ block.settings.image | image_url: width: 2000 }} 2000w" 
+                            width="{{ block.settings.image.width }}" height="{{ block.settings.image.height }}">  
+                    </div>
+                    {% else %}
+                    <div class="list-collections__item-image">
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    </div>
+                  {% endif %}
+                {% endfor %}
+            </div>
+            <div class="g-modal">
+              <span class="close"><i class="fas fa-times"></i></span>
+              <div class="modalContent">
+                <img src="" srcset="" class="modalImg" />
+                <span class="modalTxt"></span>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/7368c40b21.js" crossorigin="anonymous" ></script>
+
+{% schema %}
+{
+  "name": "Gallery modal",
+  "class": "section-galley-modal",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Gallery modal",
+      "blocks": []
+    }
+  ]
+}
+{% endschema %}

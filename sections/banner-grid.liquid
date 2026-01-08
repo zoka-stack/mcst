@@ -1,0 +1,325 @@
+{{ 'banner-grid.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --color-text: {{ section.settings.color_text }};
+        --color-text-2: {{ section.settings.color_text_2 }};
+        --color-hover: {{ section.settings.color_hover }};
+        --bg-color: {{ section.settings.background_color }};
+        --btn-color: {{ section.settings.color_button }};
+        --btn-color-hover: {{ section.settings.color_button_hover }};
+        --bg-color-btn: {{ section.settings.background_color_button }};
+        --bg-color-btn-hover: {{ section.settings.background_color_button_hover }};
+    }
+
+    /* Darken banner images by default */
+    #shopify-section-{{ section.id }} .banner-content .banner-image .banner-list-image {
+        filter: brightness(0.8);
+        transition: filter 0.3s ease;
+    }
+
+    /* Darken further on hover */
+    #shopify-section-{{ section.id }} .banner-content:hover .banner-image .banner-list-image {
+        filter: brightness(0.5);
+    }
+    }
+</style>
+
+<div class="banner-grid">
+    <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+        <div class="row">
+            {% for block in section.blocks %}
+                {%- case block.settings.width -%}
+                {%- when '25%' -%}
+                {%- assign block_width = 'col-25' -%}
+                {%- when '33%' -%}
+                {%- assign block_width = 'col-33' -%}
+                {%- when '40%' -%}
+                {%- assign block_width = 'col-40' -%}
+                {%- when '50%' -%}
+                {%- assign block_width = 'col-50 banner-col' -%}
+                {%- when '60%' -%}
+                {%- assign block_width = 'col-60' -%}
+                {%- when '66%' -%}
+                {%- assign block_width = 'col-66' -%}
+                {%- when '75%' -%}
+                {%- assign block_width = 'col-75' -%}
+                {%- when '100%' -%}
+                {%- assign block_width = 'col-100 col-full' -%}
+                {%- endcase -%}
+
+                <div class="{{ block_width }}">
+                    <banner-content reveal-on-scroll="">
+                        <div class="banner-content has-overlay">
+                            <div class="banner-image">
+                                {% if block.settings.featured_image != blank %}
+                                    <img
+                                      class="banner-list-image"
+                                      reveal=""
+                                      loading="lazy"
+                                      sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                      alt=""
+                                      src="{{ block.settings.featured_image | image_url: width: block.settings.featured_image.width }}"
+                                      srcset="{%- if block.settings.featured_image.width >= 3000 -%}{{ block.settings.featured_image | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                          {{ block.settings.featured_image | image_url }} {{ block.settings.featured_image.width }}w"
+                                      height="{{ block.settings.featured_image.height }}"
+                                      width="{{ block.settings.featured_image.width }}"
+                                    >
+                                {% else %}
+                                    <div class="banner-list-image">
+                                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                                    </div>
+                                {% endif %}
+                            </div>
+
+                            <div class="banner-text">
+                                {% if block.settings.heading_title != blank %}
+                                <h3 class="heading heading-title" reveal="">
+                                    <span>
+                                        {{- block.settings.heading_title -}}
+                                    </span>
+                                </h3>
+                                {% endif %}
+
+                                {% if block.settings.heading != blank %}
+                                <h2 class="heading heading-center" reveal="">
+                                    <span>
+                                        {{- block.settings.heading -}}
+                                    </span>
+                                </h2>
+                                {% endif %}
+
+                                {% if block.settings.description != blank %}
+                                <p class="heading description" reveal="">
+                                    <span>
+                                      {{- block.settings.description -}}
+                                    </span>
+                                </p>
+                                {% endif %}
+
+                                <div class="wrapper-button">
+                                  {% if block.settings.button1_label != blank %}
+                                  <a href="{{ block.settings.link1 }}" reveal="" class="button btn-base-2">
+                                      {{ block.settings.button1_label }}
+                                      {% render 'icon-arrow-2' %}
+                                  </a>
+                                  {% endif %}
+                                  {% if block.settings.button2_label != blank %}
+                                  <a href="{{ block.settings.link2 }}" reveal="" class="button btn-base-2">
+                                      {{ block.settings.button2_label }}
+                                      {% render 'icon-arrow-2' %}
+                                  </a>
+                                  {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="banner-image-child">
+                                <img
+                                  class="image-child"
+                                  loading="lazy"
+                                  reveal=""
+                                  sizes="(max-width: 740px) 80vw, (max-width: 999px) 60vw, 425px"
+                                  alt=""
+                                  src="{{ block.settings.image_child | image_url: width: block.settings.image_child.width }}"
+                                  srcset="{%- if block.settings.image_child.width >= 3000 -%}{{ block.settings.image_child | image_url: width: 3000, crop: 'center' }} 3000w,{%- endif -%}
+                                      {{ block.settings.image_child | image_url }} {{ block.settings.image_child.width }}w"
+                                  height="{{ block.settings.image_child.height }}"
+                                  width="{{ block.settings.image_child.width }}"
+                                >
+                            </div>
+                        </div>
+                    </banner-content>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner grid",
+  "tag": "section",
+  "class": "section shopify-section-banner-grid",
+  "max_blocks": 15,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    },
+    {
+      "type": "header",
+      "content": "Advanced Settings color"
+    },
+    {
+      "type": "color",
+      "id": "color_text",
+      "label": "Color text"
+    },
+    {
+      "type": "color",
+      "id": "color_text_2",
+      "label": "Color text 2"
+    },
+    {
+      "type": "color",
+      "id": "color_hover",
+      "label": "Color hover"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color"
+    },
+    {
+      "type": "color",
+      "id": "color_button",
+      "label": "Color button"
+    },
+    {
+      "type": "color",
+      "id": "color_button_hover",
+      "label": "Color button hover"
+    },
+    {
+      "type": "color",
+      "id": "background_color_button",
+      "label": "Background color button"
+    },
+    {
+      "type": "color",
+      "id": "background_color_button_hover",
+      "label": "Background color button hover"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner-grid",
+      "name": "Banner grid",
+      "settings": [
+        {
+          "type": "select",
+          "id": "width",
+          "label": "Width product",
+          "default": "33%",
+          "options": [
+            {
+              "value": "25%",
+              "label": "25%"
+            },
+            {
+              "value": "33%",
+              "label": "33%"
+            },
+            {
+              "value": "40%",
+              "label": "40%"
+            },
+            {
+              "value": "50%",
+              "label": "50%"
+            },
+            {
+              "value": "60%",
+              "label": "60%"
+            },
+            {
+              "value": "66%",
+              "label": "66%"
+            },
+            {
+              "value": "75%",
+              "label": "75%"
+            },
+            {
+              "value": "100%",
+              "label": "100%"
+            }
+          ]
+        },
+        {
+          "type": "image_picker",
+          "id": "featured_image",
+          "label": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_child",
+          "label": "Image child"
+        },
+        {
+          "type": "text",
+          "id": "heading_title",
+          "label": "Heading title"
+        },
+        {
+          "type": "liquid",
+          "id": "heading",
+          "label": "Heading center"
+        },
+        {
+          "type": "liquid",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "button1_label",
+          "label": "Button"
+        },
+        {
+          "type": "url",
+          "id": "link1",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "button2_label",
+          "label": "Button 2"
+        },
+        {
+          "type": "url",
+          "id": "link2",
+          "label": "Link 2"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner grid",
+      "blocks": [
+        {
+          "type": "banner-grid"
+        },
+        {
+          "type": "banner-grid"
+        },
+        {
+          "type": "banner-grid"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

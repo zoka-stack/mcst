@@ -1,0 +1,265 @@
+{{ 'text-with-icon.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+    #shopify-section-{{ section.id }} {
+        --heading-color: 40, 40, 40;
+        --color-body: {{ section.settings.title_color }};
+        --title-color: {{ section.settings.text_color }};
+        --vertical-breather: 40px; /* Inner spacing is smaller on this section */;
+        background-color: {{ section.settings.section_background }};
+        overflow: hidden;
+    }
+</style>
+{% if section.settings.show %}
+<section class="section section--flush">
+    <div class="text-with-icon">
+        <div class="{%- if section.settings.fullwidth -%}container-fluid{%- else -%}container{%- endif -%}">
+            <ap-carousel class="text-with-icons">
+                <div class="text-with-icons__list hide-scrollbar">
+                    {% for block in section.blocks %}
+                        <ap-carousel-item id="block-{{ block.id }}" class="text-with-icons__item {%- if section.settings.text_icon_top -%}{{ 'icon-top' | prepend: ' ' }}{%- endif -%}" {% if forloop.index != 1 %}hidden=""{% endif %}>
+                            <div class="text-with-icons__icon-wrapper">
+                                {% if block.settings.custom_icon != blank %}
+                                    {{ block.settings.custom_icon }}
+                                {% else %}
+                                    {% render 'icons', svg_icon: block.settings.svg_icon %}
+                                {% endif %}
+                            </div>
+                            <div class="text-with-icons__content-wrapper">
+                                <p class="heading {{ block.settings.heading_size }} title-icon ">{{ block.settings.heading }}</p>
+                                <p class="description-icon">{{ block.settings.content }}</p>
+                            </div>
+                        </ap-carousel-item>
+                    {% endfor %}
+                </div>
+                <ap-pagedots class="text-with-icons__dots dots-nav dots-nav--centered hd-lap-and-up">
+                    {% for block in section.blocks %}
+                        <button class="dots-nav__item tap-area" {% if forloop.index == 1 %}ap-currentaria="true{% else %}ap-currentaria="false"{% endif %}">
+                            <span class="visually-hidden">Go to slide {{ forloop.index }}</span>
+                        </button>
+                    {% endfor %}
+                </ap-pagedots>
+            </ap-carousel>
+        </div>
+    </div>
+</section>
+{% endif %}
+  
+
+{% schema %}
+{
+  "name": "Text with icons",
+  "tag": "section",
+  "class": "shopify-section--text-with-icons",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show section",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "fullwidth",
+      "label": "t:sections.all.fullwidth.label",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#F5A44A",
+      "label": "t:sections.all.section_background.label"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Testimonial",
+      "label": "t:sections.all.heading.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "range",
+      "id": "heading_size_range",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 2,
+      "label": "t:sections.all.heading_size_range.label"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "t:sections.all.description.label"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "default": "#ffffff",
+      "label": "t:sections.all.title_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_background",
+      "default": "#FFFFFF",
+      "label": "t:sections.all.prev_next_button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "prev_next_button_color",
+      "default": "#282828",
+      "label": "t:sections.all.prev_next_button_color.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "text_icon_top",
+      "label": "Text icon top"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-with-icon",
+      "name": "Text with icons",
+      "settings": [
+        {
+          "type": "select",
+          "id": "svg_icon",
+          "options": [
+            {
+              "value": "",
+              "label": "None"
+            },
+            {
+              "value": "icon-worldwide",
+              "label": "Worldwide"
+            },
+            {
+              "value": "icon-customer-support",
+              "label": "Customer support"
+            },
+            {
+              "value": "icon-wrapper",
+              "label": "Wrapper"
+            },
+            {
+              "value": "icon-chat",
+              "label": "Chat"
+            },
+            {
+              "value": "icon-love",
+              "label": "Love"
+            },
+            {
+              "value": "icon-email",
+              "label": "Email"
+            },
+            {
+              "value": "icon-plane",
+              "label": "Plane"
+            },
+            {
+              "value": "icon-warranty",
+              "label": "Warranty"
+            }
+          ],
+          "default": "",
+          "label": "Select icon"
+        },
+        {
+          "type": "textarea",
+          "id": "custom_icon",
+          "label": "t:sections.all.custom_icon.label"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Text sample",
+          "label": "t:sections.all.heading.label"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "heading--xxsmall",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "heading--xsmall",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "heading--small",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "",
+              "label": "t:sections.all.heading_size.options__4.label"
+            },
+            {
+              "value": "heading--large",
+              "label": "t:sections.all.heading_size.options__5.label"
+            }
+          ],
+          "default": "heading--small",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "default": "Testimonial content",
+          "label": "t:sections.all.content.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text with icons",
+      "blocks": [
+        {
+          "type": "text-with-icon"
+        },
+        {
+          "type": "text-with-icon"
+        },
+        {
+          "type": "text-with-icon"
+        },
+        {
+          "type": "text-with-icon"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

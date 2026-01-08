@@ -1,0 +1,245 @@
+{{ 'newsletter.css' | asset_url | stylesheet_tag }}
+{% render 'section-style' %}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --heading-color: {{ section.settings.heading_color | color_extract: 'red' }}, {{ section.settings.heading_color | color_extract: 'green' }}, {{ section.settings.heading_color | color_extract: 'blue' }};
+    --color-body: {{ section.settings.text_color | color_extract: 'red' }}, {{ section.settings.text_color | color_extract: 'green' }}, {{ section.settings.text_color | color_extract: 'blue' }};
+    --primary-button-background: {{ section.settings.button_background | color_extract: 'red' }}, {{ section.settings.button_background | color_extract: 'green' }}, {{ section.settings.button_background | color_extract: 'blue' }};
+    --primary-button-text-color: {{ section.settings.button_color | color_extract: 'red' }}, {{ section.settings.button_color | color_extract: 'green' }}, {{ section.settings.button_color | color_extract: 'blue' }};
+    --section-block-background: {{ section.settings.section_background | color_extract: 'red' }}, {{ section.settings.section_background | color_extract: 'green' }}, {{ section.settings.section_background | color_extract: 'blue' }};
+  }
+  #shopify-section-{{ section.id }} {
+    background-color: rgb(var(--section-block-background));
+  }
+  [dir=ltr] .wp-newsletter-input .input__label {
+    --form-input-field-height: 48px;
+  }
+</style>
+
+<section class="section section--flush newsletter">
+  <ap-imagetextblock reveal-on-scroll="" class="ap-imagetextblock ap-imagetextblock--cover ap-object-loaded">
+    {% if section.settings.image_background != blank %}
+    <div class="ap-imagetextblock__image-wrapper">
+      <img class="ap-imagetextblock__image" reveal="" loading="lazy" 
+        sizes="(max-width: 999px) 100vw, 72vw" alt="" 
+        src="{{ section.settings.image_background | image_url: width: section.settings.image_background.width }}" 
+        srcset="
+          {{ section.settings.image_background | image_url: width: 600 }} 600w, 
+          {{ section.settings.image_background | image_url: width: 700 }} 700w, 
+          {{ section.settings.image_background | image_url: width: 800 }} 800w, 
+          {{ section.settings.image_background | image_url: width: 1000 }} 1000w, 
+          {{ section.settings.image_background | image_url: width: 1200 }} 1200w, 
+          {{ section.settings.image_background | image_url: width: 1400 }} 1400w, 
+          {{ section.settings.image_background | image_url: width: 1600 }} 1600w, 
+          {{ section.settings.image_background | image_url: width: 1800 }} 1800w, 
+          {{ section.settings.image_background | image_url: width: 2000 }} 2000w" 
+        width="{{ section.settings.image_background.width }}" height="{{ section.settings.image_background.height }}">
+    </div>
+    {% endif %}
+    <div class="container container--flush">
+      <div reveal="" class="newsletter-content ap-imagetextblock__content ap-imagetextblock__content--tight content-box content-box--small content-box--text-left content-box--left text-container">
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+            {%- when '@app' -%}
+              {% render block %}
+            {%- when 'heading' -%}
+              <h2 class="heading heading--small" {{ block.shopify_attributes }}>{{ block.settings.heading }}</h2>
+            {%- when 'paragraph' -%}
+              {{ block.settings.text }}
+            {%- when 'email_form' -%}
+              <div {{ block.shopify_attributes }}>
+                {% form 'customer', class: 'newsletter-form' %}
+                  <input type="hidden" name="form_type" value="customer">
+                  <input type="hidden" name="utf8" value="✓">
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <input type="hidden" name="contact[context]" value="newsletter-{{ section.id }}">
+
+                  <div class="wp-newsletter-input">
+                    <div class="input-row">
+                      <div class="input">
+                        <input type="email" id="newsletter[{{ section.id }}][contact][email]" name="contact[email]" class="input__field" required="">
+                        <label for="newsletter[{{ section.id }}][contact][email]" class="input__label">{{ 'newsletter.label' | t }}</label>
+                      </div>
+                    </div>
+                    <div class="input">
+                      <button type="submit" is="loader-button" class="button button--primary">
+                        <span class="ap-text-loaderbutton">
+                          {{ 'newsletter.button_label' | t }}
+                          {% render 'icon-arrow-2' %}
+                        </span>
+                        <span class="ap-loader-loaderbutton" hidden="">
+                          <div class="spinner">
+                            <svg focusable="false" width="24" height="24" class="icon icon--spinner" viewBox="25 25 50 50">
+                              <circle cx="50" cy="50" r="20" fill="none" stroke="currentColor" stroke-width="5"></circle>
+                            </svg>
+                          </div>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+
+                  {%- if form.errors -%}
+                    <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">{% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}</small>
+                  {%- endif -%}
+                  {%- if form.posted_successfully? -%}
+                    <div class="form__banner banner banner--success">
+                      <span class="banner__ribbon">
+                        <svg focusable="false" width="18" height="26" class="icon icon--form-success   " viewBox="0 0 18 26">
+                          <circle fill="none" cx="9" cy="13" r="8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                          <path fill="none" d="M5 13l3 3 5-6" stroke="currentColor" stroke-width="1.5"></path>
+                        </svg>
+                      </span>
+                      <p class="banner__content">{{ 'newsletter.success' | t }}</p>
+                    </div>
+                  {%- endif -%}
+
+                {% endform %}
+              </div>
+            {%- when 'description' -%}
+              <div class="description-newsletter">
+                {{ block.settings.description }}
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </ap-imagetextblock>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.newsletter.name",
+  "tag": "section",
+  "class": "section newsletter-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "section_background",
+      "default": "#ffffff ",
+      "label": "t:sections.all.section_background.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_background",
+      "label": "t:sections.all.image_background.label"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "default": "#282828",
+      "label": "t:sections.all.heading_color.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "default": "#282828",
+      "label": "t:sections.all.text_color.label"
+    },
+    {
+      "type": "color",
+      "id": "button_background",
+      "default": "#405DE6 ",
+      "label": "t:sections.all.button_background.label"
+    },
+    {
+      "type": "color",
+      "id": "button_color",
+      "default": "#ffffff ",
+      "label": "t:sections.all.button_color.label"
+    },
+    {
+      "type": "text",
+      "id": "margin_desktop",
+      "label": "t:sections.all.margin_desktop.label",
+      "info": "t:sections.all.margin_desktop.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_tablet",
+      "label": "t:sections.all.margin_tablet.label",
+      "info": "t:sections.all.margin_tablet.info"
+    },
+    {
+      "type": "text",
+      "id": "margin_mobile",
+      "label": "t:sections.all.margin_mobile.label",
+      "info": "t:sections.all.margin_mobile.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "t:sections.newsletter.blocks.heading.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "heading",
+          "default": "Subscribe to our emails",
+          "label": "t:sections.newsletter.blocks.heading.settings.heading.label"
+        },
+        {
+          "type": "range",
+          "id": "heading_text_size",
+          "min": 1,
+          "max": 6,
+          "step": 1,
+          "default": 1,
+          "label": "t:sections.all.heading_text_size.label"
+        }
+      ]
+    },
+    {
+      "type": "paragraph",
+      "name": "t:sections.newsletter.blocks.paragraph.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Be the first to know about new collections and exclusive offers.</p>",
+          "label": "t:sections.newsletter.blocks.paragraph.settings.paragraph.label"
+        }
+      ]
+    },
+    {
+      "type": "description",
+      "name": "Description",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "description",
+          "default": "Be the first to know about new collections and exclusive offers",
+          "label": "t:sections.all.description.label"
+        }
+      ]
+    },
+    {
+      "type": "email_form",
+      "name": "t:sections.newsletter.blocks.email_form.name",
+      "limit": 1
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.newsletter.presets.name",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "paragraph"
+        },
+        {
+          "type": "email_form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
