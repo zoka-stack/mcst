@@ -1,0 +1,86 @@
+<script>
+
+    var countDownDate = new Date("{{ product.metafields.my_fields.countdown_timer }}").getTime();
+    var x = setInterval(function () {
+        var now = new Date().getTime();
+        var distance = countDownDate - now;
+  
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("timer").innerHTML = 
+        "<div><span class='days'>" + days + "</span><div class='text'>days</div></div>"
+        + "<div><span class='hours'>" + hours + "</span><div class='text'>hrs</div></div>"
+        + "<div><span class='minutes'>" + minutes + "</span><div class='text'>mins</div></div>"
+        + "<div><span class='seconds'>" + seconds + "</span><div class='text'>secs</div></div> "
+
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "";
+            element = document.getElementsByClassName("different")[0];
+            element.classList.remove("different");
+        }
+    }, 1000);
+
+</script>
+
+<style>
+    .different {
+        margin-top: 15px;
+        border-radius: 2px;
+        text-align: center;
+        font-size: 17px;
+        font-weight: 700;
+
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .timer--expired {
+        display: none;
+    }
+    #timer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    #timer > div {
+        background-color: var(--primary);
+        min-width: 68px;
+        min-height: 60px;
+        padding: 11px 16px;
+        font-family: var(--hd-font-family);
+    }
+    #timer > div > span {
+        font-size: 24px;
+        line-height: 1;     
+        display: block;
+    }
+    .text {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .timer-content {
+        text-align: left;
+        font-size: 20px;
+        line-height: 26px;
+        font-weight: 400;
+    }
+    @media (max-width: 576px) {
+        .different {
+            flex-direction: column;
+            align-items: start;
+        }
+    }
+</style>
+<div class="different">
+    <div class="timer-content">
+        Hurry up!
+        <br>
+        Sale ends in:
+    </div>
+    <div id="timer"></div>
+</div>

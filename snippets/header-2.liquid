@@ -1,0 +1,157 @@
+{{ 'header-2.css' | asset_url | stylesheet_tag }}
+
+<div class="header_wrapper">
+    <div class="container">
+        <div class="header_wrapper-row">
+            <nav class="header__inline-navigation">
+                <div class="header__icon-list hd-desk">
+                    <button is="toggle-button" class="header__icon-wrapper tap-area hd-desk"
+                        ap-controlsaria="mobile-menu-drawer" ap-expanded-aria="false">
+                        <span class="visually-hidden">Navigation</span>
+                        <svg focusable="false" width="18" height="14"
+                            class="icon icon--header-hamburger   " viewBox="0 0 18 14">
+                            <path d="M0 1h18M0 13h18H0zm0-6h18H0z" fill="none" stroke="currentColor"
+                                stroke-width="1.2"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="header__search-bar predictive-search hd-pocket">
+                    <form class="predictive-search__form" action="/search" method="get"
+                        role="search">
+                        <input type="hidden" name="type" value="product">
+                        <input type="hidden" name="options[prefix]" value="last">
+                        <input type="hidden" name="options[unavailable_products]" value="last">
+                        <button class="btn-search-header">
+                            <svg focusable="false" width="18" height="18"
+                                class="icon icon--header-search   " viewBox="0 0 18 18">
+                                <path
+                                    d="M12.336 12.336c2.634-2.635 2.682-6.859.106-9.435-2.576-2.576-6.8-2.528-9.435.106C.373 5.642.325 9.866 2.901 12.442c2.576 2.576 6.8 2.528 9.435-.106zm0 0L17 17"
+                                    fill="none" stroke="currentColor" stroke-width="1.2"></path>
+                            </svg>
+                        </button>
+                        <input class="predictive-search__input" is="ap-predictivesearchinput"
+                            type="text" name="q" autocomplete="off" autocorrect="off"
+                            ap-controlsaria="search-drawer" ap-expanded-aria="false"
+                            aria-label="Search" placeholder="What are you looking for?">
+                    </form>
+                </div>
+            </nav>
+
+            {% render 'header-logo' %}
+
+            <div class="header__secondary-links">
+                
+                <div class="header-icon icon-wishlist">
+                    <a href="/pages/wishlist">
+                        {% render 'icon-wishlist-header' %}
+                        <div class="icon-count">   
+                            <div class="title-icon">Wishlist</div>
+                            <ap-wishlistcount id="wishlistcount"></ap-wishlistcount> <span>items</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="header-icon icon-compare d-none">
+                    <a href="/pages/compare">
+                        {% render 'icon-compare' %}
+                        <div class="icon-count">
+                            <div class="title-icon">Compare</div>
+                            <ap-comparecount id="comparecount"></ap-comparecount> items
+                        </div>
+                    </a>
+                </div>
+
+                <div class="header__icon-list">
+
+                    {% if section.settings.enable_localization %}
+                        {% render 'localization' %}
+                    {% endif %}
+
+                    <a href="/account/login"
+                        class="header__icon-wrapper tap-area d-none hd-phone hd-desk"
+                        aria-label="Login">
+                        <svg focusable="false" width="18" height="17"
+                            class="icon icon--header-customer   " viewBox="0 0 18 17">
+                            <circle cx="9" cy="5" r="4" fill="none" stroke="currentColor"
+                                stroke-width="1.2" stroke-linejoin="round"></circle>
+                            <path d="M1 17v0a4 4 0 014-4h8a4 4 0 014 4v0" fill="none"
+                                stroke="currentColor" stroke-width="1.2"></path>
+                        </svg>
+                    </a>
+
+                    <a href="/cart" is="ap-togglelink" ap-controlsaria="mini-cart"
+                        ap-expanded-aria="false" class="header__icon-wrapper tap-area hd-desk"
+                        aria-label="Cart" data-no-instant="">
+                        <svg focusable="false" width="20" height="18"
+                            class="icon icon--header-cart   " viewBox="0 0 20 18">
+                            <path d="M3 1h14l1 16H2L3 1z" fill="none" stroke="currentColor"
+                                stroke-width="1.2"></path>
+                            <path d="M7 4v0a3 3 0 003 3v0a3 3 0 003-3v0" fill="none"
+                                stroke="currentColor" stroke-width="1.2"></path>
+                        </svg>
+                        <ap-cartcount
+                            class="header__ap-cartcount header__ap-cartcount--floating bubble-count">{{
+                            cart.item_count }}</ap-cartcount>
+                    </a>
+
+                </div>
+                
+                <ul class="header__linklist list--unstyled hd-pocket hd-lap" role="list">
+                    <li class="header__linklist-item">
+                        <a href="/cart" is="ap-togglelink" ap-controlsaria="mini-cart"
+                            ap-expanded-aria="false" data-no-instant="">
+                            <span class="icon-cart_header">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="26.56" height="32"
+                                    viewBox="0 0 26.56 32" aria-hidden="true">
+                                    <path class="cls-1"
+                                        d="M1537.93,89.4h-6.67V87.8a5.9,5.9,0,0,0-11.8,0v1.6h-6.67a0.733,0.733,0,0,0-.74.726v23.148a0.733,0.733,0,0,0,.74.726h25.11a0.739,0.739,0,0,0,.74-0.726V90.126A0.69,0.69,0,0,0,1537.93,89.4Zm-16.7-1.6a4.131,4.131,0,0,1,8.26,0v1.6h-8.26V87.8Zm15.93,24.745h-23.6v-21.7h5.9v2.83a1.16,1.16,0,0,0-.4.907,1.29,1.29,0,0,0,2.58,0,1.168,1.168,0,0,0-.41-0.907v-2.83h8.22v2.83a1.193,1.193,0,0,0-.4.907,1.29,1.29,0,0,0,2.58,0,1.168,1.168,0,0,0-.41-0.907v-2.83h5.94v21.7Z"
+                                        transform="translate(-1512.06 -82)"></path>
+                                </svg>
+                            </span>
+                            <span class="cart-content">
+                                <span class="cart-text">Cart</span>
+                                <ap-carttotalprice class="total_price show-total_price">{{
+                                    cart.total_price | money_with_currency }}</ap-carttotalprice>
+                            </span>
+                            <ap-cartcount class="header__ap-cartcount bubble-count d-none">{{
+                                cart.item_count }}</ap-cartcount>
+
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom">
+    <div class="container">
+        <div class="row">
+            {% if section.settings.enable_vetical %}
+            <div class="menu-vertical">
+                <button is="toggle-button" class="header__icon-wrapper tap-area"
+                    ap-controlsaria="vertical-menu-drawer" ap-expanded-aria="false">
+                    <div class="vertical-title">
+                        <div class="nav-vertical-title">All Departments</div>
+                        <div class="icon-title_vertical">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 320 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                                <path
+                                    d="M182.6 470.6c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128z" />
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="visually-hidden">Navigation</span>
+                    <svg focusable="false" width="18" height="14"
+                        class="icon icon--header-hamburger d-xl-none " viewBox="0 0 18 14">
+                        <path d="M0 1h18M0 13h18H0zm0-6h18H0z" fill="none" stroke="currentColor"
+                            stroke-width="1.2"></path>
+                    </svg>
+                </button>
+                {% render 'vertical-menu' %}
+            </div>
+            {% endif %}
+            {% render 'header-menu', _class: "header__bottom-navigation hd-pocket hd-lap" %}
+        </div>
+    </div>
+</div>
