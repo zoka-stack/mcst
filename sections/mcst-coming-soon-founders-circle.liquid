@@ -43,11 +43,9 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(40, 40, 40, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: #000000;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 1.5rem 0;
+    padding: 2rem 0;
     transition: all 0.3s ease;
   }
 
@@ -61,33 +59,98 @@
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__logo {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 700;
     color: #ffffff;
     text-decoration: none;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     font-family: var(--hd-font-family, sans-serif);
   }
 
-  #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__badge {
-    font-size: 1rem;
-    opacity: 0.7;
-    margin-left: 1rem;
-    color: #ffffff;
+  #mcst-coming-soon-{{ section.id }} .mcst-sticky-header nav a {
+    transition: opacity 0.3s ease;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-sticky-header nav a:hover {
+    opacity: 1;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hero {
-    padding: 8rem 0 6rem;
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    padding: 8rem 0;
+    overflow: hidden;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hero h1 {
     color: #aeef00;
     font-family: var(--hd-font-family, sans-serif);
     text-transform: uppercase;
-    letter-spacing: 0;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    font-size: 5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero h2 {
+    color: #ffffff;
+    font-size: 2.4rem;
     font-weight: 400;
+    line-height: 1.4;
+    margin-bottom: 3rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero .button {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid #000000;
+    padding: 1.5rem 3rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero .button:hover {
+    background-color: #000000;
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hero__rotating-text {
@@ -270,30 +333,43 @@
   @media screen and (max-width: 749px) {
     #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__inner {
       flex-direction: column;
-      gap: 1rem;
+      gap: 1.5rem;
       text-align: center;
     }
 
-    #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__badge {
-      margin-left: 0;
-      margin-top: 0.5rem;
+    #mcst-coming-soon-{{ section.id }} .mcst-sticky-header nav {
+      flex-direction: column;
+      gap: 1rem;
     }
 
     #mcst-coming-soon-{{ section.id }} .mcst-hero {
-      padding: 4rem 0 3rem;
+      min-height: 60vh;
+      padding: 4rem 0;
+    }
+
+    #mcst-coming-soon-{{ section.id }} .mcst-hero h1 {
+      font-size: 3rem;
+    }
+
+    #mcst-coming-soon-{{ section.id }} .mcst-hero h2 {
+      font-size: 1.8rem;
     }
 
     #mcst-coming-soon-{{ section.id }} .mcst-section {
       padding: 4rem 0;
     }
 
-    #mcst-coming-soon-{{ section.id }} .mcst-exchange {
+    #mcst-coming-soon-{{ section.id }} .mcst-feature-blocks {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
 
-    #mcst-coming-soon-{{ section.id }} .mcst-value-cards {
+    #mcst-coming-soon-{{ section.id }} .mcst-gear-highlights {
       grid-template-columns: 1fr;
+    }
+
+    #mcst-coming-soon-{{ section.id }} .mcst-why-scroll {
+      min-height: 300vh;
     }
   }
 {%- endstyle -%}
@@ -303,76 +379,151 @@
   <div class="mcst-sticky-header">
     <div class="mcst-sticky-header__inner">
       <div>
-        <div class="mcst-sticky-header__logo">MyCityStandsTogether</div>
-        <div class="mcst-sticky-header__badge">Updated January 2026, Foundational Growth Phase</div>
+        <div class="mcst-sticky-header__logo">MCST</div>
+        <nav style="display: flex; gap: 2rem; margin-top: 0.5rem; font-size: 1.2rem;">
+          <a href="#mcst-mission-{{ section.id }}" style="color: #ffffff; text-decoration: none; opacity: 0.8;">The Mission</a>
+          <a href="#mcst-gear-{{ section.id }}" style="color: #ffffff; text-decoration: none; opacity: 0.8;">The Gear</a>
+          <a href="#mcst-request-{{ section.id }}" style="color: #ffffff; text-decoration: none; opacity: 0.8;">Request a City</a>
+        </nav>
       </div>
-      <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff;">
-        Join the Founder's Circle
+      <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff; text-transform: uppercase;">
+        JOIN THE FOUNDERS CIRCLE
       </a>
     </div>
   </div>
 
+  <!-- Hero -->
+  <section class="mcst-hero mcst-section">
+      {% if section.settings.hero_background_image != blank %}
+        <img src="{{ section.settings.hero_background_image | image_url: width: 2000 }}" alt="Chicago" class="mcst-hero__background">
+      {% endif %}
+      <div class="mcst-hero__overlay"></div>
+      <div class="mcst-hero__content">
+        <h1 class="h0">WEAR YOUR CITY. FUND YOUR BLOCK.</h1>
+        <h2 class="h2">Most brands take from the city. We're built to reinvest in it.</h2>
+        <div class="rte" style="margin-top: 2rem; font-size: 1.8rem; max-width: 80rem; margin-left: auto; margin-right: auto; line-height: 1.6;">
+          <p>Millions of dollars are made every year selling "Chicago" to tourists while our neighborhoods struggle for funding. We're changing the math. Premium gear. Gritty designs. Productive pride.</p>
+        </div>
+        <div style="margin-top: 4rem; display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#mcst-gear-{{ section.id }}" class="button">
+            View the 2026 Collection
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="margin-left: 0.5rem; display: inline-block; vertical-align: middle;">
+              <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#mcst-why-{{ section.id }}" class="button" style="background-color: transparent; color: #ffffff; border: 2px solid #ffffff;">
+            Learn Why We Started
+          </a>
+        </div>
+      </div>
+    </section>
+
   <div class="page-width">
-    <!-- Hero -->
-    <section class="mcst-hero mcst-section">
-      <h1 class="h0">{{ section.settings.hero_headline | default: "Join the Founder's Circle" }}</h1>
-      <div class="rte" style="margin-top: 2rem; font-size: 1.6rem; max-width: 70rem; margin-left: auto; margin-right: auto;">
-        {{ section.settings.hero_subhead | default: "<p>Slow build, real Chicago, foundation first. We're not rushing this. We're building something that matters, for the people who matter.</p>" }}
-      </div>
-      <div style="margin-top: 3rem;">
-        <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff; text-decoration: none;">
-          Join the Founder's Circle
-        </a>
-      </div>
-      <div style="margin-top: 2rem;">
-        <a href="#mcst-why-{{ section.id }}" class="button button--secondary" style="text-decoration: none; background-color: transparent; color: #ffffff; border: 1px solid #ffffff;">
-          Why we exist
-        </a>
-      </div>
-      <div class="mcst-hero__rotating-text" id="mcst-rotating-text-{{ section.id }}">
-        Chicago pride, Chicago progress
+    <!-- The Why - Interactive Scroll Section -->
+    <section id="mcst-why-{{ section.id }}" class="mcst-section mcst-why-scroll" style="position: relative; min-height: 400vh;">
+      <div class="mcst-why-slides" style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
+        <div class="mcst-why-slide" data-slide="1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease;">
+          <div class="page-width" style="text-align: center; z-index: 2; position: relative;">
+            <h2 class="h1" style="margin-bottom: 2rem;">The Problem</h2>
+            <p class="rte" style="font-size: 2rem; max-width: 80rem; margin: 0 auto; line-height: 1.6;">Every "Chicago" shirt bought at a tourist shop sends local capital out of state. The city's identity is sold, but the neighborhoods get nothing.</p>
+          </div>
+          <div class="mcst-why-slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
+        </div>
+        <div class="mcst-why-slide" data-slide="2" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease;">
+          <div class="page-width" style="text-align: center; z-index: 2; position: relative;">
+            <h2 class="h1" style="margin-bottom: 2rem;">The Disconnect</h2>
+            <p class="rte" style="font-size: 2rem; max-width: 80rem; margin: 0 auto; line-height: 1.6;">Pride shouldn't just be a feeling, it should be an investment.</p>
+          </div>
+          <div class="mcst-why-slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
+        </div>
+        <div class="mcst-why-slide" data-slide="3" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease;">
+          <div class="page-width" style="text-align: center; z-index: 2; position: relative;">
+            <h2 class="h1" style="margin-bottom: 2rem;">The Solution</h2>
+            <p class="rte" style="font-size: 2rem; max-width: 80rem; margin: 0 auto; line-height: 1.6;">My City Stands Together. We created a "Civic Infrastructure" model. We use high-end apparel to capture that spend and redirect it back to the local groups actually doing the work on your street.</p>
+          </div>
+          <div class="mcst-why-slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
+        </div>
+        <div class="mcst-why-slide" data-slide="4" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease;">
+          <div class="page-width" style="text-align: center; z-index: 2; position: relative;">
+            <h2 class="h1" style="margin-bottom: 2rem;">The Mission</h2>
+            <p class="rte" style="font-size: 2rem; max-width: 80rem; margin: 0 auto; line-height: 1.6;">By 2027, we want every city in America to have its own self-funding engine. We're starting here. We're starting now.</p>
+          </div>
+          <div class="mcst-why-slide-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1;"></div>
+        </div>
       </div>
     </section>
 
-    <!-- The Why -->
-    <section id="mcst-why-{{ section.id }}" class="mcst-section">
-      <h2 class="h1">The Why</h2>
-      <div class="rte" style="margin-top: 2rem; font-size: 1.6rem; line-height: 1.8;">
-        <p><strong>Big brands sell Chicago, neighborhoods get scraps.</strong></p>
-        <p style="margin-top: 1.5rem;">We're a social enterprise, not a 501(c)(3). That means we can move fast, make real decisions, and put money where it matters. We're building a brand that gives back, not one that just talks about it.</p>
-        <p style="margin-top: 1.5rem;">Every purchase supports Chicago neighborhoods. Every partnership is vetted. Every dollar has intention.</p>
+    <!-- The Gear -->
+    <section id="mcst-gear-{{ section.id }}" class="mcst-section" style="background: #ffffff; color: #000000;">
+      <div class="page-width">
+        <h2 class="h1" style="color: #aeef00; text-align: center; margin-bottom: 2rem;">PREMIUM GEAR. MADE TO ORDER.</h2>
+        <div class="rte" style="margin-top: 2rem; font-size: 1.8rem; max-width: 80rem; margin-left: auto; margin-right: auto; line-height: 1.8; color: #000000; text-align: center;">
+          <p>We don't do mass production. We don't have warehouses full of waste. Every piece is custom-printed on heavyweight, high-durability fabrics designed for the resilience of the people who wear them.</p>
+        </div>
+        <div class="mcst-gear-highlights" style="margin-top: 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4rem; max-width: 1000px; margin-left: auto; margin-right: auto;">
+          <div style="text-align: center;">
+            <h3 class="h3" style="margin-bottom: 1rem; color: #000000; font-size: 2rem; font-weight: 600;">The Flag Series</h3>
+            <p style="font-size: 1.6rem; color: #666666;">A gritty mashup of the iconic stars and bars.</p>
+          </div>
+          <div style="text-align: center;">
+            <h3 class="h3" style="margin-bottom: 1rem; color: #000000; font-size: 2rem; font-weight: 600;">Technical Outerwear</h3>
+            <p style="font-size: 1.6rem; color: #666666;">Built for the Windy City elements.</p>
+          </div>
+          <div style="text-align: center;">
+            <h3 class="h3" style="margin-bottom: 1rem; color: #000000; font-size: 2rem; font-weight: 600;">Foundational Basics</h3>
+            <p style="font-size: 1.6rem; color: #666666;">Heavyweight fleece and tri-blend essentials.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- What is the Founder's Circle -->
-    <section class="mcst-section">
-      <h2 class="h1">What is the Founder's Circle</h2>
-      <div class="mcst-value-cards">
-        <div class="mcst-value-card">
-          <h3 class="h3">Early Access</h3>
-          <p>First dibs on drops, exclusive designs, and founder pricing that won't come around again.</p>
+    <!-- Feature Blocks -->
+    <section class="mcst-section" style="padding: 6rem 0; background: #ffffff; color: #000000;">
+      <div class="page-width">
+        <div class="mcst-feature-blocks" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4rem; max-width: 1200px; margin: 0 auto;">
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; margin: 0 auto 1.5rem; background: #000000; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#aeef00" stroke-width="2">
+                <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4"/>
+                <path d="M9 9v0M9 15v0M15 11v0"/>
+              </svg>
+            </div>
+            <h3 class="h3" style="margin-bottom: 0.5rem; color: #000000; font-size: 1.6rem; font-weight: 600;">CITY PRIDE.</h3>
+            <p style="font-size: 1.4rem; color: #666666;">Own your urban identity.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; margin: 0 auto 1.5rem; background: #000000; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#aeef00" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="h3" style="margin-bottom: 0.5rem; color: #000000; font-size: 1.6rem; font-weight: 600;">PREMIUM QUALITY.</h3>
+            <p style="font-size: 1.4rem; color: #666666;">Designed to last.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; margin: 0 auto 1.5rem; background: #000000; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#aeef00" stroke-width="2">
+                <rect x="3" y="8" width="18" height="12" rx="2"/>
+                <path d="M3 10a2 2 0 012-2h14a2 2 0 012 2M7 14h.01M11 14h.01"/>
+              </svg>
+            </div>
+            <h3 class="h3" style="margin-bottom: 0.5rem; color: #000000; font-size: 1.6rem; font-weight: 600;">LIMITED APPAREL.</h3>
+            <p style="font-size: 1.4rem; color: #666666;">No restocks, truly limited edition.</p>
+          </div>
+          <div style="text-align: center;">
+            <div style="width: 48px; height: 48px; margin: 0 auto 1.5rem; background: #000000; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#aeef00" stroke-width="2">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                <path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/>
+              </svg>
+            </div>
+            <h3 class="h3" style="margin-bottom: 0.5rem; color: #000000; font-size: 1.6rem; font-weight: 600;">100% PAYMENT SECURE.</h3>
+            <p style="font-size: 1.4rem; color: #666666;">Shop with confidence.</p>
+          </div>
         </div>
-        <div class="mcst-value-card">
-          <h3 class="h3">Direct Impact</h3>
-          <p>See exactly where your support goes. Real updates, real stories, real change in Chicago neighborhoods.</p>
-        </div>
-        <div class="mcst-value-card">
-          <h3 class="h3">Founder Pricing</h3>
-          <p>Lock in the best prices we'll ever offer. This is for the people who believed first.</p>
-        </div>
-        <div class="mcst-value-card">
-          <h3 class="h3">Community</h3>
-          <p>Connect with other founders who get it. This is about building something together.</p>
-        </div>
-        <div class="mcst-value-card">
-          <h3 class="h3">Voice</h3>
-          <p>Your input shapes what we build. We listen, we adapt, we build what you actually want.</p>
-        </div>
-      </div>
-      <div class="rte" style="margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: #ffffff;">
-        <p><strong>Real talk:</strong> We're not writing five-figure checks today. The intention is baked in, we're vetting partners now, and when we launch, the impact starts. But we're being honest about where we are. Foundation first.</p>
       </div>
     </section>
+
 
     <!-- Hooks -->
     {% if section.settings.show_hooks %}
@@ -448,31 +599,13 @@
     </section>
     {% endif %}
 
-    <!-- Exchange -->
-    <section class="mcst-section">
-      <h2 class="h1">The Exchange</h2>
-      <div class="mcst-exchange">
-        <div class="mcst-exchange__column">
-          <h3 class="h3">How we help you</h3>
-          <ul>
-            <li>Premium streetwear that actually represents Chicago</li>
-            <li>Founder pricing locked in for life</li>
-            <li>Early access to every drop</li>
-            <li>Exclusive designs you won't find anywhere else</li>
-            <li>Direct line to the team, your feedback matters</li>
-            <li>See your impact in real time</li>
-          </ul>
-        </div>
-        <div class="mcst-exchange__column">
-          <h3 class="h3">What we ask of you</h3>
-          <ul>
-            <li>Join early, believe in the mission</li>
-            <li>Share with people who get it</li>
-            <li>Give honest feedback, help us build</li>
-            <li>Wear it, represent the city</li>
-            <li>Be part of something bigger</li>
-            <li>Stay committed to Chicago</li>
-          </ul>
+    <!-- The Exchange -->
+    <section id="mcst-exchange-{{ section.id }}" class="mcst-section" style="background: #282828;">
+      <div class="page-width">
+        <h2 class="h1" style="text-align: center;">WE NEED YOUR BOOTS ON THE GROUND.</h2>
+        <div class="rte" style="margin-top: 2rem; font-size: 1.8rem; max-width: 80rem; margin-left: auto; margin-right: auto; line-height: 1.8; text-align: center;">
+          <p>We aren't a boardroom making guesses. We're a neighbor with a vision. We are spending 2026 vetting local partners—from the Greater Chicago Food Depository to StreetWise—to ensure our impact is real.</p>
+          <p style="margin-top: 2rem;"><strong>The Ask:</strong> Tell us who is doing the work in your neighborhood. Help us stay authentic. Help us stay local.</p>
         </div>
       </div>
     </section>
@@ -524,8 +657,8 @@
 
     <!-- Signup -->
     <section id="mcst-signup-{{ section.id }}" class="mcst-section mcst-signup">
-      <h2 class="h1" style="text-align: center;">Join the Founder's Circle</h2>
-      <p style="text-align: center; margin-top: 1rem; font-size: 1.6rem; opacity: 0.8;">Get early access, founder pricing, and direct impact updates.</p>
+      <h2 class="h1" style="text-align: center;">BECOME A FOUNDING MEMBER.</h2>
+      <p style="text-align: center; margin-top: 1rem; font-size: 1.8rem; max-width: 80rem; margin-left: auto; margin-right: auto; line-height: 1.6;">We are taking off slowly in 2026 to ensure the quality and the mission are perfect. Join the Founders Circle to get first access to our "Neighborhood Drops" and a direct voice in which local charities we support first.</p>
 
       {% form 'customer', class: 'mcst-signup-form' %}
         <input type="hidden" name="form_type" value="customer">
@@ -568,7 +701,7 @@
             autocorrect="off"
             autocapitalize="off"
             autocomplete="email"
-            placeholder="Email address *"
+            placeholder="Enter your email address..."
             {% if form.errors contains 'email' %}
               aria-invalid="true"
               aria-describedby="mcst-email-error-{{ section.id }}"
@@ -643,8 +776,8 @@
         </div>
 
         <div style="text-align: center;">
-          <button type="submit" class="button button--primary button--full-width" name="commit" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff;">
-            Join the Founder's Circle
+          <button type="submit" class="button button--primary button--full-width" name="commit" style="background-color: #000000; color: #ffffff; border: 2px solid #000000; padding: 1.5rem 3rem; font-size: 1.4rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
+            JOIN THE FOUNDERS CIRCLE
           </button>
         </div>
 
@@ -656,20 +789,40 @@
         {%- endif -%}
       {% endform %}
 
-      <p class="mcst-signup__privacy">No spam, no selling your info, ever.</p>
+      <p class="mcst-signup__privacy" style="text-align: center; margin-top: 2rem; font-size: 1.4rem; opacity: 0.8;">No spam. Just city pride and local progress.</p>
     </section>
 
     <!-- Footer -->
-    <footer class="mcst-footer">
-      <p class="rte" style="font-size: 1.6rem; margin-bottom: 1rem;">
-        <strong>Mission:</strong> Build premium streetwear that represents Chicago, support neighborhoods that built it, and create a brand that gives back, not just talks about it.
-      </p>
-      <p style="font-size: 1.4rem; opacity: 0.7; margin-top: 2rem;">
-        Built in Chicago, built to last
-      </p>
-      <p style="font-size: 1.2rem; opacity: 0.6; margin-top: 1rem;">
-        &copy; {{ 'now' | date: '%Y' }} MyCityStandsTogether. All rights reserved.
-      </p>
+    <footer class="mcst-footer" style="background: #000000; padding: 6rem 0 4rem; margin-top: 6rem;">
+      <div class="page-width">
+        <div style="text-align: center; margin-bottom: 4rem;">
+          <p class="rte" style="font-size: 2rem; font-weight: 600; margin-bottom: 3rem;">
+            Because Chicago stands taller when we stand together.
+          </p>
+          <nav style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; margin-bottom: 3rem;">
+            <a href="#mcst-support-{{ section.id }}" style="color: #ffffff; text-decoration: none; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.05em;">Support</a>
+            <a href="#mcst-company-{{ section.id }}" style="color: #ffffff; text-decoration: none; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.05em;">Company Info</a>
+            <a href="/account" style="color: #ffffff; text-decoration: none; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.05em;">My Account</a>
+            <a href="/pages/contact" style="color: #ffffff; text-decoration: none; font-size: 1.4rem; text-transform: uppercase; letter-spacing: 0.05em;">Contact Us</a>
+          </nav>
+          <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem;">
+            {% if settings.social_instagram_link != blank %}
+              <a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener" style="color: #ffffff; text-decoration: none; font-size: 2rem;">Instagram</a>
+            {% endif %}
+            {% if settings.social_tiktok_link != blank %}
+              <a href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener" style="color: #ffffff; text-decoration: none; font-size: 2rem;">TikTok</a>
+            {% endif %}
+            {% if settings.social_facebook_link != blank %}
+              <a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener" style="color: #ffffff; text-decoration: none; font-size: 2rem;">Facebook</a>
+            {% endif %}
+          </div>
+        </div>
+        <div style="text-align: center; padding-top: 3rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+          <p style="font-size: 1.2rem; opacity: 0.7;">
+            &copy; {{ 'now' | date: '%Y' }} My City Stands Together. All Rights Reserved.
+          </p>
+        </div>
+      </div>
     </footer>
   </div>
 </div>
@@ -692,24 +845,35 @@
     });
   });
 
-  // Rotating text
-  const rotatingTexts = [
-    'Chicago pride, Chicago progress',
-    'Built slow, built real',
-    'Not for tourists, for us',
-    'Wear the city, support the block'
-  ];
-  const rotatingTextEl = section.querySelector('#mcst-rotating-text-' + sectionId);
-  if (rotatingTextEl) {
-    let currentIndex = 0;
-    setInterval(() => {
-      rotatingTextEl.style.opacity = '0';
-      setTimeout(() => {
-        currentIndex = (currentIndex + 1) % rotatingTexts.length;
-        rotatingTextEl.textContent = rotatingTexts[currentIndex];
-        rotatingTextEl.style.opacity = '0.8';
-      }, 300);
-    }, 4000);
+  // Interactive scroll section for "The Why"
+  const whyScrollSection = section.querySelector('.mcst-why-scroll');
+  if (whyScrollSection) {
+    const slides = whyScrollSection.querySelectorAll('.mcst-why-slide');
+    let currentSlide = 0;
+    
+    const updateSlide = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const sectionTop = whyScrollSection.offsetTop;
+      const sectionHeight = whyScrollSection.offsetHeight;
+      const viewportHeight = window.innerHeight;
+      
+      const scrollProgress = Math.max(0, Math.min(1, (scrollTop - sectionTop + viewportHeight) / sectionHeight));
+      const slideIndex = Math.min(Math.floor(scrollProgress * slides.length), slides.length - 1);
+      
+      if (slideIndex !== currentSlide) {
+        slides[currentSlide].style.opacity = '0';
+        currentSlide = slideIndex;
+        slides[currentSlide].style.opacity = '1';
+      }
+    };
+    
+    // Set first slide visible
+    if (slides.length > 0) {
+      slides[0].style.opacity = '1';
+    }
+    
+    window.addEventListener('scroll', updateSlide);
+    updateSlide();
   }
 
   // IntersectionObserver for section reveals
@@ -762,16 +926,18 @@
   "class": "section",
   "settings": [
     {
-      "type": "text",
-      "id": "hero_headline",
-      "label": "Hero Headline",
-      "default": "Join the Founder's Circle"
+      "type": "header",
+      "content": "Hero Section"
     },
     {
-      "type": "richtext",
-      "id": "hero_subhead",
-      "label": "Hero Subhead",
-      "default": "<p>Slow build, real Chicago, foundation first. We're not rushing this. We're building something that matters, for the people who matter.</p>"
+      "type": "image_picker",
+      "id": "hero_background_image",
+      "label": "Hero Background Image",
+      "info": "Full-width background image for hero section (recommended: 2000x1200px)"
+    },
+    {
+      "type": "header",
+      "content": "Section Visibility"
     },
     {
       "type": "checkbox",
