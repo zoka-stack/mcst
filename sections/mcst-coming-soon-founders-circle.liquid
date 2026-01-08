@@ -2,7 +2,9 @@
   #mcst-coming-soon-{{ section.id }} {
     position: relative;
     min-height: 100vh;
-    background: rgb(var(--color-background));
+    background: #282828;
+    color: #ffffff;
+    font-family: var(--body-font-family, sans-serif);
   }
 
   #mcst-coming-soon-{{ section.id }}::before {
@@ -41,10 +43,10 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(var(--color-background), 0.95);
+    background: rgba(40, 40, 40, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 1.5rem 0;
     transition: all 0.3s ease;
   }
@@ -60,21 +62,32 @@
 
   #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__logo {
     font-size: 1.8rem;
-    font-weight: var(--text-font-bold-weight, 700);
-    color: rgb(var(--color-foreground));
+    font-weight: 700;
+    color: #ffffff;
     text-decoration: none;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: var(--hd-font-family, sans-serif);
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-sticky-header__badge {
     font-size: 1rem;
     opacity: 0.7;
     margin-left: 1rem;
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hero {
     padding: 8rem 0 6rem;
     text-align: center;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-hero h1 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 400;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hero__rotating-text {
@@ -83,6 +96,7 @@
     opacity: 0.8;
     min-height: 2.5rem;
     transition: opacity 0.3s ease;
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-section {
@@ -90,11 +104,26 @@
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-section.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-section h2 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-section h3 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-value-cards {
@@ -106,9 +135,16 @@
 
   #mcst-coming-soon-{{ section.id }} .mcst-value-card {
     padding: 2rem;
-    background: rgba(var(--color-foreground), 0.03);
-    border-radius: var(--block-border-radius, 8px);
-    border: 1px solid rgba(var(--color-foreground), 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-value-card h3 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-hooks {
@@ -140,11 +176,18 @@
 
   #mcst-coming-soon-{{ section.id }} .mcst-exchange__column li {
     padding: 0.8rem 0;
-    border-bottom: 1px solid rgba(var(--color-foreground), 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-exchange__column li:last-child {
     border-bottom: none;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-exchange__column h3 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-faq {
@@ -152,10 +195,16 @@
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-signup {
-    background: rgba(var(--color-foreground), 0.05);
+    background: rgba(255, 255, 255, 0.05);
     padding: 4rem 2rem;
-    border-radius: var(--block-border-radius, 8px);
+    border-radius: 8px;
     margin-top: 4rem;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .mcst-signup h2 {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
   }
 
   #mcst-coming-soon-{{ section.id }} .mcst-signup__privacy {
@@ -168,8 +217,54 @@
   #mcst-coming-soon-{{ section.id }} .mcst-footer {
     text-align: center;
     padding: 4rem 0;
-    border-top: 1px solid rgba(var(--color-foreground), 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     margin-top: 6rem;
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .accordion {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .accordion__title {
+    color: #aeef00;
+    font-family: var(--hd-font-family, sans-serif);
+    text-transform: uppercase;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .accordion__content {
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .accordion summary {
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .accordion summary:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .field__input {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .field__input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  #mcst-coming-soon-{{ section.id }} .field__label {
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .rte {
+    color: #ffffff;
+  }
+
+  #mcst-coming-soon-{{ section.id }} .rte p {
+    color: #ffffff;
   }
 
   @media screen and (max-width: 749px) {
@@ -211,7 +306,7 @@
         <div class="mcst-sticky-header__logo">MyCityStandsTogether</div>
         <div class="mcst-sticky-header__badge">Updated January 2026, Foundational Growth Phase</div>
       </div>
-      <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup">
+      <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff;">
         Join the Founder's Circle
       </a>
     </div>
@@ -225,12 +320,12 @@
         {{ section.settings.hero_subhead | default: "<p>Slow build, real Chicago, foundation first. We're not rushing this. We're building something that matters, for the people who matter.</p>" }}
       </div>
       <div style="margin-top: 3rem;">
-        <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup">
+        <a href="#mcst-signup-{{ section.id }}" class="button button--primary mcst-scroll-to-signup" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff; text-decoration: none;">
           Join the Founder's Circle
         </a>
       </div>
       <div style="margin-top: 2rem;">
-        <a href="#mcst-why-{{ section.id }}" class="button button--secondary" style="text-decoration: none;">
+        <a href="#mcst-why-{{ section.id }}" class="button button--secondary" style="text-decoration: none; background-color: transparent; color: #ffffff; border: 1px solid #ffffff;">
           Why we exist
         </a>
       </div>
@@ -274,7 +369,7 @@
           <p>Your input shapes what we build. We listen, we adapt, we build what you actually want.</p>
         </div>
       </div>
-      <div class="rte" style="margin-top: 3rem; padding: 2rem; background: rgba(var(--color-foreground), 0.05); border-radius: var(--block-border-radius, 8px);">
+      <div class="rte" style="margin-top: 3rem; padding: 2rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: #ffffff;">
         <p><strong>Real talk:</strong> We're not writing five-figure checks today. The intention is baked in, we're vetting partners now, and when we launch, the impact starts. But we're being honest about where we are. Foundation first.</p>
       </div>
     </section>
@@ -439,7 +534,7 @@
         <input type="hidden" name="contact[context]" value="mcst_coming_soon_{{ section.id }}">
 
         {%- if form.errors -%}
-          <div class="form__message" style="margin-bottom: 2rem; padding: 1rem; background: rgba(var(--error-background), 0.1); border: 1px solid rgb(var(--error-color)); border-radius: 4px;">
+          <div class="form__message" style="margin-bottom: 2rem; padding: 1rem; background: rgba(255, 0, 0, 0.1); border: 1px solid #ff0000; border-radius: 4px; color: #ffffff;">
             <h2 tabindex="-1" autofocus>
               <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
               {{ 'templates.contact.form.error_heading' | t }}
@@ -483,7 +578,7 @@
             Email address <span aria-hidden="true">*</span>
           </label>
           {%- if form.errors contains 'email' -%}
-            <small class="form__message" id="mcst-email-error-{{ section.id }}" style="display: block; margin-top: 0.5rem; color: rgb(var(--error-color));">
+            <small class="form__message" id="mcst-email-error-{{ section.id }}" style="display: block; margin-top: 0.5rem; color: #ff0000;">
               <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
               {% render 'icon-error' %}{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}
             </small>
@@ -548,13 +643,13 @@
         </div>
 
         <div style="text-align: center;">
-          <button type="submit" class="button button--primary button--full-width" name="commit">
+          <button type="submit" class="button button--primary button--full-width" name="commit" style="background-color: #000000; color: #ffffff; border: 1px solid #ffffff;">
             Join the Founder's Circle
           </button>
         </div>
 
         {%- if form.posted_successfully? -%}
-          <div class="form__message" style="margin-top: 2rem; padding: 1.5rem; background: rgba(var(--success-background), 0.1); border: 1px solid rgb(var(--success-color)); border-radius: 4px; text-align: center;" tabindex="-1" autofocus>
+          <div class="form__message" style="margin-top: 2rem; padding: 1.5rem; background: rgba(174, 239, 0, 0.1); border: 1px solid #aeef00; border-radius: 4px; text-align: center; color: #ffffff;" tabindex="-1" autofocus>
             {% render 'icon-success' %}
             <span style="margin-left: 0.5rem;">Thank you! You've been added to the Founder's Circle. Check your email for confirmation.</span>
           </div>
