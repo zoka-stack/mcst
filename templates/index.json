@@ -599,6 +599,7 @@
         "b47a43c3-e113-43c2-88ac-4b912f3252cc",
         "7e3806af-0ead-4473-889f-a91eb62836a0"
       ],
+      "disabled": true,
       "settings": {
         "fullwidth": true,
         "section_background": "#ffffff",

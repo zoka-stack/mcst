@@ -431,12 +431,12 @@
           "cf0a9d13-5fd7-4cfb-a54f-1c4ac637c171": {
             "type": "newsletter",
             "settings": {
-              "heading": "GET THE LATEST IMPACT NEWS",
-              "heading_size": "heading--xsmall",
+              "heading": "GET THE LATEST NEWS",
+              "heading_size": "",
               "description": "Subscribe for updates on donations, new designs, and special offers.",
               "color_input": "#909090",
               "color_button": "#000000",
-              "color_button_hover": "#49f9a4"
+              "color_button_hover": "#aeef00"
             }
           },
           "f451f2aa-aca0-4cb7-9181-3751b08d6451": {
