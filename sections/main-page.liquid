@@ -34,6 +34,15 @@
     text-align: center;
   }
 
+  .main-page-caption {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+
+  .main-content-page .main-page-caption {
+    color: inherit;
+  }
+
   @media screen and (min-width: 750px) {
     .section-{{ section.id }}-padding {
       padding-top: {{ section.settings.padding_top }}px;
@@ -43,13 +52,28 @@
 {%- endstyle -%}
 
 <div class="page-width page-width--narrow section-{{ section.id }}-padding">
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'caption' and block.settings.position == 'above_title' -%}
+      <h3 class="heading h2 main-page-caption {{ block.settings.text_style }}{% if block.settings.text_size != 'medium' %} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% endif %}">{{ block.settings.caption | escape }}</h3>
+    {%- endif -%}
+  {%- endfor -%}
   <h1 class="main-page-title page-title h0">
     {{ page.title | escape }}
   </h1>
+  {%- for block in section.blocks -%}
+    {%- if block.type == 'caption' and block.settings.position == 'below_title' -%}
+      <h3 class="heading h2 main-page-caption {{ block.settings.text_style }}{% if block.settings.text_size != 'medium' %} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% endif %}">{{ block.settings.caption | escape }}</h3>
+    {%- endif -%}
+  {%- endfor -%}
 </div>
 
 <div class="main-content-page">
   <div class="container">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'caption' and block.settings.position == 'in_content' -%}
+        <h3 class="heading h2 main-page-caption {{ block.settings.text_style }}{% if block.settings.text_size != 'medium' %} {{ block.settings.text_style }}--{{ block.settings.text_size }}{% endif %}">{{ block.settings.caption | escape }}</h3>
+      {%- endif -%}
+    {%- endfor -%}
     <div class="rte">
       {{ page.content }}
     </div>
@@ -103,6 +127,77 @@
       "id": "background_color",
       "label": "Background Color",
       "default": "#282828"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "caption",
+      "name": "Caption",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "caption",
+          "default": "Add a tagline",
+          "label": "Caption text"
+        },
+        {
+          "type": "select",
+          "id": "position",
+          "options": [
+            {
+              "value": "above_title",
+              "label": "Above title"
+            },
+            {
+              "value": "below_title",
+              "label": "Below title"
+            },
+            {
+              "value": "in_content",
+              "label": "In content area"
+            }
+          ],
+          "default": "below_title",
+          "label": "Position"
+        },
+        {
+          "type": "select",
+          "id": "text_style",
+          "options": [
+            {
+              "value": "subtitle",
+              "label": "Subtitle"
+            },
+            {
+              "value": "caption-with-letter-spacing",
+              "label": "Caption with letter spacing"
+            }
+          ],
+          "default": "caption-with-letter-spacing",
+          "label": "Text style"
+        },
+        {
+          "type": "select",
+          "id": "text_size",
+          "options": [
+            {
+              "value": "small",
+              "label": "Small"
+            },
+            {
+              "value": "medium",
+              "label": "Medium"
+            },
+            {
+              "value": "large",
+              "label": "Large"
+            }
+          ],
+          "default": "medium",
+          "label": "Text size"
+        }
+      ]
     }
   ]
 }
