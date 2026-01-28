@@ -18,22 +18,57 @@
         "background_color": "#282828"
       }
     },
+    "rich_text_w9cbCL": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_hyecwR": {
+          "type": "caption",
+          "settings": {
+            "caption": "REACH OUT TO THE MISSION",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "text_T4XdXq": {
+          "type": "text",
+          "settings": {
+            "text": "<h4>We’re here for the pride, the grit, and the groundswell.</h4><p>Whether you have a question about your order, a suggestion for a neighborhood partner, or you just want to let us know where we should stand next—we're listening. We don't have a corporate call center; we have a direct line to the people building this brand.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "caption_hyecwR",
+        "text_T4XdXq"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_desktop": ""
+      }
+    },
     "contact_form_GMVUxC": {
       "type": "contact-form",
       "name": "t:sections.contact-form.presets.name",
       "settings": {
-        "heading": "Send a message",
-        "heading_2": "Theme Xtra",
-        "heading_size": "h1",
-        "description": "Just fill out the form here and we'll get back to you as soon as possible.",
-        "contact_title": "Visit one of our agency locations or contact us today.",
-        "contact_des": "Have a question? Give us a call or fill out the contact form. We’d love to hear from you",
-        "contact_addess": "123 Sky Tower, West 21th Street, Suite 721, NY",
-        "contact_phone": "+844 123 456 789",
-        "contact_mail": "sale@yourcompany.com",
-        "contact_web": "www.example.com",
+        "heading": "How can we help?",
+        "heading_2": "",
+        "heading_size": "h0",
+        "description": "<b>Order Support:</b> If there's an issue with your gear, we want to hear it.\n<br><br>\n<b>Partner Suggestions:</b> Who is doing the real work on your block?\n<br><br>\n\n<b>City Signaling:</b> Want us to plant the flag in your city next?",
+        "contact_title": "",
+        "contact_des": "",
+        "contact_addess": "",
+        "contact_phone": "",
+        "contact_mail": "",
+        "contact_web": "",
         "gmap_iframe": "",
-        "color_scheme": "background-1",
+        "color_scheme": "accent-1",
         "padding_top": 36,
         "padding_bottom": 36
       }
@@ -41,6 +76,7 @@
   },
   "order": [
     "main",
+    "rich_text_w9cbCL",
     "contact_form_GMVUxC"
   ]
 }
