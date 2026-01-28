@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "request_city": {
+      "type": "request-city-form",
+      "settings": {
+        "heading": "Request a City",
+        "subheading": "Tell us where you want to see MCST next.",
+        "name_label": "Name",
+        "name_placeholder": "Your name",
+        "email_label": "Email",
+        "email_placeholder": "your@email.com",
+        "city_label": "City",
+        "city_placeholder": "Start typing your city...",
+        "button_label": "Submit Request",
+        "success_message": "Thanks! We received your city request.",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "background_color": "#1a1a1a",
+        "heading_color": "#ffffff",
+        "subheading_color": "#cccccc",
+        "text_color": "#ffffff",
+        "button_background": "#aeef00",
+        "button_text_color": "#000000",
+        "image_height": 400
+      }
+    }
+  },
+  "order": ["request_city"]
+}
