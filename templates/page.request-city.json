@@ -11,28 +11,99 @@
   "sections": {
     "request_city": {
       "type": "request-city-form",
+      "disabled": true,
       "settings": {
         "heading": "Request a City",
         "subheading": "Tell us where you want to see MCST next.",
+        "heading_font": "assistant_n4",
+        "heading_font_size": 40,
+        "subheading_font": "assistant_n4",
+        "subheading_font_size": 18,
+        "body_font": "assistant_n4",
+        "body_font_size": 16,
+        "background_color": "#1a1a1a",
+        "heading_color": "#ffffff",
+        "subheading_color": "#cccccc",
+        "text_color": "#ffffff",
+        "input_background": "#2a2a2a",
+        "input_border_color": "#444444",
+        "button_background": "#aeef00",
+        "button_text_color": "#000000",
+        "button_label": "Submit Request",
+        "button_font_size": 16,
+        "button_padding_x": 24,
+        "button_padding_y": 14,
         "name_label": "Name",
         "name_placeholder": "Your name",
         "email_label": "Email",
         "email_placeholder": "your@email.com",
         "city_label": "City",
         "city_placeholder": "Start typing your city...",
-        "button_label": "Submit Request",
         "success_message": "Thanks! We received your city request.",
+        "google_places_api_key": "",
         "padding_top": 60,
         "padding_bottom": 60,
-        "content_padding": "30px 0 60px",
-        "background_color": "#1a1a1a",
-        "heading_color": "#ffffff",
-        "subheading_color": "#cccccc",
-        "text_color": "#ffffff",
-        "button_background": "#aeef00",
-        "button_text_color": "#000000"
+        "content_padding": "30px 0 60px"
+      }
+    },
+    "rich_text_48UPVx": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_e7pe7U": {
+          "type": "caption",
+          "settings": {
+            "caption": "REQUEST A CITY",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_FPzNUr": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Talk about your brand</p>",
+            "heading_size": "heading--small"
+          }
+        },
+        "text_cmya3i": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+          }
+        },
+        "button_dHpBme": {
+          "type": "button",
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_e7pe7U",
+        "heading_FPzNUr",
+        "text_cmya3i",
+        "button_dHpBme"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_desktop": ""
       }
     }
   },
-  "order": ["request_city"]
+  "order": [
+    "request_city",
+    "rich_text_48UPVx"
+  ]
 }
