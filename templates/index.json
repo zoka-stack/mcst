@@ -284,9 +284,9 @@
             "heading_title": "new stylish",
             "heading": "Accessories",
             "description": "Shop the latest gear to complete your look.",
-            "button1_label": "shop women's",
-            "link1": "",
-            "button2_label": "shop men's",
+            "button1_label": "Shop All",
+            "link1": "shopify://collections/accessories",
+            "button2_label": "",
             "link2": ""
           }
         },
