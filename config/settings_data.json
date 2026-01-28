@@ -839,8 +839,8 @@
           "reduce_header_padding": "0",
           "logo": "shopify://shop_images/MCST.png",
           "logo_width": 100,
-          "menu": "",
-          "menu_vertical": "",
+          "menu": "vertical-menu",
+          "menu_vertical": "vertical-menu",
           "enable_localization": false,
           "social_title": "Stay Connected"
         }
