@@ -4,6 +4,11 @@
   assign body_font = section.settings.body_font
 -%}
 
+<link rel="stylesheet" href="{{ 'section-main-page.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'section-main-page.css' | asset_url | stylesheet_tag }}</noscript>
+<noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
+
 {%- style -%}
   {{ heading_font | font_face: font_display: 'swap' }}
   {{ subheading_font | font_face: font_display: 'swap' }}
@@ -24,24 +29,46 @@
     --rqf-heading-size: {{ section.settings.heading_font_size }}px;
     --rqf-subheading-size: {{ section.settings.subheading_font_size }}px;
     --rqf-body-size: {{ section.settings.body_font_size }}px;
-    --rqf-image-height: {{ section.settings.image_height }}px;
   }
 
   #request-city-{{ section.id }} {
-    background: var(--rqf-background);
     color: var(--rqf-text-color);
     font-family: var(--rqf-body-font);
     font-size: var(--rqf-body-size);
-    padding-top: {{ section.settings.padding_top }}px;
-    padding-bottom: {{ section.settings.padding_bottom }}px;
   }
 
-  #request-city-{{ section.id }} .rqf-heading {
+  /* Hero block: same pattern as about-us (background image + color, title) */
+  #request-city-{{ section.id }} .request-city-hero {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    {% if section.settings.image != blank %}
+      background-image: url({{ section.settings.image | image_url: width: 2000 }});
+      background-size: cover;
+      background-position: center;
+    {% endif %}
+    {% if section.settings.background_color != blank %}
+      background-color: {{ section.settings.background_color }};
+    {% endif %}
+  }
+
+  @media screen and (min-width: 750px) {
+    #request-city-{{ section.id }} .request-city-hero {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  /* Override main-page-title with schema fonts/colors */
+  #request-city-{{ section.id }} .main-page-title.rqf-heading {
     font-family: var(--rqf-heading-font);
     font-size: var(--rqf-heading-size);
     color: var(--rqf-heading-color);
     margin: 0 0 1rem;
     line-height: 1.2;
+  }
+
+  #request-city-{{ section.id }} .main-content-page {
+    padding: {{ section.settings.content_padding | default: '30px 0 60px' }};
   }
 
   #request-city-{{ section.id }} .rqf-subheading {
@@ -80,44 +107,22 @@
   #request-city-{{ section.id }} .rqf-form .rqf-submit:hover {
     opacity: 0.9;
   }
-
-  #request-city-{{ section.id }} .rqf-image-wrap {
-    height: var(--rqf-image-height);
-    overflow: hidden;
-    border-radius: {{ section.settings.image_border_radius }}px;
-    margin-bottom: 2rem;
-  }
-
-  #request-city-{{ section.id }} .rqf-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 {%- endstyle -%}
 
 <section id="request-city-{{ section.id }}" class="request-city-form">
-  <div class="page-width page-width--narrow">
-    {% if section.settings.image != blank %}
-      <div class="rqf-image-wrap">
-        <img
-          src="{{ section.settings.image | image_url: width: 1200 }}"
-          alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
-          width="{{ section.settings.image.width }}"
-          height="{{ section.settings.image.height }}"
-          loading="lazy"
-        >
-      </div>
-    {% endif %}
-
+  <div class="page-width page-width--narrow request-city-hero">
     {% if section.settings.heading != blank %}
-      <h1 class="rqf-heading">{{ section.settings.heading | escape }}</h1>
+      <h1 class="main-page-title page-title h0 rqf-heading">{{ section.settings.heading | escape }}</h1>
     {% endif %}
+  </div>
 
-    {% if section.settings.subheading != blank %}
-      <p class="rqf-subheading">{{ section.settings.subheading | escape }}</p>
-    {% endif %}
+  <div class="main-content-page">
+    <div class="container">
+      {% if section.settings.subheading != blank %}
+        <p class="rqf-subheading">{{ section.settings.subheading | escape }}</p>
+      {% endif %}
 
-    {% form 'contact', id: 'RequestCityForm', class: 'rqf-form' %}
+      {% form 'contact', id: 'RequestCityForm', class: 'rqf-form' %}
       <input type="hidden" name="contact[tags]" value="request_city">
 
       {% if form.posted_successfully? %}
@@ -193,7 +198,8 @@
           {{ section.settings.button_label | default: 'Submit Request' }}
         </button>
       </div>
-    {% endform %}
+      {% endform %}
+    </div>
   </div>
 </section>
 
@@ -250,32 +256,13 @@
   "settings": [
     {
       "type": "header",
-      "content": "Image"
+      "content": "Hero (about-us style)"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
-    },
-    {
-      "type": "range",
-      "id": "image_height",
-      "min": 200,
-      "max": 800,
-      "step": 50,
-      "unit": "px",
-      "label": "Image height",
-      "default": 400
-    },
-    {
-      "type": "range",
-      "id": "image_border_radius",
-      "min": 0,
-      "max": 24,
-      "step": 2,
-      "unit": "px",
-      "label": "Image border radius",
-      "default": 8
+      "label": "Background image",
+      "info": "Used as hero background behind the heading."
     },
     {
       "type": "header",
@@ -504,7 +491,7 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "Hero top padding",
       "default": 60
     },
     {
@@ -514,8 +501,15 @@
       "max": 120,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "Hero bottom padding",
       "default": 60
+    },
+    {
+      "type": "text",
+      "id": "content_padding",
+      "label": "Content area padding",
+      "default": "30px 0 60px",
+      "info": "Eg: 30px 0 60px (top right bottom left)"
     }
   ],
   "presets": [
