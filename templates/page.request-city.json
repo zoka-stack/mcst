@@ -9,6 +9,36 @@
  */
 {
   "sections": {
+    "176962563541bf6390": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_f558744_ezgbAW": {
+          "type": "ai_gen_block_f558744",
+          "settings": {
+            "heading": "",
+            "text": "",
+            "text_alignment": "left",
+            "font_size": 16,
+            "padding_top": 40,
+            "padding_bottom": 40,
+            "padding_left": 20,
+            "padding_right": 20,
+            "padding_top_mobile": 20,
+            "padding_bottom_mobile": 20,
+            "padding_left_mobile": 15,
+            "padding_right_mobile": 15,
+            "background_color": "#FFFFFF",
+            "heading_color": "#000000",
+            "text_color": "#000000"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_f558744_ezgbAW"
+      ],
+      "settings": {}
+    },
     "request_city": {
       "type": "request-city-form",
       "disabled": true,
@@ -52,26 +82,27 @@
         "caption_e7pe7U": {
           "type": "caption",
           "settings": {
-            "caption": "REQUEST A CITY",
+            "caption": "WHERE DO WE STAND TOGETHER NEXT?",
             "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
+            "text_size": "small"
           }
         },
         "heading_FPzNUr": {
           "type": "heading",
           "settings": {
-            "heading": "<p>Talk about your brand</p>",
+            "heading": "<p>Chicago is just the start. The next flag is yours to plant.</p>",
             "heading_size": "heading--small"
           }
         },
         "text_cmya3i": {
           "type": "text",
           "settings": {
-            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>"
+            "text": "<p>We only go where the pride is loudest and the people are ready to stand as one. </p><p>If your neighborhood is ready to reclaim its identity and keep its capital on the block, send the signal.</p>"
           }
         },
         "button_dHpBme": {
           "type": "button",
+          "disabled": true,
           "settings": {
             "button_label": "Button label",
             "button_link": "",
@@ -100,10 +131,40 @@
         "full_width": true,
         "padding_desktop": ""
       }
+    },
+    "1769625647ad230d00": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_FUqdgn": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "848512",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_FUqdgn"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
+    "176962563541bf6390",
     "request_city",
-    "rich_text_48UPVx"
+    "rich_text_48UPVx",
+    "1769625647ad230d00"
   ]
 }
