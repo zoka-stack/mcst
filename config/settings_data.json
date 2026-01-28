@@ -442,11 +442,12 @@
           "f451f2aa-aca0-4cb7-9181-3751b08d6451": {
             "type": "footer_item",
             "settings": {
+              "bottom_logo": "shopify://shop_images/MCST_436e1ff1-b351-4937-8042-783c5d60b605.png",
               "bottom_logo_width": 125,
               "heading": "HELP & SUPPORT",
               "heading_size": "heading--xsmall",
               "menu": "",
-              "content": "<p>Call Us</p>",
+              "content": "",
               "content_2": "",
               "content_3": "",
               "social_heading": "",
@@ -459,6 +460,7 @@
           },
           "3aa9984d-0866-435a-9341-f87f88a35464": {
             "type": "footer_item",
+            "disabled": true,
             "settings": {
               "bottom_logo_width": 125,
               "heading": "COMPANY INFO",
