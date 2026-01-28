@@ -25,36 +25,24 @@
           "type": "ap-imagetextblock",
           "settings": {
             "image": "shopify://shop_images/3.png",
-            "heading_1": "",
-            "heading1_size": "heading--small",
-            "heading_2": "We are a 100% urban wear brand, built by several hands over the last 20 years.",
+            "heading_1": "OUR ROOTS: PRIDE WITH A PURPOSE",
+            "heading1_size": "",
+            "heading_2": "Turning Local Loyalty into Neighborhood Progress",
             "heading2_size": 3,
-            "text": "<p>Vestibulum eu quam nec neque pellentesque efficitur id eget nisl. Proin porta est convallis lacus blandit pretium sed non enim. Maecenas lacinia non orci at aliquam.Donec finibus, urna bibendum ultricies laoreet, augue eros luctus sapien, ut euismod leo tortor ac enim. In hac habitasse platea dictumst. Sed cursus venenatis tellus, non lobortis diam volutpat sit amet.</p>",
-            "navigation_text": ""
-          }
-        },
-        "template--18000004710681__d984658c-0c63-49df-9949-2b880383b327-167723086260cd9487-1": {
-          "type": "ap-imagetextblock",
-          "settings": {
-            "heading_1": "",
-            "heading1_size": "heading--small",
-            "heading_2": "We are just not fashion",
-            "heading2_size": 3,
-            "text": "<p>Proin porta est convallis lacus blandit pretium sed non enim. Maecenas lacinia non orci at aliquam. Donec finibus, urna bibendum ultricies laoreet, augue eros luctus sapien, ut euismod leo tortor.</p>",
+            "text": "<p>For too long, the symbols of our city have been sold to the highest bidder. Every \"Chicago\" shirt bought at a tourist shop sends local capital out of state, leaving the actual blocks that build our city’s identity with nothing to show for it.</p><p><strong>My City Stands Together (MCST)</strong> was founded to change the math. We aren't a typical apparel brand; we are a community-led movement that believes pride should be productive. We believe that if you’re going to wear the flag, that flag should do something for the people living under it. We’re starting here in Chicago and Portland to prove that when a city stands as one, it can fund its own future.</p><h3></h3>",
             "navigation_text": ""
           }
         }
       },
       "block_order": [
-        "template--18000004710681__d984658c-0c63-49df-9949-2b880383b327-167723086260cd9487-0",
-        "template--18000004710681__d984658c-0c63-49df-9949-2b880383b327-167723086260cd9487-1"
+        "template--18000004710681__d984658c-0c63-49df-9949-2b880383b327-167723086260cd9487-0"
       ],
       "settings": {
         "heading_color": "#282828",
         "text_color": "#282828",
         "button_background": "#845640",
         "button_text_color": "#ffffff",
-        "accent_background": "#000000",
+        "accent_background": "#aeef00",
         "image_position": "left",
         "enable_accent_background": true,
         "overlap_image": true,
@@ -64,49 +52,52 @@
         "margin_top": 0
       }
     },
-    "854e535e-f7a4-4af6-8313-4fac88ca922b": {
-      "type": "ap-imagewithtext",
+    "rich_text_88Q4nf": {
+      "type": "rich-text",
       "blocks": {
-        "template--18547011125554__854e535e-f7a4-4af6-8313-4fac88ca922b-168180147056bb986b-0": {
-          "type": "ap-imagetextblock",
+        "caption_YYfTPJ": {
+          "type": "caption",
           "settings": {
-            "heading_1": "",
-            "heading1_size": "heading--small",
-            "heading_2": "We are young. We are ambitious. We are a team and we are family.",
-            "heading2_size": 3,
-            "text": "<p>Proin porta est convallis lacus blandit pretium sed non enim. Maecenas lacinia non orci at aliquam. Donec finibus, urna bibendum ultricies laoreet, augue eros luctus sapien, ut euismod leo tortor ac enim.</p>",
-            "navigation_text": ""
+            "caption": "BUILT FOR THE BLOCK",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
           }
         },
-        "template--18547011125554__854e535e-f7a4-4af6-8313-4fac88ca922b-168180147056bb986b-1": {
-          "type": "ap-imagetextblock",
+        "text_T9mW4a": {
+          "type": "text",
           "settings": {
-            "heading_1": "",
-            "heading1_size": "heading--small",
-            "heading_2": "We are just not fashion",
-            "heading2_size": 3,
-            "text": "<p>The products offered on this website are very unique. I Love my outfit!! The stitching is so perfect and worth the price. Perfect place to purchase clothes.</p>",
-            "navigation_text": ""
+            "text": "<p>We don’t believe in waste, and we don't believe in boardroom guesses. Our model is built on \"Gritty Authenticity\" and sustainable practices.</p><ul><li><strong>Zero Waste Production:</strong> Every piece of gear is made specifically for you. By using a \"Made to Order\" system, we eliminate the environmental and financial cost of unsold inventory, ensuring more of your purchase goes exactly where it’s needed.</li><li><strong>Premium Quality:</strong> We don't do souvenir-shop quality. Our gear is heavyweight and durable, designed to handle the grit of city life while serving as a walking billboard for civic progress.</li><li><strong>Direct Impact:</strong> We are currently in our foundational phase, vetting local partners like the Greater Chicago Food Depository and StreetWise. When you buy from us, you aren’t just buying a hoodie; you’re investing in the mission to keep our city's capital on our city's streets.</li></ul>"
+          }
+        },
+        "button_qd4rKH": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "template--18547011125554__854e535e-f7a4-4af6-8313-4fac88ca922b-168180147056bb986b-0",
-        "template--18547011125554__854e535e-f7a4-4af6-8313-4fac88ca922b-168180147056bb986b-1"
+        "caption_YYfTPJ",
+        "text_T9mW4a",
+        "button_qd4rKH"
       ],
+      "name": "t:sections.rich-text.presets.name",
       "settings": {
-        "heading_color": "#282828",
-        "text_color": "#282828",
-        "button_background": "#845640",
-        "button_text_color": "#ffffff",
-        "accent_background": "#000000",
-        "image_position": "right",
-        "enable_accent_background": true,
-        "overlap_image": true,
-        "accent_background_opacity": 100,
-        "autoplay_duration": 8,
-        "navigation_size": "heading--small",
-        "margin_top": 0
+        "fullwidth": false,
+        "margin_desktop": "40px 20px 20px 20px",
+        "margin_tablet": "20px 20px 20px 20px",
+        "margin_mobile": "20px 20px 20px 20px",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "background-1",
+        "full_width": false,
+        "padding_desktop": ""
       }
     },
     "152f529e-ee39-4524-81f3-2a48cad21078": {
@@ -131,14 +122,14 @@
         "template--18000004710681__5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf-1677229796ec23fa01-0": {
           "type": "heading",
           "settings": {
-            "heading": "<p>STILL HAVE A QUESTION?</p>",
+            "heading": "<p>HAVE A QUESTION?</p>",
             "heading_size": "hxl"
           }
         },
         "e2d9a2ba-7b0e-4420-ba13-c974a196f2f0": {
           "type": "caption",
           "settings": {
-            "caption": "CONTACT US TODAY",
+            "caption": "REACH OUT TO THE MISSION",
             "text_style": "caption-with-letter-spacing",
             "text_size": "medium"
           }
@@ -146,7 +137,7 @@
         "template--18000004710681__5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf-1677229796ec23fa01-1": {
           "type": "text",
           "settings": {
-            "text": "<p>Our friendly team aim to get back to you within 48 hours.</p>"
+            "text": "<h4>We’re here for the pride, the grit, and the groundswell.</h4>"
           }
         },
         "template--18000004710681__5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf-1677229796ec23fa01-2": {
@@ -183,7 +174,7 @@
   "order": [
     "main",
     "d984658c-0c63-49df-9949-2b880383b327",
-    "854e535e-f7a4-4af6-8313-4fac88ca922b",
+    "rich_text_88Q4nf",
     "152f529e-ee39-4524-81f3-2a48cad21078",
     "5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf"
   ]
