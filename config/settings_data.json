@@ -838,13 +838,13 @@
           "color_menu_child_title": "#909090",
           "color_menu_child": "#000000",
           "color_menu_child_hover": "#aeef00",
-          "reduce_header_padding": "0",
+          "reduce_header_padding": "-20px",
           "logo": "shopify://shop_images/MCST.png",
           "logo_width": 100,
-          "menu": "",
-          "menu_vertical": "",
+          "menu": "vertical-menu",
+          "menu_vertical": "vertical-menu",
           "enable_localization": false,
-          "social_title": "Stay Connected"
+          "social_title": ""
         }
       }
     },
