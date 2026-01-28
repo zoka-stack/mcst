@@ -439,14 +439,14 @@
               "color_button_hover": "#aeef00"
             }
           },
-          "f451f2aa-aca0-4cb7-9181-3751b08d6451": {
+          "3aa9984d-0866-435a-9341-f87f88a35464": {
             "type": "footer_item",
+            "disabled": true,
             "settings": {
-              "bottom_logo": "shopify://shop_images/MCST_436e1ff1-b351-4937-8042-783c5d60b605.png",
               "bottom_logo_width": 125,
-              "heading": "HELP & SUPPORT",
+              "heading": "COMPANY INFO",
               "heading_size": "heading--xsmall",
-              "menu": "",
+              "menu": "account",
               "content": "",
               "content_2": "",
               "content_3": "",
@@ -458,14 +458,13 @@
               "social_linkedin": ""
             }
           },
-          "3aa9984d-0866-435a-9341-f87f88a35464": {
+          "f451f2aa-aca0-4cb7-9181-3751b08d6451": {
             "type": "footer_item",
-            "disabled": true,
             "settings": {
               "bottom_logo_width": 125,
-              "heading": "COMPANY INFO",
+              "heading": "HELP & SUPPORT",
               "heading_size": "heading--xsmall",
-              "menu": "",
+              "menu": "support",
               "content": "",
               "content_2": "",
               "content_3": "",
@@ -481,9 +480,9 @@
             "type": "footer_item",
             "settings": {
               "bottom_logo_width": 125,
-              "heading": "MY ACCOUNT",
+              "heading": "USER INFORMATION",
               "heading_size": "heading--xsmall",
-              "menu": "",
+              "menu": "account",
               "content": "",
               "content_2": "",
               "content_3": "",
@@ -498,8 +497,8 @@
         },
         "block_order": [
           "cf0a9d13-5fd7-4cfb-a54f-1c4ac637c171",
-          "f451f2aa-aca0-4cb7-9181-3751b08d6451",
           "3aa9984d-0866-435a-9341-f87f88a35464",
+          "f451f2aa-aca0-4cb7-9181-3751b08d6451",
           "ac81c712-7a0c-44ca-8b72-bdf6a65d787e"
         ],
         "settings": {
@@ -518,7 +517,7 @@
             "type": "copyright-text",
             "settings": {
               "label": "",
-              "content": "<p>Copyright © 2025  <a href=\"https://ap-suppre.myshopify.com/\" title=\"https://ap-suppre.myshopify.com/\">MyCityStandsTogether. </a><br/>All Rights Reserved. Powered by: <a href=\"https://zoka.media/\" target=\"_blank\" title=\"https://zoka.media/\">ZOKA</a>.</p>"
+              "content": "<p>Copyright © 2026  <a href=\"https://ap-suppre.myshopify.com/\" title=\"https://ap-suppre.myshopify.com/\">MyCityStandsTogether. </a><br/>All Rights Reserved. Powered by: <a href=\"https://zoka.media/\" target=\"_blank\" title=\"https://zoka.media/\">ZOKA</a>.</p>"
             }
           },
           "1010c614-a8bd-4582-8fc8-b903ad8fdc74": {
