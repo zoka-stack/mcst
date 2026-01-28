@@ -13,7 +13,7 @@
       "type": "main-collection-banner",
       "settings": {
         "content_box_size": "",
-        "content_box_position": "left",
+        "content_box_position": "center",
         "content_text_align": "center",
         "show_collection_image": true,
         "show_description": false,
@@ -24,7 +24,7 @@
         "breadcrumb_position": "1",
         "show_shop_bar": false,
         "shop_bar_label": "",
-        "menu_shop": ""
+        "menu_shop": "vertical-menu"
       }
     },
     "aecd3c9f-163c-467b-ad50-5e692bbf5df0": {
