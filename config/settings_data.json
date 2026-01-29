@@ -50,6 +50,7 @@
     "link_font_custome_other": "",
     "link_font_custome_other_2": "",
     "header_type": true,
+    "page_width": 1400,
     "sale_label_text": "Sale",
     "sale_label_layout": "Percent Decrease",
     "size_img": "0.8",
