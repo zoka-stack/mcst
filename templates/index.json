@@ -15,8 +15,8 @@
         "template--16958845452582__6fe8fbaa-5a22-4c15-86c6-9ad636d793b6-16686800571d36d11f-0": {
           "type": "slide",
           "settings": {
-            "image_1": "shopify://shop_images/benjamin-r-x_SLGfbFuqE-unsplash.jpg",
-            "image_mobile": "shopify://shop_images/benjamin-r-x_SLGfbFuqE-unsplash.jpg",
+            "image_1": "shopify://shop_images/main-bg.gif",
+            "image_mobile": "shopify://shop_images/main-bg.gif",
             "heading": "CITY PRIDE.",
             "heading_size": "",
             "subheading": "LOCAL IMPACT.",
@@ -280,7 +280,7 @@
           "type": "banner-grid",
           "settings": {
             "width": "50%",
-            "featured_image": "shopify://shop_images/11.png",
+            "featured_image": "shopify://shop_images/Mockup-13.jpg",
             "heading_title": "new stylish",
             "heading": "Accessories",
             "description": "Shop the latest gear to complete your look.",
@@ -294,7 +294,7 @@
           "type": "banner-grid",
           "settings": {
             "width": "50%",
-            "featured_image": "shopify://shop_images/3.png",
+            "featured_image": "shopify://shop_images/Mockup-31.jpg",
             "heading_title": "JOIN THE MOVEMENT",
             "heading": "<span>\nBECOME AN AMBASSADOR!",
             "description": "Join our team and help us champion local impact.",
