@@ -88,6 +88,7 @@
     "favicon": "shopify://shop_images/MCST_260125d6-922f-4e71-bce8-3a1cecf37406.png",
     "show_gift_card": false,
     "cart_notes_enable": false,
+    "cart_shipping_enable": false,
     "cart_drawer_collection": "",
     "minicart_content_display": "center",
     "enable_free_shipping": true,
