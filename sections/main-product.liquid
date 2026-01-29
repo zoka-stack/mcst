@@ -55,6 +55,60 @@
       top: auto !important;
     }
   }
+
+  /* Urgency Counters Styles */
+  .product-urgency-counters {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .urgency-counter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .urgency-counter__emoji {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .urgency-counter__text {
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+
+  .urgency-counter__number {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #d32f2f;
+    transition: all 0.3s ease;
+  }
+
+  .urgency-counter--cart .urgency-counter__number {
+    color: #f57c00;
+  }
+
+  .urgency-counter__label {
+    color: #666;
+    font-size: 0.85rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .product-urgency-counters {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+  }
   
 </style>
 <script>
@@ -67,6 +121,140 @@
   } catch (e) {
     // have error
   }
+</script>
+<script>
+  // Urgency Counters - Realistic counter simulation
+  (function() {
+    const countersContainer = document.querySelector('.product-urgency-counters');
+    if (!countersContainer) return;
+
+    const viewersEl = countersContainer.querySelector('[data-counter="viewers"]');
+    const cartEl = countersContainer.querySelector('[data-counter="cart"]');
+    
+    if (!viewersEl || !cartEl) return;
+
+    // Get initial values
+    let viewersCount = parseInt(viewersEl.textContent) || 12;
+    let cartCount = parseInt(cartEl.textContent) || 3;
+
+    // Store product ID for persistence
+    const productId = countersContainer.dataset.productId;
+    const storageKey = 'urgency_counters_' + productId;
+
+    // Try to load persisted values (simulate realistic persistence)
+    try {
+      const stored = localStorage.getItem(storageKey);
+      if (stored) {
+        const data = JSON.parse(stored);
+        const timeDiff = Date.now() - data.timestamp;
+        // If less than 5 minutes, use stored values with slight variation
+        if (timeDiff < 300000) {
+          viewersCount = Math.max(8, Math.min(25, data.viewers + Math.floor(Math.random() * 3) - 1));
+          cartCount = Math.max(1, Math.min(8, data.cart + Math.floor(Math.random() * 2) - 1));
+        }
+      }
+    } catch (e) {
+      // Ignore errors
+    }
+
+    // Update display
+    function updateDisplay() {
+      viewersEl.textContent = viewersCount;
+      cartEl.textContent = cartCount;
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem(storageKey, JSON.stringify({
+          viewers: viewersCount,
+          cart: cartCount,
+          timestamp: Date.now()
+        }));
+      } catch (e) {
+        // Ignore errors
+      }
+    }
+
+    // Animate number change
+    function animateChange(element, oldVal, newVal) {
+      if (oldVal === newVal) return;
+      
+      const duration = 300;
+      const startTime = Date.now();
+      const difference = newVal - oldVal;
+      
+      function update() {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const current = Math.round(oldVal + (difference * progress));
+        element.textContent = current;
+        
+        if (progress < 1) {
+          requestAnimationFrame(update);
+        } else {
+          element.textContent = newVal;
+        }
+      }
+      
+      update();
+    }
+
+    // Realistic counter updates
+    function updateCounters() {
+      // Viewers: gradual changes, mostly small increments/decrements
+      const viewersChange = Math.random();
+      let newViewers = viewersCount;
+      
+      if (viewersChange < 0.15) {
+        // 15% chance: someone leaves (decrease by 1-2)
+        newViewers = Math.max(8, viewersCount - Math.floor(Math.random() * 2 + 1));
+      } else if (viewersChange < 0.85) {
+        // 70% chance: small change (+1 or -1)
+        newViewers = Math.max(8, Math.min(25, viewersCount + (Math.random() < 0.5 ? -1 : 1)));
+      } else {
+        // 15% chance: someone new arrives (+1 or +2)
+        newViewers = Math.min(25, viewersCount + Math.floor(Math.random() * 2 + 1));
+      }
+
+      // Cart: less frequent changes, smaller range
+      const cartChange = Math.random();
+      let newCart = cartCount;
+      
+      if (cartChange < 0.1) {
+        // 10% chance: someone removes from cart
+        newCart = Math.max(1, cartCount - 1);
+      } else if (cartChange < 0.25) {
+        // 15% chance: someone adds to cart
+        newCart = Math.min(8, cartCount + 1);
+      }
+      // 75% chance: no change (cart is more stable)
+
+      // Update with animation
+      if (newViewers !== viewersCount) {
+        animateChange(viewersEl, viewersCount, newViewers);
+        viewersCount = newViewers;
+      }
+      
+      if (newCart !== cartCount) {
+        animateChange(cartEl, cartCount, newCart);
+        cartCount = newCart;
+      }
+    }
+
+    // Initial display
+    updateDisplay();
+
+    // Update every 8-15 seconds (realistic interval)
+    function scheduleNextUpdate() {
+      const delay = 8000 + Math.random() * 7000; // 8-15 seconds
+      setTimeout(() => {
+        updateCounters();
+        scheduleNextUpdate();
+      }, delay);
+    }
+
+    // Start updates after initial delay
+    setTimeout(scheduleNextUpdate, 5000 + Math.random() * 5000);
+  })();
 </script>
 {% render 'product-sticky', product: product %}
 
@@ -135,6 +323,24 @@
                     
                     {%- when 'free_shipping_bar' -%}
                       {% render 'ap-freeshippingbar' %}
+                    
+                    {%- when 'urgency_counters' -%}
+                      <div class="product-urgency-counters" data-product-id="{{ product.id }}" {{ block.shopify_attributes }}>
+                        <div class="urgency-counter urgency-counter--viewers">
+                          <span class="urgency-counter__emoji">👀</span>
+                          <span class="urgency-counter__text">
+                            <span class="urgency-counter__number" data-counter="viewers">{{ block.settings.initial_viewers | default: 12 }}</span>
+                            <span class="urgency-counter__label">people viewing this</span>
+                          </span>
+                        </div>
+                        <div class="urgency-counter urgency-counter--cart">
+                          <span class="urgency-counter__emoji">🔥</span>
+                          <span class="urgency-counter__text">
+                            <span class="urgency-counter__number" data-counter="cart">{{ block.settings.initial_cart | default: 3 }}</span>
+                            <span class="urgency-counter__label">in cart right now</span>
+                          </span>
+                        </div>
+                      </div>
                       
                   {% endcase %}
                 {% endfor %}
@@ -506,6 +712,39 @@
     {
       "type": "free_shipping_bar",
       "name": "Free shipping bar"
+    },
+    {
+      "type": "urgency_counters",
+      "name": "Urgency Counters",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "header",
+          "content": "Initial Values"
+        },
+        {
+          "type": "range",
+          "id": "initial_viewers",
+          "min": 8,
+          "max": 25,
+          "step": 1,
+          "unit": "",
+          "label": "Initial viewers count",
+          "default": 12,
+          "info": "Starting number of people viewing (will update realistically)"
+        },
+        {
+          "type": "range",
+          "id": "initial_cart",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "unit": "",
+          "label": "Initial cart count",
+          "default": 3,
+          "info": "Starting number of people with item in cart (will update realistically)"
+        }
+      ]
     }
   ],
   "settings": [
