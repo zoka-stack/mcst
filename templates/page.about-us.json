@@ -37,6 +37,9 @@
       "block_order": [
         "template--18000004710681__d984658c-0c63-49df-9949-2b880383b327-167723086260cd9487-0"
       ],
+      "custom_css": [
+        ".ap-imagewithtext {text-align: left;}"
+      ],
       "settings": {
         "heading_color": "#282828",
         "text_color": "#282828",
