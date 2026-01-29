@@ -11,6 +11,7 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 28,
         "padding_bottom": 28,
@@ -43,7 +44,7 @@
       "name": "t:sections.rich-text.presets.name",
       "settings": {
         "fullwidth": false,
-        "margin_desktop": "",
+        "margin_desktop": "100px 10px 10px 10px",
         "margin_tablet": "",
         "margin_mobile": "",
         "desktop_content_position": "center",
