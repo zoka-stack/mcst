@@ -29,6 +29,69 @@
       ],
       "settings": {}
     },
+    "rich_text_48UPVx": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_e7pe7U": {
+          "type": "caption",
+          "settings": {
+            "caption": "Brand Ambassador & Partner Program",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        }
+      },
+      "block_order": [
+        "caption_e7pe7U"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "100px 10px 10px 10px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_desktop": ""
+      }
+    },
+    "ap_imagewithtext_GKQemi": {
+      "type": "ap-imagewithtext",
+      "blocks": {
+        "ap_imagetextblock_3pDBET": {
+          "type": "ap-imagetextblock",
+          "settings": {
+            "image": "shopify://shop_images/Mockup-28.jpg",
+            "heading_1": "THE MISSION",
+            "heading1_size": "heading--small",
+            "heading_2": "Stand With Your City. Lead The Movement.",
+            "heading2_size": 3,
+            "text": "<p><strong>My City Stands Together</strong> is more than a brand...it is a declaration of unity. We are building a network of community leaders, organizations, and influential voices dedicated to showing pride in where they come from while giving back to the causes that matter.</p><p>We are looking for <strong>Ambassadors</strong> and <strong>Organizational Partners</strong> who share our vision. Whether you are a non-profit looking to fundraise, a business leader rallying your community, or a creator with a voice that people trust, we want to stand with you.</p><p></p>",
+            "navigation_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "ap_imagetextblock_3pDBET"
+      ],
+      "name": "t:sections.ap-imagewithtext.presets.name",
+      "settings": {
+        "heading_color": "#282828",
+        "text_color": "#282828",
+        "button_background": "#845640",
+        "button_text_color": "#ffffff",
+        "accent_background": "#aeef00",
+        "image_position": "left",
+        "enable_accent_background": true,
+        "overlap_image": true,
+        "accent_background_opacity": 100,
+        "autoplay_duration": 8,
+        "navigation_size": "heading--small",
+        "margin_top": 0
+      }
+    },
     "request_city": {
       "type": "request-city-form",
       "disabled": true,
@@ -66,37 +129,29 @@
         "content_padding": "30px 0 60px"
       }
     },
-    "rich_text_48UPVx": {
+    "rich_text_kdHpy3": {
       "type": "rich-text",
       "blocks": {
-        "caption_e7pe7U": {
-          "type": "caption",
-          "settings": {
-            "caption": "Brand Ambassador & Partner Program",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
-          }
-        },
-        "heading_FPzNUr": {
+        "heading_FTjG9q": {
           "type": "heading",
           "settings": {
-            "heading": "<h2>Stand With Your City. Lead The Movement.</h2>",
+            "heading": "<h1><strong>PROGRAM BENEFITS</strong></h1>",
             "heading_size": "heading--small"
           }
         },
-        "text_cmya3i": {
+        "text_aXWyFY": {
           "type": "text",
           "settings": {
-            "text": "<p><strong>My City Stands Together</strong> is more than a brand...it is a declaration of unity. </p><p>We are building a network of community leaders, organizations, and influential voices dedicated to showing pride in where they come from while giving back to the causes that matter.</p><p>We are looking for <strong>Ambassadors</strong> and <strong>Organizational Partners</strong> who share our vision. Whether you are a non-profit looking to fundraise, a business leader rallying your community, or a creator with a voice that people trust, we want to stand with you.</p><p></p><h3><strong>PROGRAM BENEFITS</strong></h3><ul><li><strong>Earn & Give:</strong> Competitive commission rates on every sale generated through your unique code/link.</li><li><strong>Zero Inventory:</strong> We handle 100% of printing, fulfillment, and customer service.</li><li><strong>Exclusive Access:</strong> Early access to new city drops and limited-edition designs.</li><li><strong>Co-Branding Opportunities:</strong> (For select Organizational Partners) Opportunities for custom collaboration.</li></ul>"
+            "text": "<ul><li><strong>Earn & Give:</strong> Competitive commission rates on every sale generated through your unique code/link.</li><li><strong>Zero Inventory:</strong> We handle 100% of printing, fulfillment, and customer service.</li><li><strong>Exclusive Access:</strong> Early access to new city drops and limited-edition designs.</li><li><strong>Co-Branding Opportunities:</strong> (For select Organizational Partners) Opportunities for custom collaboration.</li></ul>"
           }
         },
-        "text_NBgmTH": {
+        "text_yjfmbw": {
           "type": "text",
           "settings": {
-            "text": ""
+            "text": "<h3><strong>APPLICATION FORM</strong></h3><p><em>Please complete the details below. Our team reviews applications weekly to ensure alignment with our values.</em></p>"
           }
         },
-        "button_dHpBme": {
+        "button_3DCNJK": {
           "type": "button",
           "disabled": true,
           "settings": {
@@ -110,11 +165,10 @@
         }
       },
       "block_order": [
-        "caption_e7pe7U",
-        "heading_FPzNUr",
-        "text_cmya3i",
-        "text_NBgmTH",
-        "button_dHpBme"
+        "heading_FTjG9q",
+        "text_aXWyFY",
+        "text_yjfmbw",
+        "button_3DCNJK"
       ],
       "name": "t:sections.rich-text.presets.name",
       "settings": {
@@ -160,8 +214,10 @@
   },
   "order": [
     "176962563541bf6390",
-    "request_city",
     "rich_text_48UPVx",
+    "ap_imagewithtext_GKQemi",
+    "request_city",
+    "rich_text_kdHpy3",
     "1769625647ad230d00"
   ]
 }
