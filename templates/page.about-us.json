@@ -29,7 +29,7 @@
             "heading1_size": "",
             "heading_2": "Turning Local Loyalty into Neighborhood Progress",
             "heading2_size": 3,
-            "text": "<p>For too long, the symbols of our city have been sold to the highest bidder. Every \"Chicago\" shirt bought at a tourist shop sends local capital out of state, leaving the actual blocks that build our city’s identity with nothing to show for it.</p><p><strong>My City Stands Together (MCST)</strong> was founded to change the math. We aren't a typical apparel brand; we are a community-led movement that believes pride should be productive. We believe that if you’re going to wear the flag, that flag should do something for the people living under it. We’re starting here in Chicago to prove that when a city stands as one, it can fund its own future.</p><h3></h3>",
+            "text": "<p>For too long, the symbols of our city have been sold to the highest bidder. Every \"Chicago\" shirt bought at a tourist shop sends local capital out of state, leaving the actual blocks that build our city’s identity with nothing to show for it.</p><p><strong>My City Stands Together (MCST)</strong> was founded to change the math. We aren't a typical apparel brand; we are a community-led movement that believes pride should be productive. We believe that if you’re going to wear the flag, that flag should do something for the people living under it. We’re starting here in Chicago to prove that when a city stands as one, it can fund its own future.</p>",
             "navigation_text": ""
           }
         }
@@ -43,61 +43,13 @@
         "button_background": "#845640",
         "button_text_color": "#ffffff",
         "accent_background": "#aeef00",
-        "image_position": "left",
+        "image_position": "right",
         "enable_accent_background": true,
         "overlap_image": true,
         "accent_background_opacity": 100,
         "autoplay_duration": 8,
         "navigation_size": "heading--small",
         "margin_top": 0
-      }
-    },
-    "rich_text_88Q4nf": {
-      "type": "rich-text",
-      "blocks": {
-        "caption_YYfTPJ": {
-          "type": "caption",
-          "settings": {
-            "caption": "BUILT FOR THE BLOCK",
-            "text_style": "caption-with-letter-spacing",
-            "text_size": "medium"
-          }
-        },
-        "text_T9mW4a": {
-          "type": "text",
-          "settings": {
-            "text": "<p>We don’t believe in waste, and we don't believe in boardroom guesses. Our model is built on \"Gritty Authenticity\" and sustainable practices.</p><ul><li><strong>Zero Waste Production:</strong> Every piece of gear is made specifically for you. By using a \"Made to Order\" system, we eliminate the environmental and financial cost of unsold inventory, ensuring more of your purchase goes exactly where it’s needed.</li><li><strong>Premium Quality:</strong> We don't do souvenir-shop quality. Our gear is heavyweight and durable, designed to handle the grit of city life while serving as a walking billboard for civic progress.</li><li><strong>Direct Impact:</strong> We are currently in our foundational phase, vetting local partners like the Greater Chicago Food Depository and StreetWise. When you buy from us, you aren’t just buying a hoodie; you’re investing in the mission to keep our city's capital on our city's streets.</li></ul>"
-          }
-        },
-        "button_qd4rKH": {
-          "type": "button",
-          "disabled": true,
-          "settings": {
-            "button_label": "Button label",
-            "button_link": "",
-            "button_style_secondary": false,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
-          }
-        }
-      },
-      "block_order": [
-        "caption_YYfTPJ",
-        "text_T9mW4a",
-        "button_qd4rKH"
-      ],
-      "name": "t:sections.rich-text.presets.name",
-      "settings": {
-        "fullwidth": false,
-        "margin_desktop": "40px 20px 20px 20px",
-        "margin_tablet": "20px 20px 20px 20px",
-        "margin_mobile": "20px 20px 20px 20px",
-        "desktop_content_position": "left",
-        "content_alignment": "left",
-        "color_scheme": "background-1",
-        "full_width": false,
-        "padding_desktop": ""
       }
     },
     "152f529e-ee39-4524-81f3-2a48cad21078": {
@@ -114,6 +66,50 @@
         "color_scheme": "background-1",
         "padding_top": 36,
         "padding_bottom": 36
+      }
+    },
+    "rich_text_fmaY9g": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_zUENhM": {
+          "type": "caption",
+          "settings": {
+            "caption": "Built for the block.",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "large"
+          }
+        },
+        "heading_t34BTX": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "<p>Talk about your brand</p>",
+            "heading_size": "heading--small"
+          }
+        },
+        "text_M4V4DT": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We don’t believe in waste, and we don't believe in boardroom guesses. Our model is built on \"Gritty Authenticity\" and sustainable practices.</p><ul><li><strong>- Zero Waste Production:</strong> Every piece of gear is made specifically for you. By using a \"Made to Order\" system, we eliminate the environmental and financial cost of unsold inventory, ensuring more of your purchase goes exactly where it’s needed.</li><li><strong>- Premium Quality:</strong> We don't do - souvenir-shop quality. Our gear is heavyweight and durable, designed to handle the grit of city life while serving as a walking billboard for civic progress.</li><li><strong>- Direct Impact:</strong> We are currently in our foundational phase, vetting local partners like the Greater Chicago Food Depository and StreetWise. When you buy from us, you aren’t just buying a hoodie; you’re investing in the mission to keep our city's capital on our city's streets.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "caption_zUENhM",
+        "heading_t34BTX",
+        "text_M4V4DT"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "50px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "desktop_content_position": "left",
+        "content_alignment": "left",
+        "color_scheme": "accent-1",
+        "full_width": false,
+        "padding_desktop": ""
       }
     },
     "5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf": {
@@ -174,8 +170,8 @@
   "order": [
     "main",
     "d984658c-0c63-49df-9949-2b880383b327",
-    "rich_text_88Q4nf",
     "152f529e-ee39-4524-81f3-2a48cad21078",
+    "rich_text_fmaY9g",
     "5b45737a-b1c0-4d55-8a6c-91d4d2ad6ddf"
   ]
 }
