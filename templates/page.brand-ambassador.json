@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "176962563541bf6390": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_dea4c40_Uzei6g": {
+          "type": "ai_gen_block_dea4c40",
+          "name": "Margin spacer",
+          "settings": {
+            "margin_top_desktop": 110,
+            "margin_bottom_desktop": 40,
+            "margin_top_mobile": 20,
+            "margin_bottom_mobile": 20
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_dea4c40_Uzei6g"
+      ],
+      "settings": {}
+    },
+    "request_city": {
+      "type": "request-city-form",
+      "disabled": true,
+      "settings": {
+        "heading": "Request a City",
+        "subheading": "Tell us where you want to see MCST next.",
+        "heading_font": "assistant_n4",
+        "heading_font_size": 40,
+        "subheading_font": "assistant_n4",
+        "subheading_font_size": 18,
+        "body_font": "assistant_n4",
+        "body_font_size": 16,
+        "background_color": "#1a1a1a",
+        "heading_color": "#ffffff",
+        "subheading_color": "#cccccc",
+        "text_color": "#ffffff",
+        "input_background": "#2a2a2a",
+        "input_border_color": "#444444",
+        "button_background": "#aeef00",
+        "button_text_color": "#000000",
+        "button_label": "Submit Request",
+        "button_font_size": 16,
+        "button_padding_x": 24,
+        "button_padding_y": 14,
+        "name_label": "Name",
+        "name_placeholder": "Your name",
+        "email_label": "Email",
+        "email_placeholder": "your@email.com",
+        "city_label": "City",
+        "city_placeholder": "Start typing your city...",
+        "success_message": "Thanks! We received your city request.",
+        "google_places_api_key": "",
+        "padding_top": 60,
+        "padding_bottom": 60,
+        "content_padding": "30px 0 60px"
+      }
+    },
+    "rich_text_48UPVx": {
+      "type": "rich-text",
+      "blocks": {
+        "caption_e7pe7U": {
+          "type": "caption",
+          "settings": {
+            "caption": "WHERE DO WE STAND TOGETHER NEXT?",
+            "text_style": "caption-with-letter-spacing",
+            "text_size": "medium"
+          }
+        },
+        "heading_FPzNUr": {
+          "type": "heading",
+          "settings": {
+            "heading": "<p>Chicago is just the start. The next flag is yours to plant.</p>",
+            "heading_size": "heading--small"
+          }
+        },
+        "text_cmya3i": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We only go where the pride is loudest and the people are ready to stand as one. </p><p>If your neighborhood is ready to reclaim its identity and keep its capital on the block, send the signal.</p>"
+          }
+        },
+        "text_NBgmTH": {
+          "type": "text",
+          "settings": {
+            "text": ""
+          }
+        },
+        "button_dHpBme": {
+          "type": "button",
+          "disabled": true,
+          "settings": {
+            "button_label": "Button label",
+            "button_link": "",
+            "button_style_secondary": false,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "caption_e7pe7U",
+        "heading_FPzNUr",
+        "text_cmya3i",
+        "text_NBgmTH",
+        "button_dHpBme"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "fullwidth": false,
+        "margin_desktop": "100px 10px 10px 10px",
+        "margin_tablet": "",
+        "margin_mobile": "",
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "background-1",
+        "full_width": true,
+        "padding_desktop": ""
+      }
+    },
+    "1769625647ad230d00": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_FUqdgn": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "848512",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 24,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_FUqdgn"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "176962563541bf6390",
+    "request_city",
+    "rich_text_48UPVx",
+    "1769625647ad230d00"
+  ]
+}
