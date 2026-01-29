@@ -12,30 +12,20 @@
     "176962563541bf6390": {
       "type": "_blocks",
       "blocks": {
-        "ai_gen_block_f558744_ezgbAW": {
-          "type": "ai_gen_block_f558744",
+        "ai_gen_block_dea4c40_Uzei6g": {
+          "type": "ai_gen_block_dea4c40",
+          "name": "Margin spacer",
           "settings": {
-            "heading": "",
-            "text": "",
-            "text_alignment": "left",
-            "font_size": 16,
-            "padding_top": 40,
-            "padding_bottom": 40,
-            "padding_left": 20,
-            "padding_right": 20,
-            "padding_top_mobile": 20,
-            "padding_bottom_mobile": 20,
-            "padding_left_mobile": 15,
-            "padding_right_mobile": 15,
-            "background_color": "#ffffff",
-            "heading_color": "#000000",
-            "text_color": "#000000"
+            "margin_top_desktop": 110,
+            "margin_bottom_desktop": 40,
+            "margin_top_mobile": 20,
+            "margin_bottom_mobile": 20
           },
           "blocks": {}
         }
       },
       "block_order": [
-        "ai_gen_block_f558744_ezgbAW"
+        "ai_gen_block_dea4c40_Uzei6g"
       ],
       "settings": {}
     },
