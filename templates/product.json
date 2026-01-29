@@ -23,8 +23,21 @@
           "type": "title",
           "settings": {}
         },
+        "custom_liquid_NLjEyU": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% comment %}\n  Fake \"X people have this in their cart right now\" counter\n  No pulsing dot, simple emoji indicator\n{% endcomment %}\n\n<div class=\"fake-cart-counter\" style=\"margin: -20px 0 4px 0; font-size: 0.95rem; color: #2c3e50; display: flex; align-items: center; gap: 10px; font-weight: 500;\">\n  <span>🛒</span>\n  <span id=\"fakeCartCountText\"></span>\n</div>\n\n<script>\n  (function() {\n    const element = document.getElementById('fakeCartCountText');\n    if (!element) return;\n\n    // Configuration\n    const baseMin     = 8;\n    const baseMax     = 38;\n    const bigJumpChance = 0.12;\n    const updateMinSec = 8;\n    const updateMaxSec = 30;\n\n    let current = Math.floor(Math.random() * (baseMax - baseMin + 1)) + baseMin;\n    current = Math.max(baseMin, Math.min(baseMax, current + Math.floor(Math.random() * 5) - 2));\n\n    function updateDisplay() {\n      if (current === 1) {\n        element.textContent = `1 person has this in their cart right now`;\n      } else {\n        element.textContent = `${current} people have this in their cart right now`;\n      }\n    }\n\n    function changeCount() {\n      const isBigJump = Math.random() < bigJumpChance;\n      const maxChange = isBigJump ? 7 : 3;\n      const change = Math.floor(Math.random() * (maxChange * 2 + 1)) - maxChange;\n\n      current += change;\n      current = Math.max(baseMin, Math.min(baseMax, current));\n\n      updateDisplay();\n\n      const nextDelay = (Math.random() * (updateMaxSec - updateMinSec) + updateMinSec) * 1000;\n      setTimeout(changeCount, nextDelay);\n    }\n\n    updateDisplay();\n    setTimeout(changeCount, (Math.random() * 7000 + 3000));\n  })();\n</script>"
+          }
+        },
+        "custom_liquid_Xj3nTn": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "{% comment %}\n  Fake \"X people are watching this product right now\" counter\n  With eye emojis, no pulsing dot\n{% endcomment %}\n\n<div class=\"fake-viewer-counter\" style=\"margin: -20px 0 10px 0; font-size: 0.95rem; color: #2c3e50; display: flex; align-items: center; gap: 10px; font-weight: 500;\">\n  <span>👀</span>\n  <span id=\"fakeViewerText\"></span>\n  <span>👀</span>\n</div>\n\n<script>\n  (function() {\n    const el = document.getElementById('fakeViewerText');\n    if (!el) return;\n\n    // Configuration\n    const minViewers     = 7;\n    const maxViewers     = 62;\n    const bigChangeProb  = 0.15;\n    const updateMin      = 7;\n    const updateMax      = 26;\n\n    let viewers = Math.floor(Math.random() * (maxViewers - minViewers + 1)) + minViewers;\n    viewers = Math.round(viewers * (0.7 + Math.random() * 0.6));\n\n    function formatText(count) {\n      if (count === 1) {\n        return `1 person is watching this product right now`;\n      } else {\n        const phrases = [\n          `${count} people are viewing this product right now`,\n          `${count} people are looking at this right now`,\n          `${count} people watching this product right now`,\n          `${count} shoppers are checking this out right now`\n        ];\n        return phrases[Math.floor(Math.random() * phrases.length)];\n      }\n    }\n\n    function updateDisplay() {\n      el.textContent = formatText(viewers);\n    }\n\n    function fluctuate() {\n      const isBig = Math.random() < bigChangeProb;\n      const maxDelta = isBig ? 12 : 5;\n      const delta = Math.floor(Math.random() * (maxDelta * 2 + 1)) - maxDelta;\n\n      viewers += delta;\n      viewers = Math.max(minViewers, Math.min(maxViewers, viewers));\n\n      if (Math.random() < 0.04 && viewers < 35) {\n        viewers += Math.floor(Math.random() * 18) + 8;\n        viewers = Math.min(maxViewers, viewers);\n      }\n\n      updateDisplay();\n\n      const nextSec = Math.random() * (updateMax - updateMin) + updateMin;\n      setTimeout(fluctuate, nextSec * 1000);\n    }\n\n    updateDisplay();\n    setTimeout(fluctuate, (Math.random() * 6000 + 2500));\n  })();\n</script>"
+          }
+        },
         "1393b77e-a8c0-433b-89a8-43bc490e6816": {
           "type": "product_sku",
+          "disabled": true,
           "settings": {}
         },
         "5722a2d6-dbc8-4335-94d4-85e24df7255f": {
@@ -76,6 +89,8 @@
       "block_order": [
         "vendor",
         "title",
+        "custom_liquid_NLjEyU",
+        "custom_liquid_Xj3nTn",
         "1393b77e-a8c0-433b-89a8-43bc490e6816",
         "5722a2d6-dbc8-4335-94d4-85e24df7255f",
         "19102668-8912-4e86-ab09-5b93d51fc680",
@@ -100,7 +115,7 @@
         "crossell_limit": 4,
         "show_upsell": false,
         "upsell_limit": 4,
-        "padding_top": 36,
+        "padding_top": 28,
         "padding_bottom": 12
       }
     },
